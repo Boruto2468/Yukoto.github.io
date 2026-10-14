@@ -3,7 +3,7 @@
 Yukoto is a minimal React + TypeScript + Vite study site. It focuses on listening before revealing transcripts, vocabulary in context, cross-linked Hanzi, writing from memory, and cumulative review. Japanese remains marked as the next course rather than presented as a complete course.
 
 
-### Windows import command
+<!-- ### Windows import command
 
 From the extracted `language-study-site` folder, run `npm run import-local` (hyphen) or `npm run import:local` (colon). Both commands are defined in `package.json`. Before importing, run `npm run` and confirm one of these names appears in the scripts list. If neither appears, you are running the command from an older project folder; extract this ZIP into a new folder and open a terminal there.
 
@@ -62,7 +62,7 @@ npm test
 npm run build
 ```
 
-The CSV workflow is recommended when that command cannot reach the source websites.
+The CSV workflow is recommended when that command cannot reach the source websites. -->
 
 ## What the site includes
 
