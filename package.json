@@ -1,0 +1,29 @@
+{
+  "name": "yukoto-language-study",
+  "private": true,
+  "version": "2.1.1",
+  "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "dev": "node scripts/prepare-curriculum.mjs && vite --host 0.0.0.0",
+    "build": "node scripts/prepare-curriculum.mjs --strict && node scripts/verify-curriculum.mjs && vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "sync:curriculum": "node scripts/sync-curriculum.mjs",
+    "check:data": "node scripts/verify-curriculum.mjs",
+    "test": "node scripts/test-curriculum.mjs",
+    "import:local": "node scripts/import-local-csv.mjs",
+    "import-local": "node scripts/import-local-csv.mjs"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "4.3.4",
+    "vite": "6.1.0",
+    "typescript": "5.7.3",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "lucide-react": "0.468.0"
+  },
+  "devDependencies": {},
+  "description": "Minimalist practice-first Mandarin learning with source-verified HSK 2.0 and HSK 3.0 curricula"
+}
