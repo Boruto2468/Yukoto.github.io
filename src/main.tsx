@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { AudioLines, BookOpen, Check, ChevronDown, ChevronLeft, ChevronRight, CircleHelp, Globe2, Headphones, Languages, Leaf, Menu, Moon, Play, RotateCcw, Sun, Volume2, X } from 'lucide-react';
 import './styles.css';
+import './theme.css';
 import curriculumJson from './data/curriculum.json';
 import { emptyCurriculum, loadCurriculum, readCurriculumCache, type CurriculumData, type CurriculumEntry, type CurriculumForm, type CurriculumLoadState, EXPECTED_LISTS, GUSHI_CHARACTER_COUNTS, GUSHI_WORD_COUNTS, OLD_WORD_COUNTS, SOURCE_REPOSITORY, SOURCE_VERSION } from './data/curriculum';
 
