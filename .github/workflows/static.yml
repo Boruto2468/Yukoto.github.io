@@ -37,7 +37,10 @@ jobs:
           node-version: 20
           cache: npm
       - name: Install and build
+        env:
+          VITE_YUKOTO_TOKEN_URL: ${{ vars.VITE_YUKOTO_TOKEN_URL }}
         run: |
+          node -e 'const value = process.env.VITE_YUKOTO_TOKEN_URL; try { if (!value || new URL(value).protocol !== "https:") throw new Error(); } catch { console.error("Set the repository Actions variable VITE_YUKOTO_TOKEN_URL to your deployed Worker HTTPS URL."); process.exit(1); }'
           npm ci
           npm run build
       - name: Setup Pages
