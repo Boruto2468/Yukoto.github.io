@@ -384,11 +384,13 @@ export function YukotoConversationPage({ initialLevel = 'starter', maxSessionSec
         const setup = {
           setup: {
             model: `models/${MODEL}`,
-            responseModalities: ['AUDIO'],
+            generationConfig: {
+              responseModalities: ['AUDIO'],
+              speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: 'Kore' } } },
+            },
             systemInstruction: { parts: [{ text: systemInstruction }] },
             inputAudioTranscription: {},
             outputAudioTranscription: {},
-            speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: 'Kore' } } },
           },
         };
         socket?.send(JSON.stringify(setup));
