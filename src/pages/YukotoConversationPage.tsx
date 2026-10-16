@@ -365,6 +365,8 @@ export function YukotoConversationPage({ initialLevel = 'starter', maxSessionSec
       socket = new WebSocket(url);
       socketRef.current = socket;
       let setupSettled = false;
+      let socketOpened = false;
+      let receivedServerMessages = 0;
       let setupResolve: (() => void) | undefined;
       let setupReject: ((reason?: Error) => void) | undefined;
       let setupTimeoutId: number | null = null;
@@ -374,12 +376,18 @@ export function YukotoConversationPage({ initialLevel = 'starter', maxSessionSec
         setupTimeoutId = window.setTimeout(() => {
           if (!setupSettled) {
             setupSettled = true;
-            setupReject?.(new Error('Gemini Live did not finish connecting within 20 seconds. Check model access and network connection.'));
+            const detail = !socketOpened
+              ? `The WebSocket did not open (state ${socket?.readyState ?? 'unavailable'}).`
+              : receivedServerMessages === 0
+                ? 'The WebSocket opened, but Gemini sent no setup response.'
+                : `Gemini sent ${receivedServerMessages} message(s), but did not confirm setup.`;
+            setupReject?.(new Error(`${detail} Timed out after 20 seconds. Check model access and network connection.`));
           }
         }, 20_000);
       });
 
       socket.onopen = () => {
+        socketOpened = true;
         const systemInstruction = buildYukotoMandarinInstruction(track, curriculumWords);
         const setup = {
           setup: {
@@ -396,10 +404,30 @@ export function YukotoConversationPage({ initialLevel = 'starter', maxSessionSec
         socket?.send(JSON.stringify(setup));
       };
 
-      socket.onmessage = (event: MessageEvent<string>) => {
+      socket.onmessage = async (event: MessageEvent) => {
         let message: ServerMessage;
-        try { message = JSON.parse(event.data) as ServerMessage; }
-        catch { return; }
+        try {
+          const rawMessage = typeof event.data === 'string'
+            ? event.data
+            : event.data instanceof Blob
+              ? await event.data.text()
+              : event.data instanceof ArrayBuffer
+                ? new TextDecoder().decode(event.data)
+                : null;
+          if (rawMessage === null) throw new Error('Unsupported WebSocket message format.');
+          message = JSON.parse(rawMessage) as ServerMessage;
+        } catch {
+          if (!setupSettled) {
+            setupSettled = true;
+            if (setupTimeoutId !== null) window.clearTimeout(setupTimeoutId);
+            setupTimeoutId = null;
+            setupReject?.(new Error('Gemini Live sent an unreadable setup response.'));
+          } else {
+            setErrorText('Gemini Live sent an unreadable response. End the session and try again.');
+          }
+          return;
+        }
+        receivedServerMessages += 1;
         if (message.error) {
           const detail = message.error.message || 'Gemini Live returned an error.';
           if (!setupSettled) {
@@ -465,7 +493,8 @@ export function YukotoConversationPage({ initialLevel = 'starter', maxSessionSec
           setupSettled = true;
           if (setupTimeoutId !== null) window.clearTimeout(setupTimeoutId);
           setupTimeoutId = null;
-          setupReject?.(new Error(`Gemini Live closed before setup completed (${event.code}).`));
+          const reason = event.reason ? `: ${event.reason}` : '';
+          setupReject?.(new Error(`Gemini Live closed before setup completed (${event.code})${reason}.`));
         } else if (!intentionalCloseRef.current && socketRef.current === socket) {
           sessionReadyRef.current = false;
           streamRef.current?.getTracks().forEach((trackItem) => trackItem.stop());
