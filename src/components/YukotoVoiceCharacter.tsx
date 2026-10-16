@@ -124,8 +124,8 @@ export function YukotoVoiceCharacter({ mode, level = 0, reducedMotion = false }:
         <div className={`yukoto-cube ${mode === 'connecting' || mode === 'thinking' ? 'is-thinking' : ''}`}>
           <div className="yukoto-cube-face yukoto-cube-front">
             <div className="yukoto-robot-eyes" aria-hidden="true">
-              <span className="yukoto-robot-eye"><i /></span>
-              <span className="yukoto-robot-eye"><i /></span>
+              <span className="yukoto-robot-eye" />
+              <span className="yukoto-robot-eye" />
             </div>
             <span className="yukoto-cube-mouth" />
           </div>
