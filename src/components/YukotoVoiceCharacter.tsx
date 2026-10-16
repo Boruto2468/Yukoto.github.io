@@ -118,8 +118,6 @@ export function YukotoVoiceCharacter({ mode, level = 0, reducedMotion = false }:
 
   return (
     <div className={`yukoto-character yukoto-character--${mode}`} aria-label={mode === 'listening' ? 'Yukoto is listening' : 'Yukoto is waiting'} role="img">
-      <div className="yukoto-orbit yukoto-orbit--one" />
-      <div className="yukoto-orbit yukoto-orbit--two" />
       <div className="yukoto-cube-scene">
         <div className={`yukoto-cube ${mode === 'connecting' || mode === 'thinking' ? 'is-thinking' : ''}`}>
           <div className="yukoto-cube-face yukoto-cube-front">
