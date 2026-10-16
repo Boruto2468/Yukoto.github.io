@@ -5,7 +5,8 @@
 .yukoto-sand-label{position:absolute;left:20px;bottom:18px;display:flex;align-items:center;gap:8px;color:rgba(210,230,245,.78);font-size:9px;letter-spacing:1.8px;font-weight:700}
 .yukoto-live-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#74e7ff;box-shadow:0 0 11px #36d8ff;animation:yukoto-led-pulse 1.2s ease-in-out infinite}
 .yukoto-cube-scene{position:absolute;inset:0;display:grid;place-items:center;perspective:850px;perspective-origin:50% 48%}
-.yukoto-cube{position:relative;width:154px;height:154px;transform-style:preserve-3d;transform:rotateX(0) rotateY(0);filter:drop-shadow(0 0 12px rgba(67,213,255,.82)) drop-shadow(0 0 34px rgba(39,174,255,.55)) drop-shadow(0 0 70px rgba(25,117,220,.3));animation:yukoto-cube-float 5.5s ease-in-out infinite}
+.yukoto-cube-scene::before{content:'';position:absolute;width:260px;height:260px;border-radius:50%;background:radial-gradient(ellipse,rgba(67,213,255,.48) 0%,rgba(39,174,255,.28) 36%,rgba(25,117,220,.1) 58%,transparent 74%);filter:blur(18px);pointer-events:none}
+.yukoto-cube{position:relative;width:154px;height:154px;transform-style:preserve-3d;transform:rotateX(0) rotateY(0);animation:yukoto-cube-float 5.5s ease-in-out infinite}
 .yukoto-cube.is-thinking{animation-duration:2.7s}
 .yukoto-cube-face{position:absolute;inset:0;border:1px solid #6eddff;border-radius:28px;background:#6eddff}
 .yukoto-cube-front{transform:translateZ(77px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:15px}
@@ -21,7 +22,7 @@
 .yukoto-cube-ground{position:absolute;left:50%;bottom:11%;width:200px;height:26px;transform:translateX(-50%);border-radius:50%;background:rgba(21,117,180,.18);filter:blur(15px)}
 .yukoto-character--listening .yukoto-cube-face{border-color:#6eddff;background:#6eddff}
 .yukoto-character--connecting .yukoto-cube{animation:yukoto-cube-think 1.5s ease-in-out infinite}
-.yukoto-character--error .yukoto-cube{filter:saturate(.45) drop-shadow(0 0 12px rgba(67,213,255,.82)) drop-shadow(0 0 34px rgba(39,174,255,.55)) drop-shadow(0 0 70px rgba(25,117,220,.3));opacity:.72}
+.yukoto-character--error .yukoto-cube{opacity:.72}
 @keyframes yukoto-cube-float{0%,100%{transform:translateY(0) rotateX(0) rotateY(0)}50%{transform:translateY(-10px) rotateX(0) rotateY(0)}}
 @keyframes yukoto-cube-think{0%,100%{transform:scale(.97) rotateX(0) rotateY(0)}50%{transform:scale(1.025) rotateX(0) rotateY(0)}}
 @keyframes yukoto-eye-blink{0%,40%,44%,72%,76%,100%{transform:scaleY(1)}42%,74%{transform:scaleY(.08)}}
