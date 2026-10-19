@@ -66,3 +66,12 @@ button:disabled{cursor:not-allowed;opacity:.55}.sr-only{position:absolute;width:
 .footer-brand{display:flex;align-items:flex-start;gap:10px}.footer-brand__flower{font-size:28px;color:#ffb5d8}.footer-brand strong{font-family:var(--serif);font-style:italic;font-size:27px;font-weight:700}.footer-brand p{font-size:12px;color:#b7c6e2;margin:6px 0}.footer-copy h4{font-size:12px;letter-spacing:.06em;color:#e5eeff;margin:4px 0 12px}.footer-copy p{color:#b0c0df;font-size:12px;line-height:1.85;margin:0}.footer-bottom{display:flex;align-items:center;justify-content:space-between;gap:17px;border-top:1px solid rgba(192,214,255,.13);padding-top:20px;color:#a6b9d9;font-size:11px}
 .hero-speak{background:rgba(12,29,61,.56);border:1px solid rgba(161,215,255,.34);border-radius:26px;padding:8px 13px;display:inline-flex;align-items:center;gap:9px;color:#e2edff;font-family:'Noto Sans JP',sans-serif;font-size:12px;transition:.2s}.hero-speak:hover{border-color:#a4d6ff;background:rgba(39,85,142,.64);box-shadow:0 0 16px rgba(142,200,255,.26)}
 @media(max-width:720px){.footer-top{grid-template-columns:1fr;gap:24px}.footer-bottom{flex-wrap:wrap;justify-content:flex-start}.page-footer{padding:33px 25px 28px}.hero-note{flex-wrap:wrap}}
+.site--home.has-rendered-home .home-hero__copy{animation:none}
+.site--home .heroine,.site--home .sakura-layer,.site--home .hero-scroll .chevron{animation-delay:var(--hero-sway-delay,0s)}
+.dictionary-status{color:#c7d5f1;font-size:13px;line-height:1.7;margin:14px 0 0}
+.dictionary-status a,.empty a{color:#a1caff;text-decoration:underline;text-underline-offset:3px}
+.search-clear{display:inline-grid;place-items:center;flex:none;width:30px;height:30px;padding:0;border:0;border-radius:8px;background:transparent;color:#acc8f0}
+.search-clear:hover{background:rgba(130,184,255,.18);color:#fff}
+.search-clear[hidden]{display:none}
+#dictionary-search::-webkit-search-cancel-button{-webkit-appearance:none;appearance:none}
+@media(max-width:720px){.course-switch{display:inline-flex;padding:8px 9px;font-size:10px;gap:4px}.topbar__tools{gap:5px}}

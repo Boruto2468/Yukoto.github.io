@@ -46,7 +46,7 @@ const translations = {
     readingTitle:'Learn to read',readingText:'Start with sounds. Build recognition. Explore the meaning and usage of each kanji without leaving this page.',
     hiragana:'Hiragana',katakana:'Katakana',kanji:'Kanji',levels:'JLPT levels',on:'On’yomi',kun:'Kun’yomi',sample:'Example',
     writingHint:'Tap a character to hear its sound and see a useful word.',kanjiHint:'Choose a level and select any kanji to expand its reading and example inline.',
-    dictionary:'Dictionary',dictionaryHint:'Search included kana and kanji by character, sound or meaning.',dictionaryPlaceholder:'Find a character or meaning',
+    dictionary:'Dictionary',dictionaryHint:'Search Japanese words, readings and meanings across the full Jotoba dictionary.',dictionaryPlaceholder:'Find a character or meaning',clearSearch:'Clear search',dictionaryLoading:'Searching the Jotoba dictionary…',dictionaryError:'Could not reach Jotoba. You can still search Jisho directly.',dictionaryNoResults:'No dictionary results were returned.',
     nothing:'Nothing matched that search.',wiki:'Explore on Wikipedia',otoku:'Otoku',otokuLater:'Otoku is coming later',otokuHint:'The Japanese conversation AI will be added separately. For now, explore the reading and practice tools.',
     close:'Close',footer:'Learn · Practice · Grow',voiceNote:'Pronunciation uses your browser’s Japanese voice when available.',
     noWords:'No matching words yet.',subset:'Curated starter content; the JLPT lists are not complete.'
@@ -69,7 +69,7 @@ const translations = {
     readingTitle:'読みの練習',readingText:'音から始めて、少しずつ読めるように。漢字を押すと読み方と使い方が表示されます。',
     hiragana:'ひらがな',katakana:'カタカナ',kanji:'漢字',levels:'JLPTレベル',on:'音読み',kun:'訓読み',sample:'例',
     writingHint:'文字を押して、発音と例を確認しましょう。',kanjiHint:'レベルを選んで漢字を押すと、同じページで詳細を確認できます。',
-    dictionary:'辞書',dictionaryHint:'収録済みの文字を、読み方や意味で検索します。',dictionaryPlaceholder:'文字・読み方・意味を検索',
+    dictionary:'辞書',dictionaryHint:'Jotobaの辞書から、日本語の単語・読み方・意味を検索できます。',dictionaryPlaceholder:'文字・読み方・意味を検索',clearSearch:'検索をクリア',dictionaryLoading:'Jotobaの辞書を検索中…',dictionaryError:'Jotobaに接続できませんでした。Jishoで検索できます。',dictionaryNoResults:'辞書に検索結果がありません。',
     nothing:'見つかりませんでした。',wiki:'Wikipediaで見る',otoku:'オトク',otokuLater:'オトクは準備中です',otokuHint:'日本語会話AIは後ほど追加します。今は読み方と単語の練習をどうぞ。',
     close:'閉じる',footer:'学ぶ · 練習する · 成長する',voiceNote:'発音には、利用できる場合にブラウザの日本語音声を使用します。',noWords:'該当する単語がありません。',subset:'学習用の抜粋です。JLPTの完全な一覧ではありません。'
   },
@@ -91,15 +91,25 @@ const translations = {
     readingTitle:'学会阅读',readingText:'先认识发音，再练习文字。点击汉字即可在当前页面查看读音、意义和例词。',
     hiragana:'平假名',katakana:'片假名',kanji:'汉字',levels:'JLPT 等级',on:'音读',kun:'训读',sample:'例词',
     writingHint:'点击字符，听发音并查看例词。',kanjiHint:'选择等级，点击汉字，即可在同一页面展开详情。',
-    dictionary:'词典',dictionaryHint:'按汉字、读音或意义搜索本站已有内容。',dictionaryPlaceholder:'搜索字符、读音或含义',
+    dictionary:'词典',dictionaryHint:'通过 Jotoba 词典搜索日语单词、读音和释义。',dictionaryPlaceholder:'搜索字符、读音或含义',clearSearch:'清除搜索',dictionaryLoading:'正在搜索 Jotoba 词典…',dictionaryError:'无法连接到 Jotoba。你仍可在 Jisho 上搜索。',dictionaryNoResults:'词典没有返回搜索结果。',
     nothing:'没有匹配结果。',wiki:'在维基百科中查看',otoku:'Otoku',otokuLater:'Otoku 即将推出',otokuHint:'日语对话 AI 将单独开发。目前可以先使用阅读和词汇练习。',
     close:'关闭',footer:'学习 · 练习 · 成长',voiceNote:'如果浏览器支持，将使用日语语音朗读。',noWords:'没有匹配的词汇。',subset:'精选的起步学习内容，不是完整的 JLPT 字表。'
   }
 };
 const getLocale = () => {try{const v=localStorage.getItem('yukoto-jp-ui');return translations[v]?v:'en';}catch{return 'en'}};
+function getInitialPage(){
+  const hashPage=location.hash.substring(1);
+  if(['home','words','reading'].includes(hashPage))return hashPage;
+  try{
+    const navigation=performance.getEntriesByType('navigation')[0];
+    const savedPage=sessionStorage.getItem('yukoto-jp-page');
+    if(navigation?.type==='reload'&&['home','words','reading'].includes(savedPage))return savedPage;
+  }catch{}
+  return 'home';
+}
 const state = {
-  page: ['home','words','reading'].includes(location.hash.substring(1)) ? location.hash.substring(1) : 'home',
-  locale:getLocale(),localeOpen:false,drawerOpen:false,dialog:null,dialogSearch:'',
+  page: getInitialPage(),
+  locale:getLocale(),localeOpen:false,drawerOpen:false,dialog:null,dialogSearch:'',externalDictionary:[],dictionaryStatus:'idle',
   group:'All',wordSearch:'',onlySaved:false,revealed:new Set(),saved:loadSet('yukoto-jp-saved'),
   quizIndex:0,quizFeedback:'',readingTab:'hiragana',level:5,openKanji:null,selectedKana:null,
   playTrailer:false,menuOpen:false
@@ -107,9 +117,14 @@ const state = {
 const t = key => translations[state.locale][key] || translations.en[key] || key;
 const kanjiTotal = Object.values(KANJI_BY_LEVEL).reduce((sum,list)=>sum+list.length,0);
 const NAV = ['home','words','reading'];
+let hasRenderedHome=false;
+let homeAnimationStartedAt=0;
+let dictionarySearchTimer;
+let dictionaryController;
+let dictionaryRequest=0;
 
 const shell = () => `
-<div class="site site--${state.page}">
+<div class="site site--${state.page}${hasRenderedHome?' has-rendered-home':''}">
  <div class="scenery" aria-hidden="true"><img class="scenery__land" src="./assets/hero-background.webp" alt="" /></div>
  <img class="sakura-layer" src="./assets/sakura-branch.webp" alt="" aria-hidden="true" />
  <div class="petal-field" aria-hidden="true">${[...Array(11)].map((_,i)=>`<i class="petal" style="--left:${(i*37+13)%100}%;--size:${11+(i*7)%11}px;--duration:${15+(i*3)%14}s;--delay:-${(i*5)%21}s;--travel:${i%2?'-':'+'}${35+(i*29)%115}px"></i>`).join('')}</div>
@@ -117,7 +132,7 @@ const shell = () => `
   <a class="logo" href="#home" aria-label="Yukoto home"><span class="logo__petal" aria-hidden="true">✿</span><span><span class="logo__name">Yukoto</span><small class="logo__tag">語りで、つながる</small></span></a>
   <nav class="topbar__nav" aria-label="Japanese section navigation">${NAV.map((p,i)=>`<a href="#${p}" class="nav-item" ${state.page===p?'aria-current="page"':''}>${icon(i===0?'home':i===1?'book':'reading')}${t(p)}</a>`).join('')}</nav>
   <div class="topbar__tools">
-   <a class="course-switch" href="../" title="${safe(t('learnChinese'))}">${icon('repeat',15)}<span>${t('learnJapanese')}</span> <span aria-hidden="true">↔</span></a>
+   <a class="course-switch" href="../" title="${safe(t('learnChinese'))}">${icon('repeat',15)}<span>${t('learnChinese')}</span> <span aria-hidden="true">↔</span></a>
    <div class="locale"><button class="locale__button" data-action="toggle-locale" aria-expanded="${state.localeOpen}" aria-label="${t('language')}">${icon('globe',17)} <span>${state.locale.toUpperCase()}</span> ${icon('chevron',14)}</button>
    ${state.localeOpen?`<div class="locale__menu" role="menu" aria-label="${t('language')}">${[['en','English'],['ja','日本語'],['zh','中文']].map(([key,label])=>`<button role="menuitemradio" aria-checked="${state.locale===key}" data-action="locale" data-value="${key}">${label} ${state.locale===key?'✓':''}</button>`).join('')}</div>`:''}</div>
   </div>
@@ -162,18 +177,80 @@ function kanaDetail(){const items=state.readingTab==='hiragana'?HIRAGANA:KATAKAN
 function kanjiCell(item){const open=state.openKanji===item.char;const wiki=`https://en.wikipedia.org/wiki/Special:Search?search=${encodeURIComponent(item.char+' kanji')}`;return `<article class="kanji-cell ${open?'is-open':''}"><button class="kanji-cell__button" data-action="kanji" data-value="${safe(item.char)}" aria-expanded="${open}"><span class="kanji-cell__char" lang="ja">${safe(item.char)}</span><span class="kanji-cell__body"><span class="kanji-cell__meaning">${safe(item.meaning)}</span><span class="kanji-cell__reading">${safe(item.on)}</span></span></button>${open?`<div class="kanji-cell__detail"><div><strong>${t('on')}</strong> ${safe(item.on||'—')}</div><div><strong>${t('kun')}</strong> ${safe(item.kun||'—')}</div>${item.words.map(word=>`<div style="margin-top:8px"><strong>${t('sample')}</strong> <span lang="ja">${safe(word.word)} (${safe(word.reading)})</span><br>${safe(word.meaning)}</div>`).join('')}<div style="display:flex;gap:12px;align-items:center;margin-top:10px"><button class="icon-btn" data-action="speak" data-text="${safe(item.words[0]?.reading||item.char)}" title="${t('sound')}" aria-label="${t('sound')}">${icon('volume',16)}</button><a href="${wiki}" target="_blank" rel="noopener noreferrer">${t('wiki')} ↗</a></div></div>`:''}</article>`}
 function readingPage(){const tab=state.readingTab;const isKanji=tab==='kanji';const items=tab==='hiragana'?HIRAGANA:tab==='katakana'?KATAKANA:KANJI_BY_LEVEL[state.level];return `<div class="study-page"><div class="section-shell"><header class="study-head"><div><div class="eyebrow">ひらがな · カタカナ · 漢字</div><h1>${t('readingTitle')}</h1><p>${t('readingText')}</p></div><div class="study-deco" aria-hidden="true">読</div></header><section class="glass learning-surface"><div class="toolbar"><div class="tabs" role="tablist" aria-label="Japanese writing systems">${[['hiragana',t('hiragana')],['katakana',t('katakana')],['kanji',t('kanji')]].map(([key,label])=>`<button class="tab" role="tab" aria-selected="${tab===key}" data-action="reading-tab" data-value="${key}">${label}</button>`).join('')}</div>${isKanji?`<div class="levels" aria-label="${t('levels')}">${[5,4,3,2,1].map(n=>`<button class="chip" aria-pressed="${state.level===n}" data-action="level" data-value="${n}">N${n}</button>`).join('')}</div>`:''}</div><p class="muted" style="line-height:1.8;margin:5px 0 21px">${isKanji?t('kanjiHint'):t('writingHint')}</p>${isKanji?`<div class="toolbar" style="margin-bottom:18px"><strong style="font-size:13px">${LEVEL_LABELS[state.level]}</strong><span class="muted">${items.length} kanji · ${t('subset')}</span></div><div class="kanji-grid">${items.map(kanjiCell).join('')}</div><p class="level-note">${t('subset')}</p>`:`<div class="kana-grid">${items.map(kanaRow).join('')}</div>${kanaDetail()}`}</section></div></div>`}
 function fab(){return `<div class="fab"><button class="fab__trigger" data-action="fab" aria-expanded="${state.drawerOpen}" aria-label="${t('dictionary')} / ${t('otoku')}">本</button>${state.drawerOpen?`<div class="fab__choices"><button class="fab__choice fab__choice--book" data-action="open-dictionary"><span>${t('dictionary')}</span><i aria-hidden="true">${icon('book',19)}</i></button><button class="fab__choice fab__choice--ai" data-action="open-otoku"><span>${t('otoku')}</span><i aria-hidden="true">${icon('eye',19)}</i></button></div>`:''}</div>`}
-function filteredDictionary(){const q=state.dialogSearch.toLocaleLowerCase().trim();return DICTIONARY_ENTRIES.filter(e=>[e.char,e.reading,e.meaning,e.category].some(v=>String(v).toLocaleLowerCase().includes(q))).slice(0,120)}
-function dictionaryList(){const rows=filteredDictionary();return rows.length?`<div class="dictionary-grid">${rows.map(e=>`<div class="dictionary-entry"><strong lang="ja">${safe(e.char)}</strong><small>${safe(e.category)}</small><p>${safe(e.reading)}<br>${safe(e.meaning)}</p><a href="https://en.wikipedia.org/wiki/Special:Search?search=${encodeURIComponent(e.char+' Japanese character')}" target="_blank" rel="noopener noreferrer">${t('wiki')} ↗</a></div>`).join('')}</div>`:`<div class="empty">${t('nothing')}</div>`}
-function modal(){const dictionary=state.dialog==='dictionary';return `<div class="modal-backdrop" data-action="modal-backdrop"><section role="dialog" aria-modal="true" aria-labelledby="dialog-title" class="dialog"><header class="dialog__header"><h2 id="dialog-title">${dictionary?t('dictionary'):t('otokuLater')}</h2><button class="icon-btn" data-action="close-modal" aria-label="${t('close')}">${icon('close',20)}</button></header><div class="dialog__body">${dictionary?`<p class="muted">${t('dictionaryHint')}</p><label class="search-wrap" style="max-width:440px;margin-top:16px">${icon('search')}<input type="search" id="dictionary-search" placeholder="${t('dictionaryPlaceholder')}" value="${safe(state.dialogSearch)}" autofocus></label><div id="dictionary-results">${dictionaryList()}</div>`:`<p style="color:#d4e2ff;line-height:1.9">${t('otokuHint')}</p><div style="font-size:50px;text-align:center;padding:25px 0;color:#b9d5ff" aria-hidden="true">◉ ◉</div>`}</div></section></div>`}
+function filteredDictionary(){
+  const q=state.dialogSearch.toLocaleLowerCase().trim();
+  const local=DICTIONARY_ENTRIES.filter(e=>!q||[e.char,e.reading,e.meaning,e.category].some(v=>String(v).toLocaleLowerCase().includes(q)));
+  const localKeys=new Set(local.map(e=>`${e.char}\u0000${e.reading}`));
+  const external=state.externalDictionary.map(entry=>{
+    const rawReading=entry.furigana||entry.reading||'';
+    const match=rawReading.match(/\[([^\]|]+)\|([^\]]+)\]/);
+    const senses=Array.isArray(entry.senses)?entry.senses:[];
+    const meanings=senses.filter(sense=>!sense.language||sense.language==='English').flatMap(sense=>Array.isArray(sense.glosses)?sense.glosses:[]).slice(0,8);
+    const partsOfSpeech=[...new Set(senses.flatMap(sense=>Array.isArray(sense.part_of_speech)?sense.part_of_speech.flatMap(part=>Object.keys(part)):[]))].slice(0,2).join(', ');
+    return {char:match?match[1]:rawReading,reading:match?match[2].replace(/\|/g,''):entry.alt_readings?.join(' / ')||'',meaning:meanings.join('; '),category:partsOfSpeech||'Jotoba dictionary',source:'Jotoba'};
+  }).filter(entry=>entry.char&&entry.meaning&&!localKeys.has(`${entry.char}\u0000${entry.reading}`));
+  return [...local,...external];
+}
+function dictionaryList(){
+  const rows=filteredDictionary();
+  const query=state.dialogSearch.trim();
+  const searchUrl=`https://jisho.org/search/${encodeURIComponent(query)}`;
+  const jotobaUrl=`https://jotoba.de/search/0/${encodeURIComponent(query)}?l=en-US`;
+  const status=state.dictionaryStatus==='loading'?`<p class="dictionary-status" role="status">${t('dictionaryLoading')}</p>`:state.dictionaryStatus==='error'?`<p class="dictionary-status" role="status">${t('dictionaryError')} <a href="${searchUrl}" target="_blank" rel="noopener noreferrer">Jisho ↗</a></p>`:'';
+  const entries=rows.map(e=>`<div class="dictionary-entry"><strong lang="ja">${safe(e.char)}</strong><small>${safe(e.category)}</small><p>${safe(e.reading)}<br>${safe(e.meaning)}</p><a href="${e.source==='Jotoba'?jotobaUrl:`https://en.wikipedia.org/wiki/Special:Search?search=${encodeURIComponent(e.char+' Japanese character')}`}" target="_blank" rel="noopener noreferrer">${e.source==='Jotoba'?'Jotoba':t('wiki')} ↗</a></div>`).join('');
+  const empty=query&&!rows.length&&state.dictionaryStatus==='ready'?`<div class="empty">${t('dictionaryNoResults')} <a href="${searchUrl}" target="_blank" rel="noopener noreferrer">Jisho ↗</a></div>`:!rows.length&&!status?`<div class="empty">${t('nothing')}</div>`:'';
+  return `${status}${entries?`<div class="dictionary-grid">${entries}</div>`:''}${empty}`;
+}
+function renderDictionaryResults(){const container=$('#dictionary-results');if(container)container.innerHTML=dictionaryList()}
+function resetDictionarySearch(){
+  clearTimeout(dictionarySearchTimer);
+  dictionaryController?.abort();
+  dictionaryController=undefined;
+  dictionaryRequest++;
+  state.externalDictionary=[];
+  state.dictionaryStatus='idle';
+}
+function scheduleDictionarySearch(query){
+  resetDictionarySearch();
+  const normalized=query.trim();
+  state.dictionaryStatus=normalized?'loading':'idle';
+  renderDictionaryResults();
+  if(!normalized)return;
+  const request=dictionaryRequest;
+  dictionarySearchTimer=window.setTimeout(async()=>{
+    const controller=new AbortController();
+    dictionaryController=controller;
+    try{
+      const response=await fetch('https://jotoba.de/api/app/words',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({query_str:normalized,settings:{jlpt:5,user_lang:'en-US',show_english:true,english_on_top:false,page_size:20,show_example_sentences:false,sentence_furigana:true},page:1,word_index:0}),signal:controller.signal});
+      if(!response.ok)throw new Error(`Jotoba request failed with status ${response.status}`);
+      const payload=await response.json();
+      if(!payload||!Array.isArray(payload.content?.words))throw new Error('Jotoba returned an invalid dictionary response');
+      if(request!==dictionaryRequest)return;
+      state.externalDictionary=payload.content.words;
+      state.dictionaryStatus='ready';
+    }catch(error){
+      if(error?.name==='AbortError')return;
+      if(request!==dictionaryRequest)return;
+      console.error('Japanese dictionary search failed:',error);
+      state.dictionaryStatus='error';
+    }
+    renderDictionaryResults();
+  },250);
+}
+function modal(){const dictionary=state.dialog==='dictionary';return `<div class="modal-backdrop" data-action="modal-backdrop"><section role="dialog" aria-modal="true" aria-labelledby="dialog-title" class="dialog"><header class="dialog__header"><h2 id="dialog-title">${dictionary?t('dictionary'):t('otokuLater')}</h2><button class="icon-btn" data-action="close-modal" aria-label="${t('close')}">${icon('close',20)}</button></header><div class="dialog__body">${dictionary?`<p class="muted">${t('dictionaryHint')}</p><label class="search-wrap" style="max-width:440px;margin-top:16px">${icon('search')}<input type="search" id="dictionary-search" placeholder="${t('dictionaryPlaceholder')}" value="${safe(state.dialogSearch)}" autofocus><button type="button" class="search-clear" data-action="clear-dictionary-search" aria-label="${t('clearSearch')}" title="${t('clearSearch')}" ${state.dialogSearch?'':'hidden'}>${icon('close',16)}</button></label><div id="dictionary-results">${dictionaryList()}</div>`:`<p style="color:#d4e2ff;line-height:1.9">${t('otokuHint')}</p><div style="font-size:50px;text-align:center;padding:25px 0;color:#b9d5ff" aria-hidden="true">◉ ◉</div>`}</div></section></div>`}
 
 function render(options={}){
   const scroll=options.keepScroll?scrollY:null;
+  if(state.page==='home'&&homeAnimationStartedAt===0)homeAnimationStartedAt=performance.now();
+  const elapsed=homeAnimationStartedAt?performance.now()-homeAnimationStartedAt:0;
+  document.documentElement.style.setProperty('--hero-sway-delay',`${-elapsed/1000}s`);
   $('#app').innerHTML=shell();document.documentElement.lang=state.locale;
+  if(state.page==='home')hasRenderedHome=true;
   if(state.dialog){const close=$('[data-action=close-modal]');close?.focus({preventScroll:true})}
   if(scroll!==null)window.scrollTo({top:scroll,behavior:'instant'});
 }
 function renderWordsGrid(){const node=$('#word-grid');if(!node)return;const rows=filteredWords();node.innerHTML=rows.length?rows.map(wordCard).join(''):`<div class="empty">${t('noWords')}</div>`;const count=$('#word-results-count');if(count)count.textContent=String(rows.length)}
-function navigate(page, updateHash=true){if(!NAV.includes(page))return;state.page=page;state.drawerOpen=false;state.dialog=null;state.localeOpen=false;state.playTrailer=false;if(updateHash&&location.hash!==`#${page}`)history.pushState(null,'',`#${page}`);render();window.scrollTo({top:0,behavior:'instant'})}
+function navigate(page, updateHash=true){if(!NAV.includes(page))return;resetDictionarySearch();state.page=page;state.drawerOpen=false;state.dialog=null;state.localeOpen=false;state.playTrailer=false;try{sessionStorage.setItem('yukoto-jp-page',page)}catch{}if(updateHash&&location.hash!==`#${page}`)history.pushState(null,'',`#${page}`);render();window.scrollTo({top:0,behavior:'instant'})}
 function speak(text,onStart){if(!('speechSynthesis' in window))return;window.speechSynthesis.cancel();const utterance=new SpeechSynthesisUtterance(text);utterance.lang='ja-JP';utterance.rate=.83;utterance.pitch=1;const voice=speechSynthesis.getVoices().find(v=>v.lang.toLowerCase().startsWith('ja'));if(voice)utterance.voice=voice;if(onStart)utterance.onstart=onStart;speechSynthesis.speak(utterance)}
 const welcomeText='ようこそ日本語へ';
 let welcomeStarted=false;
@@ -186,9 +263,10 @@ function handleAction(btn,event){const action=btn.dataset.action;const value=btn
  case 'toggle-locale':state.localeOpen=!state.localeOpen;render({keepScroll:true});break;
  case 'locale':state.locale=value;state.localeOpen=false;try{localStorage.setItem('yukoto-jp-ui',value)}catch{}render({keepScroll:true});break;
  case 'fab':state.drawerOpen=!state.drawerOpen;render({keepScroll:true});break;
- case 'open-dictionary':state.dialog='dictionary';state.drawerOpen=false;state.dialogSearch='';render({keepScroll:true});$('#dictionary-search')?.focus();break;
- case 'open-otoku':state.dialog='otoku';state.drawerOpen=false;render({keepScroll:true});break;
- case 'close-modal':state.dialog=null;render({keepScroll:true});break;
+ case 'open-dictionary':resetDictionarySearch();state.dialog='dictionary';state.drawerOpen=false;state.dialogSearch='';render({keepScroll:true});$('#dictionary-search')?.focus();break;
+ case 'clear-dictionary-search':{const input=$('#dictionary-search');if(input){input.value='';state.dialogSearch='';const clearButton=$('[data-action="clear-dictionary-search"]');if(clearButton)clearButton.hidden=true;scheduleDictionarySearch('');input.focus()}break;}
+ case 'open-otoku':resetDictionarySearch();state.dialog='otoku';state.drawerOpen=false;render({keepScroll:true});break;
+ case 'close-modal':resetDictionarySearch();state.dialog=null;render({keepScroll:true});break;
  case 'trailer':state.playTrailer=true;render({keepScroll:true});break;
  case 'group':state.group=value;state.onlySaved=false;render({keepScroll:true});break;
  case 'saved-filter':state.onlySaved=!state.onlySaved;state.group='All';render({keepScroll:true});break;
@@ -202,7 +280,7 @@ function handleAction(btn,event){const action=btn.dataset.action;const value=btn
  case 'level':state.level=Number(value);state.openKanji=null;render({keepScroll:true});break;
  case 'kanji':state.openKanji=state.openKanji===value?null:value;render({keepScroll:true});break;
  case 'kana':state.selectedKana=value;render({keepScroll:true});const k=(state.readingTab==='hiragana'?HIRAGANA:KATAKANA).find(e=>e.char===value);if(k)speak(k.char);break;
- case 'modal-backdrop':if(event.target.classList.contains('modal-backdrop')){state.dialog=null;render({keepScroll:true})}break;
+ case 'modal-backdrop':if(event.target.classList.contains('modal-backdrop')){resetDictionarySearch();state.dialog=null;render({keepScroll:true})}break;
  }}
 
 document.addEventListener('click',event=>{
@@ -210,8 +288,8 @@ document.addEventListener('click',event=>{
   const btn=event.target.closest('[data-action]');if(btn){event.preventDefault();handleAction(btn,event);return}
   if(state.localeOpen&&!event.target.closest('.locale')){state.localeOpen=false;render({keepScroll:true})}
 });
-document.addEventListener('input',event=>{if(event.target.id==='word-search'){state.wordSearch=event.target.value;renderWordsGrid()}if(event.target.id==='dictionary-search'){state.dialogSearch=event.target.value;const container=$('#dictionary-results');if(container)container.innerHTML=dictionaryList()}});
-document.addEventListener('keydown',event=>{if(event.key==='Escape'){if(state.dialog){state.dialog=null;render({keepScroll:true})}else if(state.localeOpen||state.drawerOpen){state.localeOpen=false;state.drawerOpen=false;render({keepScroll:true})}}if(event.key==='Enter'&&event.target.id==='quiz-answer'){$('[data-action=quiz-check]')?.click()}});
+document.addEventListener('input',event=>{if(event.target.id==='word-search'){state.wordSearch=event.target.value;renderWordsGrid()}if(event.target.id==='dictionary-search'){state.dialogSearch=event.target.value;const clearButton=$('[data-action="clear-dictionary-search"]');if(clearButton)clearButton.hidden=!event.target.value;scheduleDictionarySearch(state.dialogSearch)}});
+document.addEventListener('keydown',event=>{if(event.key==='Escape'){if(state.dialog){resetDictionarySearch();state.dialog=null;render({keepScroll:true})}else if(state.localeOpen||state.drawerOpen){state.localeOpen=false;state.drawerOpen=false;render({keepScroll:true})}}if(event.key==='Enter'&&event.target.id==='quiz-answer'){$('[data-action=quiz-check]')?.click()}});
 window.addEventListener('popstate',()=>{const current=location.hash.substring(1);navigate(NAV.includes(current)?current:'home',false)});
 window.addEventListener('hashchange',()=>{const current=location.hash.substring(1);if(NAV.includes(current)&&current!==state.page)navigate(current,false)});
 
