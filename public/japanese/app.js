@@ -132,7 +132,7 @@ const shell = () => `
   <a class="logo" href="#home" aria-label="Yukoto home"><span class="logo__petal" aria-hidden="true">✿</span><span><span class="logo__name">Yukoto</span><small class="logo__tag">語りで、つながる</small></span></a>
   <nav class="topbar__nav" aria-label="Japanese section navigation">${NAV.map((p,i)=>`<a href="#${p}" class="nav-item" ${state.page===p?'aria-current="page"':''}>${icon(i===0?'home':i===1?'book':'reading')}${t(p)}</a>`).join('')}</nav>
   <div class="topbar__tools">
-   <a class="course-switch" href="../" title="${safe(t('learnChinese'))}">${icon('repeat',15)}<span>${t('learnChinese')}</span> <span aria-hidden="true">↔</span></a>
+   <a class="course-switch" href="../" title="${safe(t('learnChinese'))}" aria-label="${safe(t('learnChinese'))}">${icon('repeat',15)}<span>${t('learnChinese')}</span> <span aria-hidden="true">↔</span></a>
    <div class="locale"><button class="locale__button" data-action="toggle-locale" aria-expanded="${state.localeOpen}" aria-label="${t('language')}">${icon('globe',17)} <span>${state.locale.toUpperCase()}</span> ${icon('chevron',14)}</button>
    ${state.localeOpen?`<div class="locale__menu" role="menu" aria-label="${t('language')}">${[['en','English'],['ja','日本語'],['zh','中文']].map(([key,label])=>`<button role="menuitemradio" aria-checked="${state.locale===key}" data-action="locale" data-value="${key}">${label} ${state.locale===key?'✓':''}</button>`).join('')}</div>`:''}</div>
   </div>

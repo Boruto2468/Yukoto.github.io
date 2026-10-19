@@ -74,4 +74,4 @@ button:disabled{cursor:not-allowed;opacity:.55}.sr-only{position:absolute;width:
 .search-clear:hover{background:rgba(130,184,255,.18);color:#fff}
 .search-clear[hidden]{display:none}
 #dictionary-search::-webkit-search-cancel-button{-webkit-appearance:none;appearance:none}
-@media(max-width:720px){.course-switch{display:inline-flex;padding:8px 9px;font-size:10px;gap:4px}.topbar__tools{gap:5px}}
+@media(max-width:720px){.course-switch{display:inline-flex;width:38px;height:38px;justify-content:center;padding:8px;gap:0}.course-switch>span{display:none}.topbar__tools{gap:5px}}
