@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { AudioLines, BookOpen, Check, ChevronDown, ChevronLeft, ChevronRight, CircleHelp, Globe2, Headphones, Languages, Leaf, Menu, Moon, Pause, Play, RotateCcw, Sun, Volume2, X, Mic } from 'lucide-react';
+import { AudioLines, BookOpen, Check, ChevronDown, ChevronLeft, ChevronRight, CircleHelp, Globe2, Headphones, Languages, Leaf, Menu, Moon, Pause, Play, RotateCcw, Search, Sun, Volume2, X, Mic } from 'lucide-react';
 import './styles.css';
 import './theme.css';
 import curriculumJson from './data/curriculum.json';
@@ -51,6 +51,122 @@ function VideoResource({videoId,title,children}:{videoId:string;title:string;chi
   </a>
   <div className="video-resource-copy"><h3>{title}</h3><p>{children}</p><a className="inline-link" href={url} target="_blank" rel="noreferrer">Watch on YouTube <ChevronRight size={16}/></a></div>
  </section>;
+}
+type DictionaryTranslationResponse={responseStatus?:number;responseDetails?:string;responseData?:{translatedText?:string};matches?:{translation?:string;match?:number|string}[]};
+type WiktionaryResponse={query?:{pages?:Record<string,{title?:string;extract?:string;missing?:string}>}};
+type WiktionarySearchResponse={query?:{search?:{title:string;snippet:string}[]}};
+function isAbortError(error:unknown){return error instanceof DOMException&&error.name==='AbortError'}
+async function fetchDictionaryTranslation(query:string,languagePair:string,signal:AbortSignal){
+ const params=new URLSearchParams({q:query,langpair:languagePair});
+ const response=await fetch(`https://api.mymemory.translated.net/get?${params}`,{signal});
+ if(!response.ok)throw new Error(`Translation service returned HTTP ${response.status}`);
+ const payload=await response.json() as DictionaryTranslationResponse;
+ if(payload.responseStatus!==200)throw new Error(payload.responseDetails||'Translation service returned an invalid response');
+ const primary=payload.responseData?.translatedText?.trim();
+ if(!primary)throw new Error('Translation service returned no translation');
+ const alternatives=[...new Map([primary,...(payload.matches||[]).filter(match=>Number(match.match)>=0.8).map(match=>match.translation?.trim()).filter((value):value is string=>Boolean(value))].filter(value=>!value.includes('\uFFFD')&&value.replace(/[。.!！?？\s]/gu,'').toLocaleLowerCase()!==query.replace(/[。.!！?？\s]/gu,'').toLocaleLowerCase()).map(value=>[value.replace(/[。.!！?？\s]/gu,'').toLocaleLowerCase(),value])).values()].slice(0,5);
+ return alternatives;
+}
+async function fetchChineseWiktionaryDefinitions(query:string,signal:AbortSignal,searchEnglish:boolean){
+ let matches:{title:string;snippet:string}[]=[];
+ if(searchEnglish){
+  const searchParams=new URLSearchParams({action:'query',format:'json',origin:'*',list:'search',srsearch:`insource:"${query.replace(/["\\]/g,' ')}"`,srlimit:'12',srnamespace:'0'});
+  const searchResponse=await fetch(`https://zh.wiktionary.org/w/api.php?${searchParams}`,{signal});
+  if(!searchResponse.ok)throw new Error(`Chinese Wiktionary search returned HTTP ${searchResponse.status}`);
+  const searchPayload=await searchResponse.json() as WiktionarySearchResponse;
+  matches=(searchPayload.query?.search||[]).filter(entry=>/\p{Script=Han}/u.test(entry.title)).slice(0,8);
+ }else matches=[{title:query,snippet:''}];
+ const titles=matches.map(entry=>entry.title);
+ if(!titles.length)return [];
+ const params=new URLSearchParams({action:'query',format:'json',origin:'*',prop:'extracts',explaintext:'1',exchars:'3000',titles:titles.join('|')});
+ const response=await fetch(`https://zh.wiktionary.org/w/api.php?${params}`,{signal});
+ if(!response.ok)throw new Error(`Wiktionary returned HTTP ${response.status}`);
+ const payload=await response.json() as WiktionaryResponse;
+ const pages=Object.values(payload.query?.pages||{});
+ return matches.flatMap(match=>{
+  const page=pages.find(candidate=>candidate.title===match.title);
+  const extract=page?.extract;
+  if(!extract||page?.missing!==undefined)return searchEnglish?[{title:match.title,definition:'Matching Chinese dictionary entry. Open the Wiktionary entry for its full definition.'}]:[];
+  const chineseSection=extract.split(/\n==\s*/).find(section=>/^(?:漢語|汉语|Chinese)\s*==/i.test(section));
+  const section=chineseSection?.replace(/^(?:漢語|汉语|Chinese)\s*==\s*/i,'')||extract;
+  const noPronunciation=section.replace(/(?:Pronunciation|發音|发音)\s*[\s\S]*?(?=Interjection|Noun|Verb|Adjective|Adverb|Pronoun|Preposition|Particle|Proper noun|Numeral|Classifier|Conjunction|Determiner|Phrase|Idiom|詞性|词性|釋義|释义|用法|詞源|词源|名詞|名词|動詞|动词|感嘆詞|感叹词|形容詞|形容词|副詞|副词|$)/g,'').replace(/\s*\[(?:漢語拼音|拼音|Pinyin)\][^\n]*/gi,'').replace(/^={2,4}\s*(.*?)\s*={2,}$/gm,'$1');
+  const definition=noPronunciation.split(/\n\s*(?:派生詞彙|派生语彙|派生語彙|派生词|派生语|參見|参见|翻譯|翻译|參考資料|参考资料|近義詞|近义词|相關詞匯|相关词汇|Derived terms|Descendants|See also|Translations|Synonyms)\s*(?:\n|$)/)[0].replace(/^(?:漢語|汉语)\s*$/gm,'').replace(/\n{3,}/g,'\n\n').trim();
+  return definition?[{title:page?.title||match.title,definition}]:[];
+ });
+}
+function ChineseDictionary(){
+ const [open,setOpen]=useState(false);
+ const [query,setQuery]=useState('');
+ const [status,setStatus]=useState<'idle'|'loading'|'ready'|'error'>('idle');
+ const [translations,setTranslations]=useState<string[]>([]);
+ const [definitions,setDefinitions]=useState<{title:string;definition:string}[]>([]);
+ const [lookupWarning,setLookupWarning]=useState('');
+ const inputRef=useRef<HTMLInputElement>(null);
+ useEffect(()=>{if(open)inputRef.current?.focus()},[open]);
+ useEffect(()=>{
+  const normalized=query.trim();
+  if(!open||!normalized){setTranslations([]);setDefinitions([]);setLookupWarning('');setStatus('idle');return}
+  let cancelled=false;
+  let controller:AbortController|undefined;
+  setStatus('loading');setTranslations([]);setDefinitions([]);setLookupWarning('');
+  const timer=window.setTimeout(async()=>{
+   controller=new AbortController();
+   const hasHanzi=/\p{Script=Han}/u.test(normalized);
+   const errors:string[]=[];
+   let translated:string[]=[];
+   let dictionaryEntries:{title:string;definition:string}[]=[];
+   const translationPromise=fetchDictionaryTranslation(normalized,hasHanzi?'zh-CN|en':'en|zh-CN',controller.signal);
+   if(hasHanzi){
+    const [translationResult,dictionaryResult]=await Promise.allSettled([translationPromise,fetchChineseWiktionaryDefinitions(normalized,controller.signal,false)]);
+    if(translationResult.status==='fulfilled')translated=translationResult.value;
+    else if(translationResult.reason?.name!=='AbortError'){console.error('Chinese dictionary translation failed:',translationResult.reason);errors.push('Translation lookup is temporarily unavailable.')}
+    if(dictionaryResult.status==='fulfilled')dictionaryEntries=dictionaryResult.value;
+    else if(!isAbortError(dictionaryResult.reason)){console.error('Chinese Wiktionary lookup failed:',dictionaryResult.reason);errors.push('Wiktionary lookup is temporarily unavailable.')}
+   }else{
+    try{
+     const [translationResult,dictionaryResult]=await Promise.allSettled([translationPromise,fetchChineseWiktionaryDefinitions(normalized,controller.signal,true)]);
+     if(translationResult.status==='fulfilled')translated=translationResult.value;
+     else if(!isAbortError(translationResult.reason)){console.error('Chinese dictionary translation failed:',translationResult.reason);errors.push('Translation lookup is temporarily unavailable.')}
+     if(dictionaryResult.status==='fulfilled')dictionaryEntries=dictionaryResult.value;
+     else if(!isAbortError(dictionaryResult.reason)){console.error('Chinese Wiktionary lookup failed:',dictionaryResult.reason);errors.push('Wiktionary definitions are temporarily unavailable.')}
+    }catch(error){if(!isAbortError(error)){console.error('Chinese dictionary lookup failed:',error);errors.push('The dictionary lookup is temporarily unavailable.')}}
+   }
+   if(cancelled||controller.signal.aborted)return;
+   setTranslations(translated);setDefinitions(dictionaryEntries);
+   setLookupWarning(errors.length?errors.join(' '):'');
+   setStatus(translated.length||dictionaryEntries.length?'ready':'error');
+  },300);
+  return()=>{cancelled=true;window.clearTimeout(timer);controller?.abort()};
+ },[open,query]);
+ useEffect(()=>{
+  if(!open)return;
+  const closeOnEscape=(event:KeyboardEvent)=>{if(event.key==='Escape')setOpen(false)};
+  window.addEventListener('keydown',closeOnEscape);
+  return()=>window.removeEventListener('keydown',closeOnEscape);
+ },[open]);
+ const mdbgUrl=`https://www.mdbg.net/chinese/dictionary?page=worddict&wdrst=0&wdqb=${encodeURIComponent(query.trim())}`;
+ return <>
+  <button className="dictionary-fab" type="button" aria-label="Open Chinese-English dictionary" title="Chinese-English dictionary" aria-expanded={open} onClick={()=>setOpen(true)}><BookOpen size={23}/></button>
+  {open&&<div className="dictionary-backdrop" onMouseDown={event=>{if(event.target===event.currentTarget)setOpen(false)}}>
+   <section className="dictionary-dialog" role="dialog" aria-modal="true" aria-labelledby="chinese-dictionary-title">
+    <header className="dictionary-dialog-header"><div><span className="eyebrow">LOOK UP A WORD</span><h2 id="chinese-dictionary-title">Chinese-English dictionary</h2></div><button className="icon-button dictionary-close" type="button" aria-label="Close dictionary" onClick={()=>setOpen(false)}><X size={20}/></button></header>
+    <div className="dictionary-dialog-body">
+     <p className="dictionary-hint">Search Chinese characters or English. Look up words beyond the lessons and HSK lists.</p>
+     <label className="dictionary-search"><Search size={18}/><input ref={inputRef} type="search" value={query} onChange={event=>setQuery(event.target.value)} placeholder="Enter 汉字 or an English word" aria-label="Search Chinese-English dictionary"/>{query&&<button type="button" aria-label="Clear search" title="Clear search" onClick={()=>{setQuery('');inputRef.current?.focus()}}><X size={16}/></button>}</label>
+     <div className="dictionary-results" aria-live="polite" aria-busy={status==='loading'}>
+      {status==='loading'&&<p className="dictionary-status" role="status">Searching the Chinese-English dictionary…</p>}
+      {status==='error'&&<p className="dictionary-status" role="status">No online result was returned. Try the external dictionary below.</p>}
+      {lookupWarning&&<p className="dictionary-status" role="status">{lookupWarning}</p>}
+      {status==='ready'&&<div className="dictionary-result-list">
+       {definitions.map(definition=><article className="dictionary-result" key={definition.title}><h3 className="dictionary-result-hanzi" lang="zh">{definition.title}</h3><span className="dictionary-result-label">WIKTIONARY</span><p className="dictionary-definition">{definition.definition}</p><a href={`https://zh.wiktionary.org/wiki/${encodeURIComponent(definition.title)}`} target="_blank" rel="noreferrer">Open Wiktionary entry <ChevronRight size={15}/></a></article>)}
+       {translations.length>0&&<article className="dictionary-result"><strong className="dictionary-result-hanzi" lang="zh">{translations[0]}</strong><span className="dictionary-result-label">CHINESE TRANSLATION · MYMEMORY</span>{translations.length>1&&<p className="dictionary-alternatives">Other translations: {translations.slice(1).join(' · ')}</p>}<p className="dictionary-translation-note">Translations can vary by context; check the dictionary entry for usage and nuance.</p></article>}
+      </div>}
+     </div>
+     {query.trim()&&<a className="dictionary-external-link" href={mdbgUrl} target="_blank" rel="noreferrer">Search this word in MDBG Chinese Dictionary <ChevronRight size={16}/></a>}
+    </div>
+   </section>
+  </div>}
+ </>;
 }
 const uiText:Record<string,Record<string,string>>={en:{home:'Home',pinyin:'Pinyin',speech:'Speech',reading:'Reading',review:'Review',conversation:'AI Partner',start:'Start learning',continue:'Continue learning',language:'Learning',interface:'Interface',intro:'A little Mandarin, a little every day.',introText:'Learn the language through sounds, useful phrases, and characters that start to make sense. No rush. Just steady practice.',begin:'Begin with the sounds',today:'A small step for today',todayText:'Listen to a phrase. Say it aloud. Then see what it means.',path:'Your learning path',pathText:'A simple route from first sounds to everyday reading.',why:'Why Mandarin?',whyText:'Mandarin is spoken by hundreds of millions of people. Its grammar can be refreshingly direct: verbs do not conjugate for each person, and nouns do not change for grammatical gender.',practice:'Practice is the point',practiceText:'Short sessions build recognition. Repeating a phrase and recalling its meaning is more useful than racing through a long list.',learn:'Learn',examples:'Everyday examples',show:'Show Pinyin & Hanzi',hide:'Hide transcript',listen:'Listen',mark:'Mark lesson complete',test:'Check your understanding',next:'Next lesson',back:'Back to learning',light:'Switch to light mode',dark:'Switch to dark mode'},ja:{home:'ホーム',pinyin:'ピンイン',speech:'発音',reading:'読解',review:'復習',conversation:'AI会話',start:'学習を始める',continue:'学習を続ける',language:'学習言語',interface:'表示言語',intro:'毎日少しずつ、中国語を。',introText:'音、使えるフレーズ、そして少しずつ分かる漢字から学びましょう。焦らず、少しずつ。',begin:'発音から始める',today:'今日の小さな一歩',todayText:'フレーズを聞き、声に出し、意味を確認しましょう。',path:'学習の道筋',pathText:'最初の音から日常の読解まで、シンプルに。',why:'なぜ中国語？',whyText:'中国語は多くの人に話されています。動詞は主語によって活用せず、名詞に文法上の性もありません。',practice:'練習が大切',practiceText:'短い練習を繰り返すことで、聞き取りと記憶が身につきます。',learn:'学ぶ',examples:'日常の例',show:'ピンインと漢字を表示',hide:'文字を隠す',listen:'聞く',mark:'レッスンを完了',test:'理解度を確認',next:'次のレッスン',back:'学習に戻る',light:'ライトモード',dark:'ダークモード'},zh:{home:'首页',pinyin:'拼音',speech:'听说',reading:'阅读',review:'复习',conversation:'AI 对话',start:'开始学习',continue:'继续学习',language:'学习语言',interface:'界面语言',intro:'每天学一点普通话。',introText:'从声音、实用短语和汉字开始。慢慢来，坚持练习。',begin:'从发音开始',today:'今天的一小步',todayText:'听一句，说出来，再看看它的意思。',path:'学习路线',pathText:'从最初的声音到日常阅读。',why:'为什么学普通话？',whyText:'普通话有数亿使用者。语法也有简单的一面：动词不会因主语而变位，名词没有语法性别。',practice:'练习最重要',practiceText:'短时间反复练习，有助于听懂、记住并主动回想。',learn:'开始学习',examples:'日常例句',show:'显示拼音和汉字',hide:'隐藏文字',listen:'听一听',mark:'标记为已完成',test:'检查理解',next:'下一课',back:'返回学习',light:'切换浅色模式',dark:'切换深色模式'}};
 const everydayDialogues = [
@@ -255,7 +371,7 @@ const embeddedCurriculum=curriculumJson as CurriculumData; const localCsvSnapsho
  const Reading=()=> <><PageIntro eyebrow="READING · VOCABULARY · HANZI" title="Read by word. Understand by character." description="Explore source-tracked HSK 2.0 and HSK 3.0 vocabulary, follow every Hanzi across words, listen before revealing transcripts, and practise with everyday dialogue and writing."/><VideoResource videoId="NryURgnLdlw" title="How Chinese Characters Work">A brief introduction to How Chinese Characters Work by Mandarin Blueprint. Do take your time to understand before continuing on.</VideoResource><CurriculumExplorer data={curriculumData} loadState={curriculumLoad} onRetry={()=>{setCurriculumData(emptyCurriculum);setCurriculumAttempt(attempt=>attempt+1)}} speak={speak} curriculumScheme={curriculumScheme} setCurriculumScheme={setCurriculumScheme} curriculumLevel={curriculumLevel} setCurriculumLevel={setCurriculumLevel} curriculumSearch={curriculumSearch} setCurriculumSearch={setCurriculumSearch} selectedEntry={selectedEntry} setSelectedEntry={setSelectedEntry}/><VideoResource videoId="SUVHMEUld4I" title="How To Master Any Chinese Character In Seconds">For a more detailed way to master Chinese Characters, please check out the video - How To Master Any Chinese Character In Seconds by Mandarin Blueprint. Take your time to listen and practice, also take notes as appropriate.</VideoResource></>;
  const Review=()=> <><PageIntro eyebrow="REMEMBER, DON'T JUST REREAD" title="A little review goes a long way." description="Test what you remember. Take your time, choose an answer, and use mistakes to decide what to practise next."/><div className="review-layout"><div className="review-main"><div className="review-card"><div className="review-card-top"><span className="step-label">MANDARIN · {curriculumData.entries.length>0?`CUMULATIVE HSK ${curriculumScheme==='old'?'2.0':'3.0'} THROUGH LEVEL ${curriculumLevel}`:'STARTER REVIEW'}</span><span className="question-count">{quizDone?'DONE':`${quizIndex+1} / ${quizItems.length}`}</span></div>{!quizDone?<><div className="quiz-progress"><span style={{width:`${(quizIndex+1)/quizItems.length*100}%`}}/></div><h2>{quizItems[quizIndex].q}</h2>{quizItems[quizIndex].hanzi&&<div className="review-target"><strong>{quizItems[quizIndex].hanzi}</strong><span>{quizItems[quizIndex].pinyin||''}</span><button className="mini-play" onClick={()=>speak(quizItems[quizIndex].hanzi!)} aria-label="Listen to review word"><Volume2 size={16}/></button></div>}<div className="choice-list">{quizItems[quizIndex].options.map(opt=><button key={opt} className={`choice ${choice===opt?'chosen':''} ${checked&&opt===quizItems[quizIndex].answer?'correct':''} ${checked&&choice===opt&&opt!==quizItems[quizIndex].answer?'incorrect':''}`} onClick={()=>{if(!checked)setChoice(opt)}}>{opt}{checked&&opt===quizItems[quizIndex].answer&&<Check size={16}/>}</button>)}</div>{checked&&<p className={choice===quizItems[quizIndex].answer?'feedback good':'feedback'}>{choice===quizItems[quizIndex].answer?'Correct. You remembered it.':`The answer is “${quizItems[quizIndex].answer}”. Try saying it once.`}</p>}<div className="quiz-actions"><button className="button primary" disabled={!choice} onClick={()=>{if(!checked)setChecked(true);else if(quizIndex<quizItems.length-1){setQuizIndex(quizIndex+1);setChoice('');setChecked(false)}else{setQuizDone(true);markComplete('review')}}}>{checked?(quizIndex===quizItems.length-1?'See finish':'Next question'):'Check answer'}<ChevronRight size={16}/></button></div></>:<div className="quiz-finished"><span className="finished-icon"><Check size={24}/></span><h2>That's a good session.</h2><p>You showed up and practised. That's how language becomes familiar.</p><button className="button primary" onClick={()=>{setQuizDone(false);setQuizIndex(0);setChoice('');setChecked(false)}}><RotateCcw size={16}/> Try the review again</button><button className="inline-link" onClick={()=>go('reading')}>Return to reading <ChevronRight size={16}/></button></div>}</div></div><aside className="review-aside"><span className="round-icon"><BookOpen size={19}/></span><h3>Practice beats cramming.</h3><p>When a phrase feels difficult, listen again and try recalling it before revealing the answer.</p><div className="review-stat"><strong>{completed.length}</strong><span>lessons marked complete</span></div><button className="button secondary full-button" onClick={()=>go('speech')}><Headphones size={16}/> Go to listening</button><button className="button text-button full-button" onClick={()=>go('reading')}><BookOpen size={16}/> Return to reading</button></aside></div></>;
  const JapaneseNotice=()=> <div className="japanese-notice"><span className="round-icon"><Languages size={21}/></span><div><h2>日本語の学習は準備中です。</h2><p>The Japanese course will use the same calm layout and practice-first approach. For now, switch back to Mandarin to explore the working lessons.</p><button className="button primary" onClick={()=>setStudy('Chinese')}>Continue with Mandarin <ChevronRight size={16}/></button></div></div>;
- return <div className="app-shell"><Header/><main className="main-content">{page === 'conversation' ? (<YukotoConversationPage initialLevel={`${curriculumScheme === 'old' ? 'hsk20' : 'hsk30'}-${curriculumLevel}`} curriculumEntries={curriculumData.entries}/>) :study==='Japanese'?<JapaneseNotice/>:<>{page==='home'&&Home()}{page==='pinyin'&&<><Pinyin/><VideoResource videoId="n_Cj3aOSI1w" title="Mastering Chinese Tones By Grace">For you to better understand, listen and practice Chinese tones in pinyin, check out the video: Mastering Chinese Tones By Grace.</VideoResource></>}{page==='speech'&&Speech()}{page==='reading'&&Reading()}{page==='review'&&Review()}</>}</main><Footer/><button className="mobile-practice" onClick={()=>go('review')}><CircleHelp size={17}/> Quick review</button></div>;
+ return <div className="app-shell"><Header/><main className="main-content">{page === 'conversation' ? (<YukotoConversationPage initialLevel={`${curriculumScheme === 'old' ? 'hsk20' : 'hsk30'}-${curriculumLevel}`} curriculumEntries={curriculumData.entries}/>) :study==='Japanese'?<JapaneseNotice/>:<>{page==='home'&&Home()}{page==='pinyin'&&<><Pinyin/><VideoResource videoId="n_Cj3aOSI1w" title="Mastering Chinese Tones By Grace">For you to better understand, listen and practice Chinese tones in pinyin, check out the video: Mastering Chinese Tones By Grace.</VideoResource></>}{page==='speech'&&Speech()}{page==='reading'&&Reading()}{page==='review'&&Review()}</>}</main><Footer/>{study==='Chinese'&&<ChineseDictionary/>}<button className="mobile-practice" onClick={()=>go('review')}><CircleHelp size={17}/> Quick review</button></div>;
 }
 class YukotoErrorBoundary extends React.Component<{children:React.ReactNode},{hasError:boolean}> { constructor(props:{children:React.ReactNode}){super(props);this.state={hasError:false};} static getDerivedStateFromError(){return {hasError:true};} componentDidCatch(error:Error){console.error('Yukoto rendering error:',error);} render(){if(this.state.hasError)return <main className="fatal-error"><span className="brand-mark">言</span><h1>This page hit an unexpected error.</h1><p>Your learning data has not been deleted. Return to the home page or reload Yukoto to recover.</p><div><button className="button primary" onClick={()=>{this.setState({hasError:false});window.location.href=window.location.pathname;}}>Reload Yukoto</button></div></main>;return this.props.children;} }
 createRoot(document.getElementById('root')!).render(<YukotoErrorBoundary><App/></YukotoErrorBoundary>);
