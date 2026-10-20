@@ -161,6 +161,7 @@ const kanjiTotal = Object.values(KANJI_BY_LEVEL).reduce((sum,list)=>sum+list.len
 const NAV = ['home','words','reading','anime'];
 let hasRenderedHome=false;
 let homeAnimationStartedAt=0;
+const petalAnimationStartedAt=performance.now();
 let dictionarySearchTimer;
 let dictionaryController;
 let dictionaryRequest=0;
@@ -348,6 +349,7 @@ function render(options={}){
   if(state.page==='home'&&homeAnimationStartedAt===0)homeAnimationStartedAt=performance.now();
   const elapsed=homeAnimationStartedAt?performance.now()-homeAnimationStartedAt:0;
   document.documentElement.style.setProperty('--hero-sway-delay',`${-elapsed/1000}s`);
+  document.documentElement.style.setProperty('--petal-elapsed',`${(performance.now()-petalAnimationStartedAt)/1000}s`);
   $('#app').innerHTML=shell();document.documentElement.lang=state.locale;
   if(state.page==='home')hasRenderedHome=true;
   if(state.dialog){const close=$('[data-action=close-modal]');close?.focus({preventScroll:true})}
