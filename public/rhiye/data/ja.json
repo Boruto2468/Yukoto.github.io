@@ -1,0 +1,1632 @@
+{
+  "language": "ja",
+  "schemaVersion": 1,
+  "sourceNote": "Listening words are selected from the site’s existing Japanese starter vocabulary; original learning notes and phrases are written for Rhiye.",
+  "characters": [
+    {
+      "id": "ja-character-001",
+      "group": "learn",
+      "kind": "character",
+      "language": "ja",
+      "level": "N5",
+      "text": "日",
+      "reading": "ひ / にち / じつ",
+      "meaning": "sun; day",
+      "components": "The sun is pictured inside a boundary.",
+      "example": "日本 (にほん) — Japan",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "ja-character-002",
+      "group": "learn",
+      "kind": "character",
+      "language": "ja",
+      "level": "N5",
+      "text": "月",
+      "reading": "つき / げつ / がつ",
+      "meaning": "moon; month",
+      "components": "A crescent moon shape with inner marks.",
+      "example": "月曜日 (げつようび) — Monday",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "ja-character-003",
+      "group": "learn",
+      "kind": "character",
+      "language": "ja",
+      "level": "N5",
+      "text": "人",
+      "reading": "ひと / じん / にん",
+      "meaning": "person; people",
+      "components": "Two strokes suggest a person standing.",
+      "example": "日本人 (にほんじん) — Japanese person",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "ja-character-004",
+      "group": "learn",
+      "kind": "character",
+      "language": "ja",
+      "level": "N5",
+      "text": "山",
+      "reading": "やま / さん",
+      "meaning": "mountain",
+      "components": "Three mountain peaks are shown in outline.",
+      "example": "火山 (かざん) — volcano",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "ja-character-005",
+      "group": "learn",
+      "kind": "character",
+      "language": "ja",
+      "level": "N5",
+      "text": "川",
+      "reading": "かわ / せん",
+      "meaning": "river",
+      "components": "Three flowing lines represent a river.",
+      "example": "小川 (おがわ) — stream",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "ja-character-006",
+      "group": "learn",
+      "kind": "character",
+      "language": "ja",
+      "level": "N5",
+      "text": "木",
+      "reading": "き / もく / ぼく",
+      "meaning": "tree; wood",
+      "components": "A trunk with branches and roots.",
+      "example": "木曜日 (もくようび) — Thursday",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "ja-character-007",
+      "group": "learn",
+      "kind": "character",
+      "language": "ja",
+      "level": "N5",
+      "text": "水",
+      "reading": "みず / すい",
+      "meaning": "water",
+      "components": "The strokes suggest water flowing from a source.",
+      "example": "水曜日 (すいようび) — Wednesday",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "ja-character-008",
+      "group": "learn",
+      "kind": "character",
+      "language": "ja",
+      "level": "N5",
+      "text": "火",
+      "reading": "ひ / か",
+      "meaning": "fire",
+      "components": "The shape is based on rising flames.",
+      "example": "火曜日 (かようび) — Tuesday",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "ja-character-009",
+      "group": "learn",
+      "kind": "character",
+      "language": "ja",
+      "level": "N5",
+      "text": "口",
+      "reading": "くち / こう",
+      "meaning": "mouth; opening",
+      "components": "A square opening is shown from the front.",
+      "example": "入口 (いりぐち) — entrance",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "ja-character-010",
+      "group": "learn",
+      "kind": "character",
+      "language": "ja",
+      "level": "N5",
+      "text": "手",
+      "reading": "て / しゅ",
+      "meaning": "hand",
+      "components": "A hand shape with fingers and palm.",
+      "example": "手紙 (てがみ) — letter",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "ja-character-011",
+      "group": "learn",
+      "kind": "character",
+      "language": "ja",
+      "level": "N4",
+      "text": "大",
+      "reading": "おお(きい) / だい / たい",
+      "meaning": "big; large",
+      "components": "A person stands with arms and legs spread.",
+      "example": "大学 (だいがく) — university",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "ja-character-012",
+      "group": "learn",
+      "kind": "character",
+      "language": "ja",
+      "level": "N4",
+      "text": "小",
+      "reading": "ちい(さい) / しょう",
+      "meaning": "small; little",
+      "components": "Small marks sit around a central stroke.",
+      "example": "小学校 (しょうがっこう) — elementary school",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "ja-character-013",
+      "group": "learn",
+      "kind": "character",
+      "language": "ja",
+      "level": "N4",
+      "text": "中",
+      "reading": "なか / ちゅう",
+      "meaning": "inside; middle",
+      "components": "A line marks the centre of a box.",
+      "example": "中国 (ちゅうごく) — China",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "ja-character-014",
+      "group": "learn",
+      "kind": "character",
+      "language": "ja",
+      "level": "N4",
+      "text": "上",
+      "reading": "うえ / じょう",
+      "meaning": "above; up",
+      "components": "A mark sits above a baseline.",
+      "example": "上手 (じょうず) — skillful",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "ja-character-015",
+      "group": "learn",
+      "kind": "character",
+      "language": "ja",
+      "level": "N4",
+      "text": "下",
+      "reading": "した / か / げ",
+      "meaning": "below; down",
+      "components": "A mark sits below a baseline.",
+      "example": "地下 (ちか) — underground",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    }
+  ],
+  "idioms": [
+    {
+      "id": "ja-idiom-001",
+      "group": "learn",
+      "kind": "idiom",
+      "language": "ja",
+      "level": "N5",
+      "text": "十人十色",
+      "reading": "じゅうにんといろ · jūnin toiro",
+      "meaning": "ten people, ten colours",
+      "literalMeaning": "Everyone has different tastes or opinions.",
+      "whenToUse": "Said when acknowledging that people are not all alike.",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "ja-idiom-002",
+      "group": "learn",
+      "kind": "idiom",
+      "language": "ja",
+      "level": "N4",
+      "text": "一石二鳥",
+      "reading": "いっせきにちょう · isseki nichō",
+      "meaning": "one stone, two birds",
+      "literalMeaning": "To get two benefits from one action.",
+      "whenToUse": "Used much like “kill two birds with one stone”; common in everyday conversation.",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "ja-idiom-003",
+      "group": "learn",
+      "kind": "idiom",
+      "language": "ja",
+      "level": "N4",
+      "text": "温故知新",
+      "reading": "おんこちしん · onko chishin",
+      "meaning": "review the old, learn the new",
+      "literalMeaning": "Learn something new by revisiting the past.",
+      "whenToUse": "Often used about study, history, and learning from experience.",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "ja-idiom-004",
+      "group": "learn",
+      "kind": "idiom",
+      "language": "ja",
+      "level": "N4",
+      "text": "自業自得",
+      "reading": "じごうじとく · jigō jitoku",
+      "meaning": "one’s own actions, one’s own result",
+      "literalMeaning": "To face the consequences of your own actions.",
+      "whenToUse": "Can sound blunt or judgmental; use carefully about someone else.",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "ja-idiom-005",
+      "group": "learn",
+      "kind": "idiom",
+      "language": "ja",
+      "level": "N4",
+      "text": "七転八起",
+      "reading": "しちてんはっき · shichiten hakki",
+      "meaning": "fall seven times, rise eight",
+      "literalMeaning": "Keep getting back up after setbacks.",
+      "whenToUse": "An encouraging expression about perseverance.",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    }
+  ],
+  "phrases": [
+    {
+      "id": "ja-phrase-001",
+      "group": "learn",
+      "kind": "phrase",
+      "language": "ja",
+      "level": "N5",
+      "text": "これをください。",
+      "reading": "これをください · kore o kudasai",
+      "meaning": "This one, please.",
+      "whenToUse": "A polite, simple way to order or choose an item.",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "ja-phrase-002",
+      "group": "learn",
+      "kind": "phrase",
+      "language": "ja",
+      "level": "N5",
+      "text": "駅はどこですか。",
+      "reading": "えきはどこですか · eki wa doko desu ka",
+      "meaning": "Where is the station?",
+      "whenToUse": "Use to ask for the location of a station.",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "ja-phrase-003",
+      "group": "learn",
+      "kind": "phrase",
+      "language": "ja",
+      "level": "N5",
+      "text": "いくらですか。",
+      "reading": "いくらですか · ikura desu ka",
+      "meaning": "How much is it?",
+      "whenToUse": "A basic shopping question; point to the item if helpful.",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "ja-phrase-004",
+      "group": "learn",
+      "kind": "phrase",
+      "language": "ja",
+      "level": "N5",
+      "text": "もう一度お願いします。",
+      "reading": "もういちどおねがいします · mō ichido onegaishimasu",
+      "meaning": "One more time, please.",
+      "whenToUse": "Use politely when you need something repeated.",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "ja-phrase-005",
+      "group": "learn",
+      "kind": "phrase",
+      "language": "ja",
+      "level": "N5",
+      "text": "ゆっくり話してください。",
+      "reading": "ゆっくりはなしてください · yukkuri hanashite kudasai",
+      "meaning": "Please speak slowly.",
+      "whenToUse": "A polite request when you are still learning Japanese.",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "ja-phrase-006",
+      "group": "learn",
+      "kind": "phrase",
+      "language": "ja",
+      "level": "N4",
+      "text": "水をお願いします。",
+      "reading": "みずをおねがいします · mizu o onegaishimasu",
+      "meaning": "Water, please.",
+      "whenToUse": "A simple, polite request in a restaurant.",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "ja-phrase-007",
+      "group": "learn",
+      "kind": "phrase",
+      "language": "ja",
+      "level": "N4",
+      "text": "写真を撮ってもいいですか。",
+      "reading": "しゃしんをとってもいいですか · shashin o totte mo ii desu ka",
+      "meaning": "May I take a photo?",
+      "whenToUse": "Ask permission before taking a photo, especially of people or inside a venue.",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "ja-phrase-008",
+      "group": "learn",
+      "kind": "phrase",
+      "language": "ja",
+      "level": "N4",
+      "text": "カードは使えますか。",
+      "reading": "カードはつかえますか · kādo wa tsukaemasu ka",
+      "meaning": "Can I use a card?",
+      "whenToUse": "Ask whether card payment is accepted before ordering or paying.",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "ja-phrase-009",
+      "group": "learn",
+      "kind": "phrase",
+      "language": "ja",
+      "level": "N4",
+      "text": "大丈夫です。",
+      "reading": "だいじょうぶです · daijōbu desu",
+      "meaning": "It is okay / I am all right.",
+      "whenToUse": "Meaning depends on context; it can also politely decline an offer.",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "ja-phrase-010",
+      "group": "learn",
+      "kind": "phrase",
+      "language": "ja",
+      "level": "N4",
+      "text": "ここで降ります。",
+      "reading": "ここでおります · koko de orimasu",
+      "meaning": "I will get off here.",
+      "whenToUse": "Tell a driver or companion where you plan to get off.",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    }
+  ],
+  "listen": [
+    {
+      "id": "ja-listen-001",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N5",
+      "text": "こんにちは",
+      "reading": "こんにちは · konnichiwa",
+      "meaning": "Hello / good afternoon",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-002",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N5",
+      "text": "おはようございます",
+      "reading": "おはようございます · ohayou gozaimasu",
+      "meaning": "Good morning (polite)",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-003",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N5",
+      "text": "おはよう",
+      "reading": "おはよう · ohayou",
+      "meaning": "Good morning (casual)",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-004",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N5",
+      "text": "こんばんは",
+      "reading": "こんばんは · konbanwa",
+      "meaning": "Good evening",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-005",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N5",
+      "text": "ありがとう",
+      "reading": "ありがとう · arigatou",
+      "meaning": "Thank you (casual)",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-006",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N5",
+      "text": "ありがとうございます",
+      "reading": "ありがとうございます · arigatou gozaimasu",
+      "meaning": "Thank you (polite)",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-007",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N5",
+      "text": "すみません",
+      "reading": "すみません · sumimasen",
+      "meaning": "Excuse me / sorry",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-008",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N5",
+      "text": "ごめんなさい",
+      "reading": "ごめんなさい · gomen nasai",
+      "meaning": "I'm sorry",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-009",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N5",
+      "text": "お願いします",
+      "reading": "おねがいします · onegaishimasu",
+      "meaning": "Please / I ask this of you",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-010",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N5",
+      "text": "はい",
+      "reading": "はい · hai",
+      "meaning": "Yes",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-011",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N5",
+      "text": "いいえ",
+      "reading": "いいえ · iie",
+      "meaning": "No",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-012",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N5",
+      "text": "さようなら",
+      "reading": "さようなら · sayounara",
+      "meaning": "Goodbye",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-013",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N5",
+      "text": "またね",
+      "reading": "またね · mata ne",
+      "meaning": "See you later (casual)",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-014",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N5",
+      "text": "はじめまして",
+      "reading": "はじめまして · hajimemashite",
+      "meaning": "Nice to meet you",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-015",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N5",
+      "text": "よろしくお願いします",
+      "reading": "よろしくおねがいします · yoroshiku onegaishimasu",
+      "meaning": "A polite phrase used when beginning a relationship or asking for goodwill",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-016",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N5",
+      "text": "一",
+      "reading": "いち · ichi",
+      "meaning": "One",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-017",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N5",
+      "text": "二",
+      "reading": "に · ni",
+      "meaning": "Two",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-018",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N5",
+      "text": "三",
+      "reading": "さん · san",
+      "meaning": "Three",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-019",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N5",
+      "text": "四",
+      "reading": "よん / し · yon / shi",
+      "meaning": "Four",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-020",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N5",
+      "text": "五",
+      "reading": "ご · go",
+      "meaning": "Five",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-021",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N5",
+      "text": "六",
+      "reading": "ろく · roku",
+      "meaning": "Six",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-022",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N5",
+      "text": "七",
+      "reading": "なな / しち · nana / shichi",
+      "meaning": "Seven",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-023",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N5",
+      "text": "八",
+      "reading": "はち · hachi",
+      "meaning": "Eight",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-024",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N5",
+      "text": "九",
+      "reading": "きゅう / く · kyuu / ku",
+      "meaning": "Nine",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-025",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N5",
+      "text": "十",
+      "reading": "じゅう · juu",
+      "meaning": "Ten",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-026",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N5",
+      "text": "百",
+      "reading": "ひゃく · hyaku",
+      "meaning": "One hundred",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-027",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N5",
+      "text": "千",
+      "reading": "せん · sen",
+      "meaning": "One thousand",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-028",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N5",
+      "text": "一万円",
+      "reading": "いちまんえん · ichiman en",
+      "meaning": "Ten thousand yen",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-029",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N5",
+      "text": "私",
+      "reading": "わたし · watashi",
+      "meaning": "I / me (neutral-polite)",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-030",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N5",
+      "text": "僕",
+      "reading": "ぼく · boku",
+      "meaning": "I / me (often used by men, relatively casual)",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-031",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N5",
+      "text": "あなた",
+      "reading": "あなた · anata",
+      "meaning": "You",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-032",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N5",
+      "text": "彼",
+      "reading": "かれ · kare",
+      "meaning": "He / him; boyfriend in some contexts",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-033",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N5",
+      "text": "彼女",
+      "reading": "かのじょ · kanojo",
+      "meaning": "She / her; girlfriend in some contexts",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-034",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N5",
+      "text": "私たち",
+      "reading": "わたしたち · watashitachi",
+      "meaning": "We / us",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-035",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N5",
+      "text": "これ",
+      "reading": "これ · kore",
+      "meaning": "This (near the speaker)",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-036",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N4",
+      "text": "それ",
+      "reading": "それ · sore",
+      "meaning": "That (near the listener)",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-037",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N4",
+      "text": "あれ",
+      "reading": "あれ · are",
+      "meaning": "That over there",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-038",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N4",
+      "text": "これはいくらですか。",
+      "reading": "これはいくらですか。 · kore wa ikura desu ka",
+      "meaning": "How much is this?",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-039",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N4",
+      "text": "トイレはどこですか。",
+      "reading": "トイレはどこですか。 · toire wa doko desu ka",
+      "meaning": "Where is the toilet?",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-040",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N4",
+      "text": "英語を話せますか。",
+      "reading": "えいごをはなせますか。 · eigo o hanasemasu ka",
+      "meaning": "Can you speak English?",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-041",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N4",
+      "text": "日本語が少し話せます。",
+      "reading": "にほんごがすこしはなせます。 · nihongo ga sukoshi hanasemasu",
+      "meaning": "I can speak a little Japanese.",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-042",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N4",
+      "text": "わかりません。",
+      "reading": "わかりません。 · wakarimasen",
+      "meaning": "I don't understand.",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-043",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N4",
+      "text": "もう一度お願いします。",
+      "reading": "もういちどおねがいします。 · mou ichido onegaishimasu",
+      "meaning": "One more time, please.",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-044",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N4",
+      "text": "おいしいです。",
+      "reading": "おいしいです。 · oishii desu",
+      "meaning": "It is delicious.",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "ja-listen-045",
+      "group": "listen",
+      "kind": "audio",
+      "language": "ja",
+      "level": "N4",
+      "text": "大丈夫です。",
+      "reading": "だいじょうぶです。 · daijoubu desu",
+      "meaning": "It's okay / I'm okay",
+      "source": "Yukoto Japanese starter vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "id": "ja-video-wTSdRX6cCEg",
+      "group": "watch",
+      "kind": "screen-video",
+      "language": "ja",
+      "level": "N5",
+      "text": "あだ名で有名人になった",
+      "reading": "Japanese",
+      "meaning": "",
+      "videoId": "wTSdRX6cCEg",
+      "startSeconds": 0,
+      "segmentVerified": true,
+      "embedVerified": true,
+      "listenFor": {
+        "text": "あだ名",
+        "reading": "あだな · adana",
+        "meaning": "nickname"
+      },
+      "source": "User-confirmed authorized YouTube Short; play the full Short.",
+      "tags": [
+        "user-supplied",
+        "series-film-anime"
+      ]
+    },
+    {
+      "id": "ja-video-mK2iCy7XymM",
+      "group": "watch",
+      "kind": "life-video",
+      "language": "ja",
+      "level": "N5",
+      "text": "That's fine We'll wait | Restaurant conversation in Japanese",
+      "reading": "Japanese",
+      "meaning": "",
+      "videoId": "mK2iCy7XymM",
+      "startSeconds": 0,
+      "segmentVerified": true,
+      "embedVerified": true,
+      "listenFor": {
+        "text": "待ちます",
+        "reading": "まちます · machimasu",
+        "meaning": "we will wait"
+      },
+      "source": "User-confirmed authorized YouTube Short; play the full Short.",
+      "tags": [
+        "user-supplied",
+        "daily-life"
+      ]
+    },
+    {
+      "id": "ja-video-QjLah772HJQ",
+      "group": "watch",
+      "kind": "screen-video",
+      "language": "ja",
+      "level": "N5",
+      "text": "ゴルゴ松本有る難・無い難",
+      "reading": "Japanese",
+      "meaning": "",
+      "videoId": "QjLah772HJQ",
+      "startSeconds": 0,
+      "segmentVerified": true,
+      "embedVerified": true,
+      "listenFor": {
+        "text": "難しい",
+        "reading": "むずかしい · muzukashii",
+        "meaning": "difficult"
+      },
+      "source": "User-confirmed authorized YouTube Short; play the full Short.",
+      "tags": [
+        "user-supplied",
+        "series-film-anime"
+      ]
+    },
+    {
+      "id": "ja-video-1AKostAXdZ4",
+      "group": "watch",
+      "kind": "screen-video",
+      "language": "ja",
+      "level": "N5",
+      "text": "あなたの人生は特別だった",
+      "reading": "Japanese",
+      "meaning": "",
+      "videoId": "1AKostAXdZ4",
+      "startSeconds": 0,
+      "segmentVerified": true,
+      "embedVerified": true,
+      "listenFor": {
+        "text": "人生",
+        "reading": "じんせい · jinsei",
+        "meaning": "life"
+      },
+      "source": "User-confirmed authorized YouTube Short; play the full Short.",
+      "tags": [
+        "user-supplied",
+        "series-film-anime"
+      ]
+    },
+    {
+      "id": "ja-video--mDhsDkuSAk",
+      "group": "watch",
+      "kind": "screen-video",
+      "language": "ja",
+      "level": "N5",
+      "text": "出だし歌った瞬間、全員号泣した理由",
+      "reading": "Japanese",
+      "meaning": "",
+      "videoId": "-mDhsDkuSAk",
+      "startSeconds": 0,
+      "segmentVerified": true,
+      "embedVerified": true,
+      "listenFor": {
+        "text": "歌う",
+        "reading": "うたう · utau",
+        "meaning": "to sing"
+      },
+      "source": "User-confirmed authorized YouTube Short; play the full Short.",
+      "tags": [
+        "user-supplied",
+        "series-film-anime"
+      ]
+    },
+    {
+      "id": "ja-video-QvBaa1ZOW-8",
+      "group": "watch",
+      "kind": "life-video",
+      "language": "ja",
+      "level": "N5",
+      "text": "日本の街中で中学生に話しかけたアメリカ人が衝撃を受けたこと",
+      "reading": "Japanese",
+      "meaning": "",
+      "videoId": "QvBaa1ZOW-8",
+      "startSeconds": 0,
+      "segmentVerified": true,
+      "embedVerified": true,
+      "listenFor": {
+        "text": "中学生",
+        "reading": "ちゅうがくせい · chūgakusei",
+        "meaning": "middle school student"
+      },
+      "source": "User-confirmed authorized YouTube Short; play the full Short.",
+      "tags": [
+        "user-supplied",
+        "daily-life"
+      ]
+    },
+    {
+      "id": "ja-video-iN7CcICjcBg",
+      "group": "watch",
+      "kind": "screen-video",
+      "language": "ja",
+      "level": "N5",
+      "text": "原曲キーで出しきる超高音…竹中雄大の鳥肌ライブ",
+      "reading": "Japanese",
+      "meaning": "",
+      "videoId": "iN7CcICjcBg",
+      "startSeconds": 0,
+      "segmentVerified": true,
+      "embedVerified": true,
+      "listenFor": {
+        "text": "高音",
+        "reading": "こうおん · kōon",
+        "meaning": "high-pitched sound"
+      },
+      "source": "User-confirmed authorized YouTube Short; play the full Short.",
+      "tags": [
+        "user-supplied",
+        "series-film-anime"
+      ]
+    },
+    {
+      "id": "ja-video-aH4MCC5dStw",
+      "group": "watch",
+      "kind": "screen-video",
+      "language": "ja",
+      "level": "N5",
+      "text": "一度だけじゃ終われないデュエット 点描の唄",
+      "reading": "Japanese",
+      "meaning": "",
+      "videoId": "aH4MCC5dStw",
+      "startSeconds": 0,
+      "segmentVerified": true,
+      "embedVerified": true,
+      "listenFor": {
+        "text": "一度",
+        "reading": "いちど · ichido",
+        "meaning": "once"
+      },
+      "source": "User-confirmed authorized YouTube Short; play the full Short.",
+      "tags": [
+        "user-supplied",
+        "series-film-anime"
+      ]
+    },
+    {
+      "id": "ja-video-ew9ApDtpuYE",
+      "group": "watch",
+      "kind": "screen-video",
+      "language": "ja",
+      "level": "N5",
+      "text": "最低な君 - Hamano Haruki",
+      "reading": "Japanese",
+      "meaning": "",
+      "videoId": "ew9ApDtpuYE",
+      "startSeconds": 0,
+      "segmentVerified": true,
+      "embedVerified": true,
+      "listenFor": {
+        "text": "君",
+        "reading": "きみ · kimi",
+        "meaning": "you (casual)"
+      },
+      "source": "User-confirmed authorized YouTube Short; play the full Short.",
+      "tags": [
+        "user-supplied",
+        "series-film-anime"
+      ]
+    },
+    {
+      "id": "ja-video-P-fRDBJmj08",
+      "group": "watch",
+      "kind": "screen-video",
+      "language": "ja",
+      "level": "N5",
+      "text": "mosi mosi? (anime singing...)",
+      "reading": "Japanese",
+      "meaning": "",
+      "videoId": "P-fRDBJmj08",
+      "startSeconds": 0,
+      "segmentVerified": true,
+      "embedVerified": true,
+      "listenFor": {
+        "text": "もしもし",
+        "reading": "もしもし · moshi moshi",
+        "meaning": "hello (on the phone)"
+      },
+      "source": "User-confirmed authorized YouTube Short; play the full Short.",
+      "tags": [
+        "user-supplied",
+        "series-film-anime"
+      ]
+    },
+    {
+      "id": "ja-video-PEeD60_zdhI",
+      "group": "watch",
+      "kind": "screen-video",
+      "language": "ja",
+      "level": "N5",
+      "text": "極悪難易度の曲を指一本で指揮する、驚異のラスト",
+      "reading": "Japanese",
+      "meaning": "",
+      "videoId": "PEeD60_zdhI",
+      "startSeconds": 0,
+      "segmentVerified": true,
+      "embedVerified": true,
+      "listenFor": {
+        "text": "指",
+        "reading": "ゆび · yubi",
+        "meaning": "finger"
+      },
+      "source": "User-confirmed authorized YouTube Short; play the full Short.",
+      "tags": [
+        "user-supplied",
+        "series-film-anime"
+      ]
+    },
+    {
+      "id": "ja-video-rTGStNbQv1Y",
+      "group": "watch",
+      "kind": "screen-video",
+      "language": "ja",
+      "level": "N5",
+      "text": "【ギジコイ(GIJIKOI)】I’ll make you smile the most",
+      "reading": "Japanese",
+      "meaning": "",
+      "videoId": "rTGStNbQv1Y",
+      "startSeconds": 0,
+      "segmentVerified": true,
+      "embedVerified": true,
+      "listenFor": {
+        "text": "笑顔",
+        "reading": "えがお · egao",
+        "meaning": "smile"
+      },
+      "source": "User-confirmed authorized YouTube Short; play the full Short.",
+      "tags": [
+        "user-supplied",
+        "series-film-anime"
+      ]
+    },
+    {
+      "id": "ja-video-ErbfiPo_tMw",
+      "group": "watch",
+      "kind": "life-video",
+      "language": "ja",
+      "level": "N5",
+      "text": "【長女リクエスト】JKにSuica入りステッキを3Dプリンターで作ってプレゼントしてみた",
+      "reading": "Japanese",
+      "meaning": "",
+      "videoId": "ErbfiPo_tMw",
+      "startSeconds": 0,
+      "segmentVerified": true,
+      "embedVerified": true,
+      "listenFor": {
+        "text": "作る",
+        "reading": "つくる · tsukuru",
+        "meaning": "to make"
+      },
+      "source": "User-confirmed authorized YouTube Short; play the full Short.",
+      "tags": [
+        "user-supplied",
+        "daily-life"
+      ]
+    },
+    {
+      "id": "ja-video-0juoSAy0AXA",
+      "group": "watch",
+      "kind": "screen-video",
+      "language": "ja",
+      "level": "N5",
+      "text": "Ranking NICHIJOU FUNNY Moments😭😂... The Last One Will Shock You",
+      "reading": "Japanese",
+      "meaning": "",
+      "videoId": "0juoSAy0AXA",
+      "startSeconds": 0,
+      "segmentVerified": true,
+      "embedVerified": true,
+      "listenFor": {
+        "text": "日常",
+        "reading": "にちじょう · nichijō",
+        "meaning": "everyday life; Nichijou"
+      },
+      "source": "User-confirmed authorized YouTube Short; play the full Short.",
+      "tags": [
+        "user-supplied",
+        "series-film-anime"
+      ]
+    },
+    {
+      "id": "ja-video-XKH0xHuV8SU",
+      "group": "watch",
+      "kind": "screen-video",
+      "language": "ja",
+      "level": "N5",
+      "text": "She saw it all... and told no one. #Nichijou #Principal #Deer",
+      "reading": "Japanese",
+      "meaning": "",
+      "videoId": "XKH0xHuV8SU",
+      "startSeconds": 0,
+      "segmentVerified": true,
+      "embedVerified": true,
+      "listenFor": {
+        "text": "見た",
+        "reading": "みた · mita",
+        "meaning": "saw"
+      },
+      "source": "User-confirmed authorized YouTube Short; play the full Short.",
+      "tags": [
+        "user-supplied",
+        "series-film-anime"
+      ]
+    },
+    {
+      "id": "ja-video-T0ukRnQhdQs",
+      "group": "watch",
+      "kind": "screen-video",
+      "language": "ja",
+      "level": "N5",
+      "text": "Nichijou - Introducing oneself (lol)",
+      "reading": "Japanese",
+      "meaning": "",
+      "videoId": "T0ukRnQhdQs",
+      "startSeconds": 0,
+      "segmentVerified": true,
+      "embedVerified": true,
+      "listenFor": {
+        "text": "自己紹介",
+        "reading": "じこしょうかい · jikoshōkai",
+        "meaning": "self-introduction"
+      },
+      "source": "User-confirmed authorized YouTube Short; play the full Short.",
+      "tags": [
+        "user-supplied",
+        "series-film-anime"
+      ]
+    },
+    {
+      "id": "ja-video-b91zamJw6P0",
+      "group": "watch",
+      "kind": "life-video",
+      "language": "ja",
+      "level": "N5",
+      "text": "６選】キレイで見やすいノートの書き方 #ノート術 #勉強",
+      "reading": "Japanese",
+      "meaning": "",
+      "videoId": "b91zamJw6P0",
+      "startSeconds": 0,
+      "segmentVerified": true,
+      "embedVerified": true,
+      "listenFor": {
+        "text": "ノート",
+        "reading": "のーと · nōto",
+        "meaning": "notebook"
+      },
+      "source": "User-confirmed authorized YouTube Short; play the full Short.",
+      "tags": [
+        "user-supplied",
+        "daily-life"
+      ]
+    },
+    {
+      "id": "ja-video-Kzr6o5qiVRI",
+      "group": "watch",
+      "kind": "screen-video",
+      "language": "ja",
+      "level": "N5",
+      "text": "The Best Voices In Anime Pt. 2",
+      "reading": "Japanese",
+      "meaning": "",
+      "videoId": "Kzr6o5qiVRI",
+      "startSeconds": 0,
+      "segmentVerified": true,
+      "embedVerified": true,
+      "listenFor": {
+        "text": "声",
+        "reading": "こえ · koe",
+        "meaning": "voice"
+      },
+      "source": "User-confirmed authorized YouTube Short; play the full Short.",
+      "tags": [
+        "user-supplied",
+        "series-film-anime"
+      ]
+    }
+  ],
+  "nativeSpeakerReview": [
+    {
+      "cardId": "ja-phrase-009",
+      "note": "Check context-sensitive nuance and polite refusal use of 大丈夫です."
+    },
+    {
+      "cardId": "ja-idiom-004",
+      "note": "Check how direct 自業自得 sounds in the described context."
+    }
+  ]
+}

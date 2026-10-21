@@ -102,6 +102,11 @@ function ChineseDictionary(){
  const [definitions,setDefinitions]=useState<{title:string;definition:string}[]>([]);
  const [lookupWarning,setLookupWarning]=useState('');
  const inputRef=useRef<HTMLInputElement>(null);
+ const rhiyeTrigger=useRef<HTMLButtonElement>(null);
+ const closeRhiye=useRef<(()=>void)|null>(null);
+ const [rhiyeError,setRhiyeError]=useState('');
+ useEffect(()=>()=>closeRhiye.current?.(),[]);
+ const openRhiye=async()=>{try{setRhiyeError('');const moduleUrl=new URL(`${import.meta.env.BASE_URL}rhiye/rhiye.js`,window.location.origin).href;const feature=await import(/* @vite-ignore */ moduleUrl);closeRhiye.current=feature.openRhiye('zh',rhiyeTrigger.current)}catch(error){console.error('Could not open Rhiye:',error);setRhiyeError('Rhiye could not open. Please try again.')}};
  useEffect(()=>{if(open)inputRef.current?.focus()},[open]);
  useEffect(()=>{
   const normalized=query.trim();
@@ -147,6 +152,8 @@ function ChineseDictionary(){
  const mdbgUrl=`https://www.mdbg.net/chinese/dictionary?page=worddict&wdrst=0&wdqb=${encodeURIComponent(query.trim())}`;
  return <>
   <button className="dictionary-fab" type="button" aria-label="Open Chinese-English dictionary" title="Chinese-English dictionary" aria-expanded={open} onClick={()=>setOpen(true)}><BookOpen size={23}/></button>
+  <button ref={rhiyeTrigger} className="rhiye-launch-button" type="button" aria-label="Open Rhiye daily language feed" title="Rhiye" onClick={openRhiye}><span className="rhiye-phone" aria-hidden="true"><span/></span></button>
+  {rhiyeError&&<span className="rhiye-launch-error" role="status">{rhiyeError}</span>}
   {open&&<div className="dictionary-backdrop" onMouseDown={event=>{if(event.target===event.currentTarget)setOpen(false)}}>
    <section className="dictionary-dialog" role="dialog" aria-modal="true" aria-labelledby="chinese-dictionary-title">
     <header className="dictionary-dialog-header"><div><span className="eyebrow">LOOK UP A WORD</span><h2 id="chinese-dictionary-title">Chinese-English dictionary</h2></div><button className="icon-button dictionary-close" type="button" aria-label="Close dictionary" onClick={()=>setOpen(false)}><X size={20}/></button></header>

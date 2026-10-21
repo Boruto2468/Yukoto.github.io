@@ -12,7 +12,8 @@
     "preview": "vite preview --host 0.0.0.0",
     "sync:curriculum": "node scripts/sync-curriculum.mjs",
     "check:data": "node scripts/verify-curriculum.mjs",
-    "test": "node scripts/test-curriculum.mjs",
+    "test": "node scripts/test-curriculum.mjs && node --test scripts/test-rhiye.mjs",
+    "test:rhiye": "node --test scripts/test-rhiye.mjs",
     "import:local": "node scripts/import-local-csv.mjs",
     "import-local": "node scripts/import-local-csv.mjs"
   },
