@@ -1,4 +1,5 @@
 import { STARTER_WORDS, HIRAGANA, KATAKANA, KANJI_BY_LEVEL, LEVEL_LABELS, DICTIONARY_ENTRIES } from './data.js';
+import { grammarPage } from './grammar.js';
 
 const $ = (selector, root = document) => root.querySelector(selector);
 const ALL = (selector, root = document) => [...root.querySelectorAll(selector)];
@@ -35,7 +36,7 @@ const loadSet = key => { try { return new Set(JSON.parse(localStorage.getItem(ke
 const loadLocale = () => { try { return localStorage.getItem('yukoto-jp-locale') || 'en'; } catch { return 'en'; } };
 const translations = {
   en: {
-    home:'Home',words:'Words & Phrases',reading:'Reading',anime:'Anime by level',learnJapanese:'Learning Japanese',learnChinese:'Learn Chinese',
+    home:'Home',words:'Words & Phrases',reading:'Reading',grammar:'Grammar',anime:'Anime by level',learnJapanese:'Learning Japanese',learnChinese:'Learn Chinese',
     language:'Interface language',headline:'Welcome to Japanese',heroSub:'A new language. A beautiful world. Begin your journey with a little practice every day.',
     prelude:'YOUR JAPANESE JOURNEY BEGINS HERE',first:'Start practicing',second:'Explore writing',scroll:'Scroll to discover',
     welcome:'A little about Yukoto',aboutShort:'A place to enjoy Japanese while actually learning to hear it, read it, and use it.',quote:'Anything worth doing, is worth doing well.',
@@ -52,6 +53,8 @@ const translations = {
     readingTitle:'Learn to read',readingText:'Start with sounds. Build recognition. Explore the meaning and usage of each kanji without leaving this page.',
     hiragana:'Hiragana',katakana:'Katakana',kanji:'Kanji',levels:'JLPT levels',on:'On’yomi',kun:'Kun’yomi',sample:'Example',
     hiraganaHint:'Hiragana is the basic phonetic script for Japanese. Use it for native words, grammar endings and particles; each character represents a mora (sound unit).',
+    kanaChartHint:'Read each row across the vowel columns: a, i, u, e, o. Add a consonant sound to those vowels to build rows such as ka, ki, ku, ke, ko. The standalone ん sits outside this pattern.',
+    kanaStandalone:'Standalone kana',
     katakanaHint:'Katakana represents the same basic sounds as hiragana. It is commonly used for loanwords, foreign names, sound effects and emphasis.',
     kanjiHint:'Kanji are Japanese characters with meaning. They are used with hiragana and katakana. A kanji can sound different in different words, so learn it with the example words below.',
     onKunHint:'On’yomi (音読み) is a reading often used when kanji are joined together in a word. Kun’yomi (訓読み) is a reading often used for a Japanese word on its own, sometimes followed by hiragana.',
@@ -87,13 +90,15 @@ const translations = {
     readingTitle:'読みの練習',readingText:'音から始めて、少しずつ読めるように。漢字を押すと読み方と使い方が表示されます。',
     hiragana:'ひらがな',katakana:'カタカナ',kanji:'漢字',levels:'JLPTレベル',on:'音読み',kun:'訓読み',sample:'例',
     hiraganaHint:'ひらがなは日本語の基本的な表音文字です。日本固有の言葉や助詞、活用語尾などに使われ、1文字が1モーラ（音の単位）を表します。',
+    kanaChartHint:'母音の列「あ・い・う・え・お」を左から右へ読みます。母音に子音を加えると、「か・き・く・け・こ」のような行になります。「ん」はこのパターンに含まれない独立した音です。',
+    kanaStandalone:'独立した音',
     katakanaHint:'カタカナは、ひらがなと同じ音を表す文字です。外来語や外国人の名前、擬音語、強調などによく使われます。',
     kanjiHint:'漢字は意味を表す日本語の文字です。ひらがなやカタカナと一緒に使います。一つの漢字でも、言葉によって読み方が変わることがあります。下の例と一緒に覚えましょう。',
     onKunHint:'音読みは、漢字を組み合わせた言葉でよく使われる読み方です。訓読みは、日本語の言葉でよく使われる読み方で、後ろにひらがなが続くこともあります。',
     dictionary:'辞書',dictionaryHint:'Jotobaの辞書から、日本語の単語・読み方・意味を検索できます。',dictionaryPlaceholder:'文字・読み方・意味を検索',clearSearch:'検索をクリア',dictionaryLoading:'Jotobaの辞書を検索中…',dictionaryError:'Jotobaに接続できませんでした。Jishoで検索できます。',dictionaryNoResults:'辞書に検索結果がありません。',
     nothing:'見つかりませんでした。',wiki:'Wikipediaで見る',otoku:'オトク',otokuLater:'オトクは準備中です',otokuHint:'日本語会話AIは後ほど追加します。今は読み方と単語の練習をどうぞ。',
     close:'閉じる',plotLabel:'あらすじ',animeDetailsOpen:'あらすじを見る',footer:'学ぶ · 練習する · 成長する',voiceNote:'発音には、利用できる場合にブラウザの日本語音声を使用します。',noWords:'該当する単語がありません。',subset:'学習用の抜粋です。JLPTの完全な一覧ではありません。',
-    beginner:'初級',intermediate:'中級',advanced:'上級',animeTitle:'アニメで日本語を学ぶ',animeIntro:'よく知っている物語をリスニング練習に活用しましょう。場面を理解し、登場人物の話し方に注目して、短い会話を繰り返し聞いてみてください。',
+    grammar:'文法',beginner:'初級',intermediate:'中級',advanced:'上級',animeTitle:'アニメで日本語を学ぶ',animeIntro:'よく知っている物語をリスニング練習に活用しましょう。場面を理解し、登場人物の話し方に注目して、短い会話を繰り返し聞いてみてください。',
     animeDisclaimer:'このページは、学習者にとって親しみやすく楽しい教材としてアニメを紹介するものです。作品は学習レベルごとに分けています。学んだ言葉が会話や文脈、自然な場面でどのように使われるかに注目してください。作品へのアクセス方法は各自の判断にお任せします。',
     sekiDescription:'ほとんど言葉のない短い教室のエピソードで、気軽に聞き取りを始められます。クラスメートの反応を追いながら、学校で使う表現や、声の調子・しぐさ・状況から伝わる意味に注目しましょう。',
     nichijouDescription:'何気ない学校生活が、思いがけず不思議で楽しい出来事に変わります。まず映像で状況をつかみ、短いやり取りを聞き直して、あいさつやリアクション、友達同士のくだけた表現を探してみましょう。',
@@ -121,13 +126,15 @@ const translations = {
     readingTitle:'学会阅读',readingText:'先认识发音，再练习文字。点击汉字即可在当前页面查看读音、意义和例词。',
     hiragana:'平假名',katakana:'片假名',kanji:'汉字',levels:'JLPT 等级',on:'音读',kun:'训读',sample:'例词',
     hiraganaHint:'平假名是日语的基础表音文字，用于固有日语词、语法词尾和助词；每个字符表示一个音拍。',
+    kanaChartHint:'按元音列从左向右读：a、i、u、e、o。在这些元音前加上辅音，就能组成 ka、ki、ku、ke、ko 这样的行。独立音 ん 不属于这个组合规律。',
+    kanaStandalone:'独立音',
     katakanaHint:'片假名表示与平假名相同的基本音节，常用于外来语、外国人姓名、拟声词和强调。',
     kanjiHint:'汉字是有含义的日语文字，常与平假名和片假名一起使用。同一个汉字在不同词语中可能读音不同，请结合下面的例词学习。',
     onKunHint:'音读常用于由多个汉字组成的词语。训读常用于日语固有词语，有时后面会接平假名。',
     dictionary:'词典',dictionaryHint:'通过 Jotoba 词典搜索日语单词、读音和释义。',dictionaryPlaceholder:'搜索字符、读音或含义',clearSearch:'清除搜索',dictionaryLoading:'正在搜索 Jotoba 词典…',dictionaryError:'无法连接到 Jotoba。你仍可在 Jisho 上搜索。',dictionaryNoResults:'词典没有返回搜索结果。',
     nothing:'没有匹配结果。',wiki:'在维基百科中查看',otoku:'Otoku',otokuLater:'Otoku 即将推出',otokuHint:'日语对话 AI 将单独开发。目前可以先使用阅读和词汇练习。',
     close:'关闭',plotLabel:'剧情简介',animeDetailsOpen:'查看剧情',footer:'学习 · 练习 · 成长',voiceNote:'如果浏览器支持，将使用日语语音朗读。',noWords:'没有匹配的词汇。',subset:'精选的起步学习内容，不是完整的 JLPT 字表。',
-    beginner:'初级',intermediate:'中级',advanced:'高级',animeTitle:'通过动漫学习日语',animeIntro:'把熟悉的故事变成听力练习。先理解场景，再留意角色的表达方式，反复听一小段，找出自己也能使用的短语。',
+    grammar:'语法',beginner:'初级',intermediate:'中级',advanced:'高级',animeTitle:'通过动漫学习日语',animeIntro:'把熟悉的故事变成听力练习。先理解场景，再留意角色的表达方式，反复听一小段，找出自己也能使用的短语。',
     animeDisclaimer:'本页面旨在为学习者介绍一种有趣且熟悉的辅助学习方式。动漫按学习程度分区，帮助学习者巩固已学词汇，并观察这些词语如何在自然的对话、语境和场景中使用。每位学习者可自行决定如何观看。',
     sekiDescription:'每集简短，几乎没有对白，适合轻松开始听力练习。观察同学们的反应，留意校园日常表达，并体会语气、动作和上下文如何传达意思。',
     nichijouDescription:'平凡的校园日常总会突然变得荒诞有趣。先通过画面理解情境，再反复听短对话，练习问候、即时反应、朋友间的随意说法和打趣。',
@@ -141,11 +148,11 @@ const translations = {
 const getLocale = () => {try{const v=localStorage.getItem('yukoto-jp-ui');return translations[v]?v:'en';}catch{return 'en'}};
 function getInitialPage(){
   const hashPage=location.hash.substring(1);
-  if(['home','words','reading','anime'].includes(hashPage))return hashPage;
+  if(['home','words','reading','grammar','anime'].includes(hashPage))return hashPage;
   try{
     const navigation=performance.getEntriesByType('navigation')[0];
     const savedPage=sessionStorage.getItem('yukoto-jp-page');
-    if(navigation?.type==='reload'&&['home','words','reading','anime'].includes(savedPage))return savedPage;
+    if(navigation?.type==='reload'&&['home','words','reading','grammar','anime'].includes(savedPage))return savedPage;
   }catch{}
   return 'home';
 }
@@ -158,7 +165,7 @@ const state = {
 };
 const t = key => translations[state.locale][key] || translations.en[key] || key;
 const kanjiTotal = Object.values(KANJI_BY_LEVEL).reduce((sum,list)=>sum+list.length,0);
-const NAV = ['home','words','reading','anime'];
+const NAV = ['home','words','reading','grammar','anime'];
 let hasRenderedHome=false;
 let homeAnimationStartedAt=0;
 const petalAnimationStartedAt=performance.now();
@@ -223,7 +230,7 @@ const shell = () => `
  <div class="petal-field" aria-hidden="true">${[...Array(11)].map((_,i)=>`<i class="petal" style="--left:${(i*37+13)%100}%;--size:${11+(i*7)%11}px;--duration:${15+(i*3)%14}s;--delay:-${(i*5)%21}s;--travel:${i%2?'-':'+'}${35+(i*29)%115}px"></i>`).join('')}</div>
  <header class="topbar">
   <a class="logo" href="#home" aria-label="Yukoto home"><span class="logo__petal" aria-hidden="true">✿</span><span><span class="logo__name">Yukoto</span><small class="logo__tag">語りで、つながる</small></span></a>
-  <nav class="topbar__nav" aria-label="Japanese section navigation">${NAV.map(p=>`<a href="#${p}" class="nav-item" ${state.page===p?'aria-current="page"':''}>${icon(p==='home'?'home':p==='words'?'book':p==='anime'?'clapper':'reading')}${t(p)}</a>`).join('')}</nav>
+  <nav class="topbar__nav" aria-label="Japanese section navigation">${NAV.map(p=>`<a href="#${p}" class="nav-item" ${state.page===p?'aria-current="page"':''}>${icon(p==='home'?'home':p==='words'?'book':p==='anime'?'clapper':p==='grammar'?'book':'reading')}${t(p)}</a>`).join('')}</nav>
   <div class="topbar__tools">
    <a class="course-switch" href="../" title="${safe(t('learnChinese'))}" aria-label="${safe(t('learnChinese'))}">${icon('repeat',15)}<span>${t('learnChinese')}</span> <span aria-hidden="true">↔</span></a>
    <button class="music-toggle" type="button" data-action="music-toggle" aria-label="${safe(musicError?t('musicUnavailable'):musicPlaying?t('musicPause'):t('musicPlay'))}" title="${safe(musicError?t('musicUnavailable'):musicPlaying?t('musicPause'):t('musicPlay'))}" aria-pressed="${musicPlaying}">${icon('music',16)} ${icon(musicPlaying?'pause':'play',13)}</button>
@@ -232,14 +239,14 @@ const shell = () => `
    ${state.localeOpen?`<div class="locale__menu" role="menu" aria-label="${t('language')}">${[['en','English'],['ja','日本語'],['zh','中文']].map(([key,label])=>`<button role="menuitemradio" aria-checked="${state.locale===key}" data-action="locale" data-value="${key}">${label} ${state.locale===key?'✓':''}</button>`).join('')}</div>`:''}</div>
   </div>
  </header>
- <main id="main-content">${state.page==='home'?homePage():state.page==='words'?wordsPage():state.page==='reading'?readingPage():animePage()}</main>
+ <main id="main-content">${state.page==='home'?homePage():state.page==='words'?wordsPage():state.page==='reading'?readingPage():state.page==='grammar'?grammarPage:animePage()}</main>
  <footer class="page-footer"><div class="footer-top"><div class="footer-brand"><span class="footer-brand__flower">✿</span><div><strong>Yukoto</strong><p>A quiet place to keep learning.</p></div></div><div class="footer-copy"><h4>Disclaimer</h4><p>There are already a lot of language sites and apps on the web, so my aim is to help my friends learn the so-called hard languages — Chinese and Japanese — at their own pace, meaningfully, and excel at them.</p></div><div class="footer-copy"><h4>Credits</h4><p>Inspired by wonderful learning tools such as Obenkyo, Free Japanese Lessons, and Tae Kim’s Guide to Learning Japanese.</p></div></div><div class="footer-bottom"><span>Made for curious minds.</span><span>慢慢来 · Take it one step at a time.</span><span>© ${new Date().getFullYear()} Yukoto</span></div></footer>
  ${fab()}
  ${state.dialog?modal():''}
 </div>
 ${state.animeDetails?animeDetailsModal(state.animeDetails):''}
 <button class="mobile-nav-backdrop ${state.mobileNavOpen?'is-open':''}" type="button" data-action="close-mobile-nav" aria-label="Close navigation" aria-hidden="${!state.mobileNavOpen}" ${state.mobileNavOpen?'':'inert'}></button>
-<nav id="japanese-mobile-sidebar" class="mobile-sidebar ${state.mobileNavOpen?'is-open':''}" aria-label="Japanese section navigation" ${state.mobileNavOpen?'':'inert'}>${NAV.map(p=>`<a href="#${p}" class="nav-item" ${state.page===p?'aria-current="page"':''}>${icon(p==='home'?'home':p==='words'?'book':p==='anime'?'clapper':'reading')}${t(p)}</a>`).join('')}</nav>`;
+<nav id="japanese-mobile-sidebar" class="mobile-sidebar ${state.mobileNavOpen?'is-open':''}" aria-label="Japanese section navigation" ${state.mobileNavOpen?'':'inert'}>${NAV.map(p=>`<a href="#${p}" class="nav-item" ${state.page===p?'aria-current="page"':''}>${icon(p==='home'?'home':p==='words'?'book':p==='anime'?'clapper':p==='grammar'?'book':'reading')}${t(p)}</a>`).join('')}</nav>`;
 function homePage(){return `
  <section class="home-hero" aria-labelledby="welcome-title">
   <div class="home-hero__copy">
@@ -270,10 +277,35 @@ function filteredWords(){let rows=STARTER_WORDS.filter(w => (state.group==='All'
 function wordCard(word){const id=wordsId(word);const revealed=state.revealed.has(id);return `<article class="word-card"><div class="word-card__top"><span class="word-card__group">${safe(word.group)}</span><span class="word-card__actions"><button class="icon-btn" data-action="speak" data-text="${safe(word.reading || word.japanese)}" aria-label="${t('sound')}" title="${t('sound')}">${icon('volume',17)}</button><button class="icon-btn ${state.saved.has(id)?'is-saved':''}" data-action="save" data-id="${safe(id)}" aria-label="${t('remember')}" aria-pressed="${state.saved.has(id)}" title="${t('remember')}">${icon('heart',17)}</button></span></div><div class="word-card__japanese" lang="ja">${safe(word.japanese)}</div><div class="word-card__reading" lang="ja">${safe(word.reading)} <span style="opacity:.7">/ ${safe(word.romaji)}</span></div><div class="word-card__meaning ${revealed?'':'is-hidden'}">${revealed?safe(word.meaning):'✦ '+t('showMeaning')}${revealed&&word.note?`<div style="margin-top:8px;color:#bccbea;font-size:11px">${safe(word.note)}</div>`:''}</div><div class="word-card__footer"><small>${revealed?'✿ '+t('practice'):'✿ Repeat aloud'}</small><button class="flat-btn" data-action="reveal" data-id="${safe(id)}">${revealed?t('hideMeaning'):t('showMeaning')} ${revealed?'↑':'↓'}</button></div></article>`}
 function quizItem(){return STARTER_WORDS[state.quizIndex%STARTER_WORDS.length]}
 function wordsPage(){const groups=['All',...new Set(STARTER_WORDS.map(w=>w.group))];const rows=filteredWords();const total=STARTER_WORDS.length;return `<div class="study-page"><div class="section-shell"><header class="study-head"><div><div class="eyebrow">ことば · THE EVERYDAY COLLECTION</div><h1>${t('wordsTitle')}</h1><p>${t('wordsText')}</p></div><div class="study-deco" aria-hidden="true">言</div></header><section class="glass learning-surface" aria-label="Vocabulary study"><div class="toolbar"><div class="filters">${groups.map(g=>`<button class="chip" aria-pressed="${state.group===g&&!state.onlySaved}" data-action="group" data-value="${safe(g)}">${g==='All'?t('all'):safe(g)}</button>`).join('')}<button class="chip" data-action="saved-filter" aria-pressed="${state.onlySaved}">♡ ${t('saved')}</button></div><label class="search-wrap">${icon('search',18)}<span class="sr-only">${t('searchWords')}</span><input type="search" id="word-search" value="${safe(state.wordSearch)}" placeholder="${t('searchWords')}" autocomplete="off"></label></div><hr class="bar-divider"><div class="toolbar"><div class="muted"><span id="word-results-count">${rows.length}</span> ${t('filterResult')} <span style="opacity:.35"> • </span> ${savedCount()} / ${total} ${t('progress')}</div><span class="muted">${t('voiceNote')}</span></div><div class="progress-bar" aria-label="Saved vocabulary progress"><span style="width:${savedCount()/total*100}%"></span></div><div class="word-grid" id="word-grid" style="margin-top:24px">${rows.length?rows.map(wordCard).join(''):`<div class="empty">${t('noWords')}</div>`}</div><section class="drill" id="practice-drill"><div class="eyebrow">✦ ${t('practice').toUpperCase()}</div><h3>${t('drill')}</h3><p>${t('drillHint')}</p><div class="drill__row"><span class="drill__prompt">${safe(quizItem().meaning)}</span><input class="drill__input" id="quiz-answer" placeholder="日本語で答えてみよう" aria-label="Japanese answer" autocomplete="off" spellcheck="false"><button class="btn btn--small" data-action="quiz-check">${t('check')}</button><button class="btn btn--small" data-action="quiz-next">${t('next')} ${icon('arrow',14)}</button></div><div class="drill__feedback" id="quiz-feedback" role="status">${safe(state.quizFeedback)}</div><button class="flat-btn" data-action="quiz-skip">${t('skip')}</button></section></section></div></div>`}
-function kanaRow(item){const key=item.char;return `<button class="kana-tile" aria-pressed="${state.selectedKana===key}" data-action="kana" data-value="${safe(key)}"><strong lang="ja">${safe(key)}</strong><small>${safe(item.romaji)}</small></button>`}
+function kanaRow(item){const key=item.char;return `<button class="kana-tile" role="cell" aria-pressed="${state.selectedKana===key}" data-action="kana" data-value="${safe(key)}"><strong lang="ja">${safe(key)}</strong><small>${safe(item.romaji)}</small></button>`}
+function kanaChart(items){
+ const columns=['a','i','u','e','o'];
+ const rows=new Map();
+ const standalone=[];
+ for(const item of items){
+  const vowel=item.romaji.slice(-1);
+  if(!columns.includes(vowel)){standalone.push(item);continue}
+  const group=item.row==='Voiced / semi-voiced'?item.romaji.slice(0,-1):item.row;
+  if(!rows.has(group))rows.set(group,Array(columns.length).fill(null));
+  rows.get(group)[columns.indexOf(vowel)]=item;
+ }
+ return `<div class="kana-chart" role="table" aria-label="Japanese kana arranged by vowel"><div class="kana-vowel-row" role="row">${columns.map(vowel=>`<span role="columnheader">${vowel}</span>`).join('')}</div>${[...rows.values()].map(row=>`<div class="kana-row" role="row">${row.map(item=>item?kanaRow(item):'<span class="kana-empty" role="cell" aria-hidden="true"></span>').join('')}</div>`).join('')}</div>${standalone.length?`<div class="kana-standalone"><span>${t('kanaStandalone')}</span>${standalone.map(kanaRow).join('')}</div>`:''}`;
+}
 function kanaDetail(){const items=state.readingTab==='hiragana'?HIRAGANA:KATAKANA;const item=items.find(k=>k.char===state.selectedKana)||items[0];return `<div class="glass kana-detail" id="kana-detail"><div><strong lang="ja">${safe(item.char)} <span style="font-size:16px;color:#c4daff">${safe(item.romaji)}</span></strong><p>${t('sample')}: <span lang="ja">${safe(item.example)}</span> <span style="opacity:.75">${item.meaning?'— '+safe(item.meaning):''}</span></p></div><button class="btn btn--small" data-action="speak" data-text="${safe(item.example||item.char)}">${icon('volume',17)} ${t('sound')}</button></div>`}
 function kanjiCell(item){const open=state.openKanji===item.char;const wiki=`https://en.wikipedia.org/wiki/Special:Search?search=${encodeURIComponent(item.char+' kanji')}`;return `<article class="kanji-cell ${open?'is-open':''}"><button class="kanji-cell__button" data-action="kanji" data-value="${safe(item.char)}" aria-expanded="${open}"><span class="kanji-cell__char" lang="ja">${safe(item.char)}</span><span class="kanji-cell__body"><span class="kanji-cell__meaning">${safe(item.meaning)}</span><span class="kanji-cell__reading">${safe(item.on)}</span></span></button>${open?`<div class="kanji-cell__detail"><div><strong>${t('on')}</strong> ${safe(item.on||'—')}</div><div><strong>${t('kun')}</strong> ${safe(item.kun||'—')}</div>${item.words.map(word=>`<div class="kanji-example"><div><strong>${t('sample')}</strong> <span lang="ja">${safe(word.word)} (${safe(word.reading)})</span><br>${safe(word.meaning)}</div><button class="icon-btn" data-action="speak" data-text="${safe(word.reading||word.word)}" title="${t('sound')}" aria-label="${t('sound')}: ${safe(word.word)}">${icon('volume',16)}</button></div>`).join('')}<div style="display:flex;gap:12px;align-items:center;margin-top:10px"><button class="icon-btn" data-action="speak" data-text="${safe(item.char)}" title="${t('sound')}" aria-label="${t('sound')}">${icon('volume',16)}</button><a href="${wiki}" target="_blank" rel="noopener noreferrer">${t('wiki')} ↗</a></div></div>`:''}</article>`}
-function readingPage(){const tab=state.readingTab;const isKanji=tab==='kanji';const items=tab==='hiragana'?HIRAGANA:tab==='katakana'?KATAKANA:KANJI_BY_LEVEL[state.level];return `<div class="study-page"><div class="section-shell"><header class="study-head"><div><div class="eyebrow">ひらがな · カタカナ · 漢字</div><h1>${t('readingTitle')}</h1><p>${t('readingText')}</p></div><div class="study-deco" aria-hidden="true">読</div></header><section class="glass learning-surface"><div class="toolbar"><div class="tabs" role="tablist" aria-label="Japanese writing systems">${[['hiragana',t('hiragana')],['katakana',t('katakana')],['kanji',t('kanji')]].map(([key,label])=>`<button class="tab" role="tab" aria-selected="${tab===key}" data-action="reading-tab" data-value="${key}">${label}</button>`).join('')}</div>${isKanji?`<div class="levels" aria-label="${t('levels')}">${[5,4,3,2,1].map(n=>`<button class="chip" aria-pressed="${state.level===n}" data-action="level" data-value="${n}">N${n}</button>`).join('')}</div>`:''}</div><p class="muted" style="line-height:1.8;margin:5px 0 21px">${t(isKanji?'kanjiHint':tab==='hiragana'?'hiraganaHint':'katakanaHint')}</p>${isKanji?`<p class="muted" style="line-height:1.8;margin:-12px 0 21px">${t('onKunHint')}</p><div class="toolbar" style="margin-bottom:18px"><strong style="font-size:13px">${LEVEL_LABELS[state.level]}</strong><span class="muted">${items.length} kanji · ${t('subset')}</span></div><div class="kanji-grid">${items.map(kanjiCell).join('')}</div><p class="level-note">${t('subset')}</p>`:`<div class="kana-grid">${items.map(kanaRow).join('')}</div>${kanaDetail()}`}</section></div></div>`}
+function readingPage(){
+ const tab=state.readingTab;
+ const isKanji=tab==='kanji';
+ const items=tab==='hiragana'?HIRAGANA:tab==='katakana'?KATAKANA:KANJI_BY_LEVEL[state.level];
+ const writingTabs=[['hiragana',t('hiragana')],['katakana',t('katakana')],['kanji',t('kanji')]];
+ const levels=[5,4,3,2,1];
+ const tabs=writingTabs.map(([key,label])=>`<button class="tab" role="tab" aria-selected="${tab===key}" data-action="reading-tab" data-value="${key}">${label}</button>`).join('');
+ const levelButtons=levels.map(n=>`<button class="chip" aria-pressed="${state.level===n}" data-action="level" data-value="${n}">N${n}</button>`).join('');
+ const content=isKanji
+  ?`<p class="muted" style="line-height:1.8;margin:-12px 0 21px">${t('onKunHint')}</p><div class="toolbar" style="margin-bottom:18px"><strong style="font-size:13px">${LEVEL_LABELS[state.level]}</strong><span class="muted">${items.length} kanji · ${t('subset')}</span></div><div class="kanji-grid">${items.map(kanjiCell).join('')}</div><p class="level-note">${t('subset')}</p>`
+  :`<p class="kana-chart-hint">${t('kanaChartHint')}</p>${kanaChart(items)}${kanaDetail()}`;
+ return `<div class="study-page"><div class="section-shell"><header class="study-head"><div><div class="eyebrow">ひらがな · カタカナ · 漢字</div><h1>${t('readingTitle')}</h1><p>${t('readingText')}</p></div><div class="study-deco" aria-hidden="true">読</div></header><section class="glass learning-surface"><div class="toolbar"><div class="tabs" role="tablist" aria-label="Japanese writing systems">${tabs}</div>${isKanji?`<div class="levels" aria-label="${t('levels')}">${levelButtons}</div>`:''}</div><p class="muted" style="line-height:1.8;margin:5px 0 21px">${t(isKanji?'kanjiHint':tab==='hiragana'?'hiraganaHint':'katakanaHint')}</p>${content}</section></div></div>`;
+}
 function animePage(){
  const levelSections=animeByLevel.map(({level,shows})=>`<section class="anime-level" aria-labelledby="anime-level-${level}"><header class="anime-level__header"><span class="eyebrow">${safe(t(level))}</span><h2 id="anime-level-${level}">${safe(t(level))}</h2><span>${shows.length} series</span></header><div class="anime-grid">${shows.map(show=>`<button type="button" class="anime-card" data-action="open-anime-details" data-anime="${safe(show.id)}" aria-haspopup="dialog" aria-label="${safe(show.title)} — ${safe(t('animeDetailsOpen'))}"><span class="anime-card__thumbnail"><img src="${safe(show.image)}" alt="${safe(show.alt)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.hidden=true"><span class="anime-card__thumbnail-mark" aria-hidden="true">${safe(show.japanese)}</span><span class="anime-card__level">${safe(t(level))}</span></span><span class="anime-card__copy"><span class="anime-card__japanese" lang="ja">${safe(show.japanese)}</span><span class="anime-card__title">${safe(show.title)}</span><span class="anime-card__description">${safe(t(show.description))}</span><span class="anime-card__hint">${safe(t('animeDetailsOpen'))} ${icon('arrow',14)}</span></span></button>`).join('')}</div></section>`).join('');
  return `<div class="study-page anime-page"><div class="section-shell"><aside class="anime-disclaimer"><span class="anime-disclaimer__icon" aria-hidden="true">!</span><div><strong>Disclaimer</strong><p>${safe(t('animeDisclaimer'))}</p></div></aside><header class="study-head anime-page__head"><div><div class="eyebrow">LISTEN · NOTICE · REPEAT</div><h1>${safe(t('animeTitle'))}</h1><p>${safe(t('animeIntro'))}</p></div><div class="study-deco" aria-hidden="true">アニメ</div></header>${levelSections}</div></div>`;

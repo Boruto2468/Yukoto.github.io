@@ -74,6 +74,45 @@ button:disabled{cursor:not-allowed;opacity:.55}.sr-only{position:absolute;width:
 .search-clear:hover{background:rgba(130,184,255,.18);color:#fff}
 .search-clear[hidden]{display:none}
 #dictionary-search::-webkit-search-cancel-button{-webkit-appearance:none;appearance:none}
+.grammar-page .study-head{margin-bottom:25px}
+.grammar-index{padding:20px 24px;margin-bottom:22px}
+.grammar-index>strong{display:block;color:#ffcee8;font-size:13px;margin-bottom:12px}
+.grammar-index>div{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px 16px}
+.grammar-index a{color:#dbe7ff;font-size:12px;line-height:1.5}
+.grammar-index a:hover{color:#ffd0e9;text-decoration:underline;text-underline-offset:3px}
+.grammar-sections{display:grid;gap:18px}
+.grammar-section{position:relative;padding:27px 30px 23px;scroll-margin-top:96px}
+.grammar-section h2{font-family:var(--serif);font-size:clamp(22px,3vw,30px);margin:0 0 12px;padding-right:55px}
+.grammar-section p{color:#d0def7;font-size:14px;line-height:1.8;margin:12px 0}
+.grammar-number{position:absolute;right:26px;top:22px;color:#ffc5e3;font-size:14px;font-weight:700;letter-spacing:.12em}
+.grammar-section table{width:100%;border-collapse:collapse;margin:16px 0 18px;font-size:12px;line-height:1.6}
+.grammar-section th,.grammar-section td{padding:9px 11px;border:1px solid rgba(190,209,251,.2);text-align:left;vertical-align:top}
+.grammar-section th{background:rgba(128,164,231,.13);color:#ffe0ef;font-weight:700}
+.grammar-section td{color:#d8e4fa}
+.grammar-section blockquote{margin:15px 0;padding:11px 15px;border-left:3px solid #ffb9df;background:rgba(255,192,229,.07);color:#f1e5f3;font-size:13px;line-height:1.7}
+.grammar-examples{list-style:none;padding:0;margin:16px 0}
+.grammar-examples li{display:flex;flex-wrap:wrap;gap:8px 18px;padding:8px 0;border-bottom:1px solid rgba(190,209,251,.12);font-size:13px;line-height:1.6}
+.grammar-examples li span:first-child{font-family:'Noto Sans JP',sans-serif;color:#fff;font-weight:600}
+.grammar-examples li span:last-child{color:#bdcde9}
+.grammar-section .grammar-practice,.grammar-section .grammar-listen{padding:10px 13px;border-radius:10px;background:rgba(114,158,235,.09);font-size:12px;margin:9px 0 0}
+.grammar-section .grammar-listen{background:rgba(255,192,229,.07)}
+.grammar-section .grammar-practice strong{color:#bfe0ff}.grammar-section .grammar-listen strong{color:#ffd0e9}
+.grammar-section ol{padding-left:22px;color:#d8e4fa;line-height:1.9;font-size:13px}
+.grammar-answers{margin-top:16px;border:1px solid rgba(190,209,251,.2);border-radius:12px;padding:12px 15px;background:rgba(114,158,235,.08);color:#e4ecff}
+.grammar-answers summary{cursor:pointer;font-weight:700;color:#c7e4ff}
+.grammar-answers ol{margin-bottom:0}
+@media(max-width:720px){.grammar-index{padding:17px}.grammar-index>div{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 12px}.grammar-section{padding:23px 17px 19px}.grammar-number{top:19px;right:17px}.grammar-section table{font-size:11px}.grammar-section th,.grammar-section td{padding:7px 6px}.grammar-section .grammar-practice,.grammar-section .grammar-listen{line-height:1.7}}
+.kana-chart-hint{margin:0 0 14px;color:#c8d8f3;font-size:12px;line-height:1.7}
+.kana-chart{display:grid;gap:7px}
+.kana-vowel-row,.kana-row{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(4px,1vw,12px)}
+.kana-vowel-row span{display:grid;place-items:center;padding:8px 2px;border-bottom:1px solid rgba(255,208,233,.42);color:#ffd0e9;font-size:13px;font-weight:700;text-transform:uppercase}
+.kana-row .kana-tile{width:100%;min-width:0;min-height:clamp(82px,10vw,118px);padding:8px 2px}
+.kana-row .kana-tile strong{font-size:clamp(22px,3vw,35px)}
+.kana-row .kana-tile small{font-size:clamp(9px,1vw,12px)}
+.kana-empty{min-width:0}
+.kana-standalone{display:flex;align-items:center;gap:12px;margin-top:14px}
+.kana-standalone>span{color:#bdcde9;font-size:12px}
+.kana-standalone .kana-tile{min-height:76px;min-width:72px;padding:8px 12px}
 @media(max-width:720px){.course-switch{display:inline-flex;width:38px;height:38px;justify-content:center;padding:8px;gap:0}.course-switch>span{display:none}.topbar__tools{gap:5px}}
 .music-toggle{min-width:39px;height:39px;display:inline-flex;align-items:center;justify-content:center;gap:5px;padding:0 9px;border:1px solid rgba(184,205,255,.34);border-radius:12px;background:rgba(9,22,58,.4);color:#edf5ff;transition:background .2s,border-color .2s,color .2s}.music-toggle:hover,.music-toggle[aria-pressed=true]{border-color:#ffc4e5;background:rgba(255,197,226,.12);color:#ffdaee}.music-toggle[aria-label$="unavailable"],.music-toggle[aria-label$="cannot be played"]{border-color:#ff9aa8;color:#ffb7c0}
 .anime-page{position:relative}.anime-disclaimer{display:flex;align-items:flex-start;gap:15px;margin:0 0 31px;padding:18px 21px;border:1px solid rgba(255,202,229,.3);border-left:3px solid #ffb9df;border-radius:15px;background:rgba(18,31,69,.8);box-shadow:var(--shadow)}.anime-disclaimer__icon{width:27px;height:27px;flex:0 0 auto;display:grid;place-items:center;border:1px solid rgba(255,201,230,.45);border-radius:50%;color:#ffd0e9;font-family:var(--serif);font-weight:700}.anime-disclaimer strong{display:block;margin:1px 0 5px;color:#ffe2f1;font-size:12px;letter-spacing:.08em;text-transform:uppercase}.anime-disclaimer p{margin:0;color:#d5e2fa;font-size:13px;line-height:1.8}.anime-page__head{margin-bottom:37px}.anime-page__head h1{max-width:770px}.anime-level+.anime-level{margin-top:51px}.anime-level__header{display:flex;align-items:center;gap:12px;margin-bottom:17px}.anime-level__header .eyebrow{flex:0 0 auto}.anime-level__header h2{margin:0;font-family:var(--serif);font-size:clamp(22px,3vw,30px);font-weight:600}.anime-level__header>span:last-child{margin-left:auto;color:#bacce9;font-size:11px}.anime-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.anime-card{min-width:0;overflow:hidden;border:1px solid rgba(177,203,249,.23);border-radius:19px;background:linear-gradient(145deg,rgba(18,34,75,.94),rgba(9,22,53,.96));box-shadow:var(--shadow);transition:transform .2s,border-color .2s}.anime-card:hover{transform:translateY(-3px);border-color:rgba(255,201,229,.52)}.anime-card__thumbnail{position:relative;isolation:isolate;aspect-ratio:1.7;overflow:hidden;background:radial-gradient(ellipse at 68% 24%,rgba(255,194,226,.35),transparent 39%),linear-gradient(130deg,#202d65,#563869 56%,#14254e)}.anime-card__thumbnail:after{position:absolute;z-index:1;inset:45% 0 0;content:'';background:linear-gradient(transparent,rgba(8,17,42,.55));pointer-events:none}.anime-card__thumbnail img{position:absolute;z-index:0;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;transition:transform .35s}.anime-card:hover .anime-card__thumbnail img{transform:scale(1.035)}.anime-card__thumbnail-mark{position:absolute;z-index:-1;inset:0;display:grid;place-items:center;color:rgba(255,231,244,.72);font-family:'Noto Sans JP',sans-serif;font-size:clamp(42px,8vw,84px);text-shadow:0 5px 25px rgba(3,10,31,.6)}.anime-card__level{position:absolute;z-index:2;top:13px;left:13px;padding:6px 10px;border:1px solid rgba(255,224,241,.35);border-radius:99px;background:rgba(8,18,44,.75);backdrop-filter:blur(10px);color:#ffe3f1;font-size:10px;font-weight:700;letter-spacing:.05em}.anime-card__copy{padding:17px 19px 20px}.anime-card__japanese{display:block;color:#ffd0e9;font-family:'Noto Sans JP',sans-serif;font-size:12px;letter-spacing:.07em}.anime-card__copy h3{margin:4px 0 10px;color:#fff;font-family:var(--serif);font-size:clamp(21px,2.5vw,27px);font-weight:700;line-height:1.3}.anime-card__copy p{margin:0;color:#d2def5;font-size:13px;line-height:1.8}
