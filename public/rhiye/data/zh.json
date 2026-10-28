@@ -1,0 +1,1690 @@
+{
+  "language": "zh",
+  "schemaVersion": 1,
+  "sourceNote": "Chinese vocabulary is selected from the site’s existing HSK source data; original learning notes and daily phrases are written for Rhiye.",
+  "characters": [
+    {
+      "id": "zh-character-001",
+      "group": "learn",
+      "kind": "character",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "人",
+      "reading": "rén",
+      "meaning": "person; people",
+      "components": "A person standing with legs apart.",
+      "example": "人们 (rénmen) — people",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "zh-character-002",
+      "group": "learn",
+      "kind": "character",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "口",
+      "reading": "kǒu",
+      "meaning": "mouth; opening",
+      "components": "A simple outline of an open mouth.",
+      "example": "入口 (rùkǒu) — entrance",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "zh-character-003",
+      "group": "learn",
+      "kind": "character",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "日",
+      "reading": "rì",
+      "meaning": "sun; day",
+      "components": "An old drawing of the sun enclosed by a boundary.",
+      "example": "日子 (rìzi) — day; days",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "zh-character-004",
+      "group": "learn",
+      "kind": "character",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "月",
+      "reading": "yuè",
+      "meaning": "moon; month",
+      "components": "A picture of a crescent moon with inner strokes.",
+      "example": "月亮 (yuèliang) — moon",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "zh-character-005",
+      "group": "learn",
+      "kind": "character",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "山",
+      "reading": "shān",
+      "meaning": "mountain",
+      "components": "Three peaks, with the middle peak tallest.",
+      "example": "高山 (gāoshān) — high mountain",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "zh-character-006",
+      "group": "learn",
+      "kind": "character",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "水",
+      "reading": "shuǐ",
+      "meaning": "water",
+      "components": "Flowing water shown with a central stream and side drops.",
+      "example": "水果 (shuǐguǒ) — fruit",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "zh-character-007",
+      "group": "learn",
+      "kind": "character",
+      "language": "zh",
+      "level": "HSK 2",
+      "text": "木",
+      "reading": "mù",
+      "meaning": "tree; wood",
+      "components": "A trunk with branches and roots.",
+      "example": "木头 (mùtou) — wood",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "zh-character-008",
+      "group": "learn",
+      "kind": "character",
+      "language": "zh",
+      "level": "HSK 2",
+      "text": "火",
+      "reading": "huǒ",
+      "meaning": "fire",
+      "components": "Flames rising from a small base.",
+      "example": "火车 (huǒchē) — train",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "zh-character-009",
+      "group": "learn",
+      "kind": "character",
+      "language": "zh",
+      "level": "HSK 2",
+      "text": "手",
+      "reading": "shǒu",
+      "meaning": "hand",
+      "components": "A hand with fingers extending from the palm.",
+      "example": "手机 (shǒujī) — mobile phone",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "zh-character-010",
+      "group": "learn",
+      "kind": "character",
+      "language": "zh",
+      "level": "HSK 2",
+      "text": "女",
+      "reading": "nǚ",
+      "meaning": "woman; female",
+      "components": "An old pictograph of a person with folded arms.",
+      "example": "女儿 (nǚ’ér) — daughter",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "zh-character-011",
+      "group": "learn",
+      "kind": "character",
+      "language": "zh",
+      "level": "HSK 2",
+      "text": "子",
+      "reading": "zǐ",
+      "meaning": "child; son",
+      "components": "A small child with a head and outstretched arms.",
+      "example": "孩子 (háizi) — child",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "zh-character-012",
+      "group": "learn",
+      "kind": "character",
+      "language": "zh",
+      "level": "HSK 3",
+      "text": "田",
+      "reading": "tián",
+      "meaning": "field",
+      "components": "A divided field seen from above.",
+      "example": "田地 (tiándì) — fields",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "zh-character-013",
+      "group": "learn",
+      "kind": "character",
+      "language": "zh",
+      "level": "HSK 3",
+      "text": "中",
+      "reading": "zhōng",
+      "meaning": "middle; China (in compounds)",
+      "components": "A line through the centre of a marked area.",
+      "example": "中国 (Zhōngguó) — China",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "zh-character-014",
+      "group": "learn",
+      "kind": "character",
+      "language": "zh",
+      "level": "HSK 3",
+      "text": "大",
+      "reading": "dà",
+      "meaning": "big; large",
+      "components": "A person with arms and legs spread wide.",
+      "example": "大家 (dàjiā) — everyone",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "zh-character-015",
+      "group": "learn",
+      "kind": "character",
+      "language": "zh",
+      "level": "HSK 3",
+      "text": "小",
+      "reading": "xiǎo",
+      "meaning": "small; little",
+      "components": "A central mark with two small marks beside it.",
+      "example": "小心 (xiǎoxīn) — be careful",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    }
+  ],
+  "idioms": [
+    {
+      "id": "zh-idiom-001",
+      "group": "learn",
+      "kind": "idiom",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "一心一意",
+      "reading": "yìxīn yíyì",
+      "meaning": "wholeheartedly; with undivided attention",
+      "literalMeaning": "one heart, one mind",
+      "whenToUse": "Used when someone focuses on one thing and puts their full attention into it.",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "zh-idiom-002",
+      "group": "learn",
+      "kind": "idiom",
+      "language": "zh",
+      "level": "HSK 2",
+      "text": "一举两得",
+      "reading": "yì jǔ liǎng dé",
+      "meaning": "To achieve two useful things with one action.",
+      "literalMeaning": "one action, two gains",
+      "whenToUse": "Said when one choice solves two needs.",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "zh-idiom-003",
+      "group": "learn",
+      "kind": "idiom",
+      "language": "zh",
+      "level": "HSK 3",
+      "text": "画蛇添足",
+      "reading": "huà shé tiān zú",
+      "meaning": "draw a snake and add feet",
+      "literalMeaning": "To spoil something by adding unnecessary details.",
+      "whenToUse": "Said when an extra action makes a good result worse.",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "zh-idiom-004",
+      "group": "learn",
+      "kind": "idiom",
+      "language": "zh",
+      "level": "HSK 3",
+      "text": "对牛弹琴",
+      "reading": "duì niú tán qín",
+      "meaning": "play a zither to a cow",
+      "literalMeaning": "To explain something to someone who cannot appreciate or understand it.",
+      "whenToUse": "Often used humorously when an explanation is not reaching its audience.",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "zh-idiom-005",
+      "group": "learn",
+      "kind": "idiom",
+      "language": "zh",
+      "level": "HSK 3",
+      "text": "井底之蛙",
+      "reading": "jǐng dǐ zhī wā",
+      "meaning": "a frog at the bottom of a well",
+      "literalMeaning": "Someone with a very limited view of the world.",
+      "whenToUse": "Used as a caution about narrow experience; it can sound critical.",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "zh-idiom-006",
+      "group": "learn",
+      "kind": "idiom",
+      "language": "zh",
+      "level": "HSK 3",
+      "text": "守株待兔",
+      "reading": "shǒu zhū dài tù",
+      "meaning": "wait by a tree stump for a rabbit",
+      "literalMeaning": "To wait for luck instead of making an effort.",
+      "whenToUse": "A caution against relying on a lucky accident.",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    }
+  ],
+  "phrases": [
+    {
+      "id": "zh-phrase-001",
+      "group": "learn",
+      "kind": "phrase",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "请问，洗手间在哪里？",
+      "reading": "qǐngwèn, xǐshǒujiān zài nǎlǐ?",
+      "meaning": "Excuse me, where is the restroom?",
+      "whenToUse": "Use 请问 to politely open a question to a stranger.",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "zh-phrase-002",
+      "group": "learn",
+      "kind": "phrase",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "这个多少钱？",
+      "reading": "zhège duōshao qián?",
+      "meaning": "How much is this?",
+      "whenToUse": "A common question when shopping; point to the item if needed.",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "zh-phrase-003",
+      "group": "learn",
+      "kind": "phrase",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "我想要这个。",
+      "reading": "wǒ xiǎng yào zhège.",
+      "meaning": "I would like this.",
+      "whenToUse": "Use when ordering or choosing an item; point to what you mean.",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "zh-phrase-004",
+      "group": "learn",
+      "kind": "phrase",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "请给我一杯水。",
+      "reading": "qǐng gěi wǒ yì bēi shuǐ.",
+      "meaning": "Please give me a glass of water.",
+      "whenToUse": "A polite request in a café or restaurant.",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "zh-phrase-005",
+      "group": "learn",
+      "kind": "phrase",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "可以刷卡吗？",
+      "reading": "kěyǐ shuākǎ ma?",
+      "meaning": "Can I pay by card?",
+      "whenToUse": "Ask before paying; payment options vary by shop.",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "zh-phrase-006",
+      "group": "learn",
+      "kind": "phrase",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "请说慢一点。",
+      "reading": "qǐng shuō màn yìdiǎn.",
+      "meaning": "Please speak a little more slowly.",
+      "whenToUse": "A useful, polite request when you are learning.",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "zh-phrase-007",
+      "group": "learn",
+      "kind": "phrase",
+      "language": "zh",
+      "level": "HSK 2",
+      "text": "我听不懂。",
+      "reading": "wǒ tīng bù dǒng.",
+      "meaning": "I do not understand (what I hear).",
+      "whenToUse": "Use when spoken Chinese is too difficult to follow.",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "zh-phrase-008",
+      "group": "learn",
+      "kind": "phrase",
+      "language": "zh",
+      "level": "HSK 2",
+      "text": "可以帮我吗？",
+      "reading": "kěyǐ bāng wǒ ma?",
+      "meaning": "Could you help me?",
+      "whenToUse": "A polite way to ask someone nearby for help.",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "zh-phrase-009",
+      "group": "learn",
+      "kind": "phrase",
+      "language": "zh",
+      "level": "HSK 2",
+      "text": "我在这里下车。",
+      "reading": "wǒ zài zhèlǐ xià chē.",
+      "meaning": "I will get off here.",
+      "whenToUse": "Tell a driver or travel companion where you plan to get off.",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    },
+    {
+      "id": "zh-phrase-010",
+      "group": "learn",
+      "kind": "phrase",
+      "language": "zh",
+      "level": "HSK 2",
+      "text": "麻烦给我打包。",
+      "reading": "máfan gěi wǒ dǎbāo.",
+      "meaning": "Could you pack this to go, please?",
+      "whenToUse": "A polite request for takeaway packaging in a restaurant.",
+      "source": "Original Rhiye starter content",
+      "tags": [
+        "starter",
+        "beginner"
+      ]
+    }
+  ],
+  "listen": [
+    {
+      "id": "zh-listen-001",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "一",
+      "reading": "yī",
+      "meaning": "one",
+      "example": "我是第一。",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-002",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "七",
+      "reading": "qī",
+      "meaning": "seven",
+      "example": "他向她求婚求了七次。",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-003",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 2",
+      "text": "万",
+      "reading": "wàn",
+      "meaning": "ten thousand",
+      "example": "万一我来晚的话，就别等我了。",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-004",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "三",
+      "reading": "sān",
+      "meaning": "three",
+      "example": "他有三个哥哥。",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-005",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "上",
+      "reading": "shàng",
+      "meaning": "up",
+      "example": "晚上好。",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-006",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "下",
+      "reading": "xià",
+      "meaning": "down",
+      "example": "下午好。",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-007",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "不",
+      "reading": "bù",
+      "meaning": "no",
+      "example": "不可能！",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-008",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 3",
+      "text": "东",
+      "reading": "dōng",
+      "meaning": "east",
+      "example": "我正在吃东西。",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-009",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 3",
+      "text": "丢",
+      "reading": "diū",
+      "meaning": "lose (something)",
+      "example": "他丢脸了。",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-010",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "两",
+      "reading": "liǎng",
+      "meaning": "two",
+      "example": "我只睡了两小时。",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-011",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "个",
+      "reading": "gè",
+      "meaning": "the general measure word",
+      "example": "我个子高。",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-012",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 3",
+      "text": "中",
+      "reading": "zhōng",
+      "meaning": "(bound form) China",
+      "example": "她在中间。",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-013",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 3",
+      "text": "为",
+      "reading": "wèi",
+      "meaning": "for",
+      "example": "为什么？",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-014",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 3",
+      "text": "久",
+      "reading": "jiǔ",
+      "meaning": "lasting",
+      "example": "好久不见了。",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-015",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "九",
+      "reading": "jiǔ",
+      "meaning": "nine",
+      "example": "飞机九点起飞。",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-016",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "也",
+      "reading": "yě",
+      "meaning": "also",
+      "example": "我也这么想。",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-017",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "书",
+      "reading": "shū",
+      "meaning": "book",
+      "example": "我在读书。",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-018",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "买",
+      "reading": "mǎi",
+      "meaning": "to buy",
+      "example": "爷爷买给我的！",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-019",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "了",
+      "reading": "le",
+      "meaning": "grammar particle: completed action",
+      "example": "我生病了。",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-020",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "事",
+      "reading": "shì",
+      "meaning": "matter",
+      "example": "我有些事。",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-021",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "二",
+      "reading": "èr",
+      "meaning": "two",
+      "example": "我二十年前出生。",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-022",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "五",
+      "reading": "wǔ",
+      "meaning": "five",
+      "example": "再给我五分钟。",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-023",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "些",
+      "reading": "xiē",
+      "meaning": "measure word: some, a few",
+      "example": "我有些事。",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-024",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "人",
+      "reading": "rén",
+      "meaning": "person",
+      "example": "你有客人。",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-025",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 2",
+      "text": "从",
+      "reading": "cóng",
+      "meaning": "from",
+      "example": "他从中国回来了。",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-026",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "他",
+      "reading": "tā",
+      "meaning": "he",
+      "example": "他是谁？",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-027",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "们",
+      "reading": "men",
+      "meaning": "plural marker for pronouns, and nouns referring to individuals",
+      "example": "我们去哪儿？",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-028",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "件",
+      "reading": "jiàn",
+      "meaning": "(measure word for things, clothes, and items)",
+      "example": "我不知道这件事。",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-029",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "会",
+      "reading": "huì",
+      "meaning": "can",
+      "example": "一会儿见！",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-030",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 3",
+      "text": "伞",
+      "reading": "sǎn",
+      "meaning": "umbrella",
+      "example": "你其实没必要带伞。",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-031",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 2",
+      "text": "但",
+      "reading": "dàn",
+      "meaning": "but",
+      "example": "我本来想走的，但后来忘了。",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-032",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 2",
+      "text": "位",
+      "reading": "wèi",
+      "meaning": "position",
+      "example": "我是位女士。",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-033",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "住",
+      "reading": "zhù",
+      "meaning": "to live",
+      "example": "您住在哪里？",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-034",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "你",
+      "reading": "nǐ",
+      "meaning": "you",
+      "example": "你有客人。",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-035",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 3",
+      "text": "信",
+      "reading": "xìn",
+      "meaning": "letter",
+      "example": "相信我。",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-036",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 3",
+      "text": "借",
+      "reading": "jiè",
+      "meaning": "to borrow",
+      "example": "我没有借口。",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-037",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "做",
+      "reading": "zuò",
+      "meaning": "to make",
+      "example": "我会做饭。",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-038",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 3",
+      "text": "像",
+      "reading": "xiàng",
+      "meaning": "to resemble",
+      "example": "他好像病了。",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-039",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "元",
+      "reading": "yuán",
+      "meaning": "Chinese monetary unit",
+      "example": "只要十元！",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-040",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 3",
+      "text": "先",
+      "reading": "xiān",
+      "meaning": "first",
+      "example": "小女孩先上车。",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-041",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "八",
+      "reading": "bā",
+      "meaning": "eight",
+      "example": "妹妹八岁了。",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-042",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "六",
+      "reading": "liù",
+      "meaning": "six",
+      "example": "他六点左右要给我打电话。",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-043",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 3",
+      "text": "关",
+      "reading": "guān",
+      "meaning": "to close",
+      "example": "没关系。",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-044",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 3",
+      "text": "养",
+      "reading": "yǎng",
+      "meaning": "to raise (animals)",
+      "example": "他是个有教养的人。",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    },
+    {
+      "id": "zh-listen-045",
+      "group": "listen",
+      "kind": "audio",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "再",
+      "reading": "zài",
+      "meaning": "again",
+      "example": "再给我五分钟。",
+      "source": "Yukoto HSK vocabulary",
+      "tags": [
+        "starter",
+        "audio"
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "id": "zh-video-LelIk-SEQyg",
+      "group": "watch",
+      "kind": "life-video",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "水上樂園的社死瞬間，快找個地縫鑽進去吧！",
+      "reading": "Mandarin",
+      "meaning": "",
+      "videoId": "LelIk-SEQyg",
+      "startSeconds": 0,
+      "segmentVerified": true,
+      "embedVerified": true,
+      "listenFor": {
+        "text": "社死",
+        "reading": "shè sǐ",
+        "meaning": "an embarrassing public moment"
+      },
+      "source": "User-confirmed authorized YouTube Short; play the full Short.",
+      "tags": [
+        "user-supplied",
+        "daily-life"
+      ]
+    },
+    {
+      "id": "zh-video-LiaGKBHjUoA",
+      "group": "watch",
+      "kind": "life-video",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "音樂“四重奏”串燒爆火後續！女生坐不住了大冒險在電梯裏唱歌網友：拖拉機的車身 法拉利的聲浪",
+      "reading": "Mandarin",
+      "meaning": "",
+      "videoId": "LiaGKBHjUoA",
+      "startSeconds": 0,
+      "segmentVerified": true,
+      "embedVerified": true,
+      "listenFor": {
+        "text": "電梯",
+        "reading": "diàntī",
+        "meaning": "elevator"
+      },
+      "source": "User-confirmed authorized YouTube Short; play the full Short.",
+      "tags": [
+        "user-supplied",
+        "daily-life"
+      ]
+    },
+    {
+      "id": "zh-video-e8iQPpi8QfQ",
+      "group": "watch",
+      "kind": "life-video",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "當我在燒烤攤和老婆唱歌，但她不想唱時，服務員居然",
+      "reading": "Mandarin",
+      "meaning": "",
+      "videoId": "e8iQPpi8QfQ",
+      "startSeconds": 0,
+      "segmentVerified": true,
+      "embedVerified": true,
+      "listenFor": {
+        "text": "燒烤攤",
+        "reading": "shāokǎo tān",
+        "meaning": "barbecue stall"
+      },
+      "source": "User-confirmed authorized YouTube Short; play the full Short.",
+      "tags": [
+        "user-supplied",
+        "daily-life"
+      ]
+    },
+    {
+      "id": "zh-video-HPuxFjAS0Ck",
+      "group": "watch",
+      "kind": "life-video",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "音樂尖子生班自習課即興挑戰，誰知碰上顯眼包",
+      "reading": "Mandarin",
+      "meaning": "",
+      "videoId": "HPuxFjAS0Ck",
+      "startSeconds": 0,
+      "segmentVerified": true,
+      "embedVerified": true,
+      "listenFor": {
+        "text": "自習課",
+        "reading": "zìxí kè",
+        "meaning": "study period"
+      },
+      "source": "User-confirmed authorized YouTube Short; play the full Short.",
+      "tags": [
+        "user-supplied",
+        "daily-life"
+      ]
+    },
+    {
+      "id": "zh-video-Nemq71puHLA",
+      "group": "watch",
+      "kind": "screen-video",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "茶花开了该回家了",
+      "reading": "Mandarin",
+      "meaning": "",
+      "videoId": "Nemq71puHLA",
+      "startSeconds": 0,
+      "segmentVerified": true,
+      "embedVerified": true,
+      "listenFor": {
+        "text": "回家",
+        "reading": "huí jiā",
+        "meaning": "go home"
+      },
+      "source": "User-confirmed authorized YouTube Short; play the full Short.",
+      "tags": [
+        "user-supplied",
+        "series-film-anime"
+      ]
+    },
+    {
+      "id": "zh-video-IkLOflVJTME",
+      "group": "watch",
+      "kind": "life-video",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "Small Talk in China (as a foreigner)",
+      "reading": "Mandarin",
+      "meaning": "",
+      "videoId": "IkLOflVJTME",
+      "startSeconds": 0,
+      "segmentVerified": true,
+      "embedVerified": true,
+      "listenFor": {
+        "text": "聊天",
+        "reading": "liáotiān",
+        "meaning": "to chat"
+      },
+      "source": "User-confirmed authorized YouTube Short; play the full Short.",
+      "tags": [
+        "user-supplied",
+        "daily-life"
+      ]
+    },
+    {
+      "id": "zh-video-of4BjnTqMUU",
+      "group": "watch",
+      "kind": "life-video",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "How to learn mandarin in 2025",
+      "reading": "Mandarin",
+      "meaning": "",
+      "videoId": "of4BjnTqMUU",
+      "startSeconds": 0,
+      "segmentVerified": true,
+      "embedVerified": true,
+      "listenFor": {
+        "text": "學習",
+        "reading": "xuéxí",
+        "meaning": "to study; learning"
+      },
+      "source": "User-confirmed authorized YouTube Short; play the full Short.",
+      "tags": [
+        "user-supplied",
+        "daily-life"
+      ]
+    },
+    {
+      "id": "zh-video-pfYr23j4my8",
+      "group": "watch",
+      "kind": "life-video",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "如果你没参加高考，那你不是中国人",
+      "reading": "Mandarin",
+      "meaning": "",
+      "videoId": "pfYr23j4my8",
+      "startSeconds": 0,
+      "segmentVerified": true,
+      "embedVerified": true,
+      "listenFor": {
+        "text": "高考",
+        "reading": "gāokǎo",
+        "meaning": "China’s university entrance exam"
+      },
+      "source": "User-confirmed authorized YouTube Short; play the full Short.",
+      "tags": [
+        "user-supplied",
+        "daily-life"
+      ]
+    },
+    {
+      "id": "zh-video-NMyDJveRyPA",
+      "group": "watch",
+      "kind": "life-video",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "After Work Chinese Conversation | Beginner Mandarin (HSK1–2)",
+      "reading": "Mandarin",
+      "meaning": "",
+      "videoId": "NMyDJveRyPA",
+      "startSeconds": 0,
+      "segmentVerified": true,
+      "embedVerified": true,
+      "listenFor": {
+        "text": "下班",
+        "reading": "xiàbān",
+        "meaning": "to finish work"
+      },
+      "source": "User-confirmed authorized YouTube Short; play the full Short.",
+      "tags": [
+        "user-supplied",
+        "daily-life"
+      ]
+    },
+    {
+      "id": "zh-video-MxyTJo1CNuk",
+      "group": "watch",
+      "kind": "life-video",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "Northern mandarin or southern mandarin accent, which’s better",
+      "reading": "Mandarin",
+      "meaning": "",
+      "videoId": "MxyTJo1CNuk",
+      "startSeconds": 0,
+      "segmentVerified": true,
+      "embedVerified": true,
+      "listenFor": {
+        "text": "口音",
+        "reading": "kǒuyīn",
+        "meaning": "accent"
+      },
+      "source": "User-confirmed authorized YouTube Short; play the full Short.",
+      "tags": [
+        "user-supplied",
+        "daily-life"
+      ]
+    },
+    {
+      "id": "zh-video-oM-goqxbZkA",
+      "group": "watch",
+      "kind": "life-video",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "What business culture like in China?",
+      "reading": "Mandarin",
+      "meaning": "",
+      "videoId": "oM-goqxbZkA",
+      "startSeconds": 0,
+      "segmentVerified": true,
+      "embedVerified": true,
+      "listenFor": {
+        "text": "文化",
+        "reading": "wénhuà",
+        "meaning": "culture"
+      },
+      "source": "User-confirmed authorized YouTube Short; play the full Short.",
+      "tags": [
+        "user-supplied",
+        "daily-life"
+      ]
+    },
+    {
+      "id": "zh-video-7O2i7k9x_LE",
+      "group": "watch",
+      "kind": "life-video",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "What’s it like growing up half Chinese",
+      "reading": "Mandarin",
+      "meaning": "",
+      "videoId": "7O2i7k9x_LE",
+      "startSeconds": 0,
+      "segmentVerified": true,
+      "embedVerified": true,
+      "listenFor": {
+        "text": "長大",
+        "reading": "zhǎng dà",
+        "meaning": "to grow up"
+      },
+      "source": "User-confirmed authorized YouTube Short; play the full Short.",
+      "tags": [
+        "user-supplied",
+        "daily-life"
+      ]
+    },
+    {
+      "id": "zh-video-YUTX1hucgR4",
+      "group": "watch",
+      "kind": "life-video",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "The best way to learn mandarin is …",
+      "reading": "Mandarin",
+      "meaning": "",
+      "videoId": "YUTX1hucgR4",
+      "startSeconds": 0,
+      "segmentVerified": true,
+      "embedVerified": true,
+      "listenFor": {
+        "text": "方法",
+        "reading": "fāngfǎ",
+        "meaning": "method; way"
+      },
+      "source": "User-confirmed authorized YouTube Short; play the full Short.",
+      "tags": [
+        "user-supplied",
+        "daily-life"
+      ]
+    },
+    {
+      "id": "zh-video-fVYwWQe1a4I",
+      "group": "watch",
+      "kind": "life-video",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "How did she actually learned mandarin so well?",
+      "reading": "Mandarin",
+      "meaning": "",
+      "videoId": "fVYwWQe1a4I",
+      "startSeconds": 0,
+      "segmentVerified": true,
+      "embedVerified": true,
+      "listenFor": {
+        "text": "中文",
+        "reading": "Zhōngwén",
+        "meaning": "Chinese language"
+      },
+      "source": "User-confirmed authorized YouTube Short; play the full Short.",
+      "tags": [
+        "user-supplied",
+        "daily-life"
+      ]
+    },
+    {
+      "id": "zh-video-1jzqqy86--8",
+      "group": "watch",
+      "kind": "life-video",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "What not to do when learning Chinese",
+      "reading": "Mandarin",
+      "meaning": "",
+      "videoId": "1jzqqy86--8",
+      "startSeconds": 0,
+      "segmentVerified": true,
+      "embedVerified": true,
+      "listenFor": {
+        "text": "不要",
+        "reading": "bú yào",
+        "meaning": "do not; should not"
+      },
+      "source": "User-confirmed authorized YouTube Short; play the full Short.",
+      "tags": [
+        "user-supplied",
+        "daily-life"
+      ]
+    },
+    {
+      "id": "zh-video-4QnGVGtSXgs",
+      "group": "watch",
+      "kind": "life-video",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "Living in China as an black women",
+      "reading": "Mandarin",
+      "meaning": "",
+      "videoId": "4QnGVGtSXgs",
+      "startSeconds": 0,
+      "segmentVerified": true,
+      "embedVerified": true,
+      "listenFor": {
+        "text": "生活",
+        "reading": "shēnghuó",
+        "meaning": "life; to live"
+      },
+      "source": "User-confirmed authorized YouTube Short; play the full Short.",
+      "tags": [
+        "user-supplied",
+        "daily-life"
+      ]
+    },
+    {
+      "id": "zh-video-nqud3GxgAeA",
+      "group": "watch",
+      "kind": "life-video",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "Northern Chinese accent or southern?",
+      "reading": "Mandarin",
+      "meaning": "",
+      "videoId": "nqud3GxgAeA",
+      "startSeconds": 0,
+      "segmentVerified": true,
+      "embedVerified": true,
+      "listenFor": {
+        "text": "南方",
+        "reading": "nánfāng",
+        "meaning": "the south"
+      },
+      "source": "User-confirmed authorized YouTube Short; play the full Short.",
+      "tags": [
+        "user-supplied",
+        "daily-life"
+      ]
+    },
+    {
+      "id": "zh-video-dltIoJJmzhQ",
+      "group": "watch",
+      "kind": "life-video",
+      "language": "zh",
+      "level": "HSK 1",
+      "text": "What Chinese people think about Americans · Polyglot in China",
+      "reading": "Mandarin",
+      "meaning": "",
+      "videoId": "dltIoJJmzhQ",
+      "startSeconds": 0,
+      "segmentVerified": true,
+      "embedVerified": true,
+      "listenFor": {
+        "text": "美國人",
+        "reading": "Měiguó rén",
+        "meaning": "American person"
+      },
+      "source": "User-confirmed authorized YouTube Short; play the full Short.",
+      "tags": [
+        "user-supplied",
+        "daily-life"
+      ]
+    }
+  ],
+  "nativeSpeakerReview": [
+    {
+      "cardId": "zh-idiom-004",
+      "note": "Check register and tone for a humorous use of 对牛弹琴."
+    }
+  ]
+}

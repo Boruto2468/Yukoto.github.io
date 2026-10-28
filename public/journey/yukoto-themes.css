@@ -1,0 +1,94 @@
+/* The original Japanese and Chinese homepages are not restyled. This stylesheet
+   only skins the OPTIONAL shared learning studio in their respective palettes. */
+.origin-link{display:flex;align-items:center;gap:9px;margin:8px 8px 18px;padding:12px;border-radius:12px;font-size:12px;text-decoration:none;font-weight:700;background:#ffffff12;color:inherit;border:1px solid #ffffff18}
+.origin-link:hover{background:#ffffff22}.mobile-return{display:none;font-weight:700;font-size:11px;color:inherit;text-decoration:none;padding:9px 11px;border-radius:10px;border:1px solid currentColor}
+/* Chinese: keep its original parchment / warm accents instead of imposing the prototype's sage identity. */
+.theme-zh{background:#f5f0e7;color:#302b26}
+.theme-zh .sidebar{background:#fffaf2;border-right-color:#e4dacb}
+.theme-zh .main{background:#f5f0e7}
+.theme-zh .topbar,.theme-zh .mobile-bottom{background:#fffaf2;border-color:#e4dacb}
+.theme-zh .brandname,.theme-zh .page-heading,.theme-zh .practice-big,.theme-zh .word-native{color:#302b26}
+.theme-zh .brandmark{background:#a64f3d;color:#fffaf2}
+.theme-zh .nav-button.active,.theme-zh .btn:not(.btn-light):not(.btn-ghost){background:#a64f3d;color:#fff}
+.theme-zh .nav-button.active svg{color:#fff}
+.theme-zh .hero{background:linear-gradient(120deg,#ede2d6,#e7dfcc);color:#302b26}
+.theme-zh .hero-text h2,.theme-zh .hero-text p{color:#302b26}
+.theme-zh .hero .btn{background:#a64f3d;color:#fff}
+.theme-zh .origin-link{border-color:#e4dacb;background:#f3e4da;color:#843a30}
+.theme-zh .progress-fill,.theme-zh .mini-progress div{background:#a64f3d}
+.theme-zh .practice-panel,.theme-zh .vocab-card,.theme-zh .word-row,.theme-zh .stat-card,.theme-zh .review-card,.theme-zh .lesson-card,.theme-zh .card{background:#fffaf2;border-color:#e4dacb}
+.theme-zh .side-card{background:#f3e4da;color:#653d34}
+.theme-zh .step.active,.theme-zh .tab.active{background:#a64f3d;color:#fff}
+.theme-zh .language-control .selected{background:#a64f3d;color:#fff}
+/* Japanese: original midnight blue / sakura pink / luminous blue, on ORIGINAL mountain scenery. */
+.theme-ja{font-family:'DM Sans','Noto Sans JP',sans-serif;background:#071229;color:#f8f5ff;min-height:100vh}
+.theme-ja::before{content:'';position:fixed;inset:0;z-index:-2;pointer-events:none;background:linear-gradient(95deg,rgba(5,12,32,.94),rgba(7,17,44,.72)),url('../japanese/assets/hero-background.webp') center/cover no-repeat}
+.theme-ja::after{content:'';position:fixed;left:-35px;top:-35px;width:min(41vw,470px);aspect-ratio:1.15;z-index:-1;opacity:.3;pointer-events:none;background:url('../japanese/assets/sakura-branch.webp') top left/contain no-repeat}
+.theme-ja #app,.theme-ja .app,.theme-ja .main{background:transparent;color:#f8f5ff}
+.theme-ja .app{position:relative;isolation:isolate}
+.theme-ja .sidebar{background:rgba(8,19,47,.90);border-right:1px solid rgba(190,209,251,.2);backdrop-filter:blur(20px)}
+.theme-ja .topbar,.theme-ja .mobile-bottom{background:rgba(8,19,47,.88);border-color:rgba(190,209,251,.2);backdrop-filter:blur(16px)}
+.theme-ja .brandname{font-family:'Shippori Mincho',serif;font-style:italic;color:#f8f5ff}
+.theme-ja .brandname span{color:#ffd0e9}
+.theme-ja .brandmark{background:#203763;color:#ffd0e9;border:1px solid #ffd0e970}
+.theme-ja .crumb,.theme-ja .section-label,.theme-ja .subheading,.theme-ja .lesson-card p,.theme-ja .practice-card small,.theme-ja .word-info,.theme-ja .small-note,.theme-ja .stat-card small,.theme-ja .setting-row p{color:#bdcde9}
+.theme-ja .page-heading,.theme-ja .section-head h2,.theme-ja .hero-text h2,.theme-ja .card h3,.theme-ja .practice-card strong,.theme-ja .lesson-card h3,.theme-ja .word-native,.theme-ja .practice-big,.theme-ja .stat-card strong,.theme-ja .review-card h2,.theme-ja .intro h1{color:#fff}
+.theme-ja .page-heading,.theme-ja .hero-text h2{font-family:'Shippori Mincho','Noto Sans JP',serif}
+.theme-ja .eyebrow,.theme-ja .unit-label,.theme-ja .section-label{color:#ffd0e9}
+.theme-ja .nav-button{color:#dbe7ff}.theme-ja .nav-button:hover{background:rgba(154,192,249,.14)}
+.theme-ja .nav-button.active{color:#fff;background:rgba(92,143,238,.24);border:1px solid rgba(157,205,255,.34)}
+.theme-ja .nav-button.active svg{color:#ffd0e9}
+.theme-ja .origin-link{color:#ddecff;background:rgba(89,136,226,.13);border-color:rgba(181,207,255,.28)}
+.theme-ja .origin-link:hover{background:rgba(89,136,226,.24)}
+.theme-ja .side-card{background:linear-gradient(130deg,rgba(72,52,111,.34),rgba(33,63,124,.48));color:#e3dcfa;border:1px solid rgba(255,208,233,.25)}
+.theme-ja .side-card p,.theme-ja .side-footer{color:#b7c6e2}
+.theme-ja .hero{background:linear-gradient(110deg,rgba(20,39,88,.94),rgba(51,42,101,.77));border:1px solid rgba(171,200,255,.4);box-shadow:0 20px 50px rgba(0,0,25,.2)}
+.theme-ja .hero-text p{color:#d3e2ff}.theme-ja .hero-art{opacity:.8}
+.theme-ja .btn:not(.btn-light):not(.btn-ghost){background:linear-gradient(110deg,#a7ceff,#bce0ff);color:#0b1938;border-color:transparent;font-weight:800}
+.theme-ja .btn-ghost,.theme-ja .btn-light{color:#f4ebff;background:rgba(91,128,214,.19);border:1px solid rgba(173,208,255,.28)}
+.theme-ja .top-streak,.theme-ja .language-control{color:#e3ecff;background:rgba(41,66,118,.6);border-color:rgba(190,209,251,.26)}
+.theme-ja .language-control button{color:#c6d8f7}.theme-ja .language-control .selected{background:#304c89;color:#fff}
+.theme-ja .stat-pill,.theme-ja .pill,.theme-ja .lesson-meta span,.theme-ja .soft-tag,.theme-ja .chip-btn{background:rgba(116,155,232,.18);color:#cde0ff;border-color:rgba(185,211,255,.23)}
+.theme-ja .card,.theme-ja .path-card,.theme-ja .practice-card,.theme-ja .lesson-card,.theme-ja .mode-banner,.theme-ja .practice-panel,.theme-ja .vocab-card,.theme-ja .word-row,.theme-ja .stat-card,.theme-ja .review-card,.theme-ja .quote-card,.theme-ja .muted-panel,.theme-ja .notebook,.theme-ja .speak-result{background:rgba(15,29,66,.88);border:1px solid rgba(169,202,254,.24);color:#e4eeff;box-shadow:0 12px 35px rgba(3,9,30,.13)}
+.theme-ja .mode-banner{background:linear-gradient(115deg,rgba(45,61,121,.94),rgba(80,49,111,.72))}
+.theme-ja .mode-banner p,.theme-ja .quote-card p,.theme-ja .path-card p,.theme-ja .muted-panel,.theme-ja .notebook,.theme-ja .speak-result,.theme-ja .word-info{color:#c8d8f3}
+.theme-ja .audio-button,.theme-ja .icon-wrap,.theme-ja .lesson-icon{background:rgba(101,149,235,.20);color:#d4e7ff;border-color:rgba(182,208,255,.35)}
+.theme-ja .progress-line,.theme-ja .mini-progress{background:rgba(169,202,254,.17)}
+.theme-ja .progress-fill,.theme-ja .mini-progress div{background:linear-gradient(90deg,#80c6ff,#f0b7d9)}
+.theme-ja .tabs{background:rgba(65,89,150,.26)}.theme-ja .tab{color:#c6d5ee}.theme-ja .tab.active,.theme-ja .step.active{background:#304c89;color:#fff}
+.theme-ja .step{background:rgba(89,136,226,.17);color:#bcd1f2}.theme-ja .step.complete{background:rgba(107,180,161,.23);color:#d4f0e5}
+.theme-ja .searchbar,.theme-ja .select,.theme-ja .field{background:rgba(18,33,73,.95);border-color:rgba(169,202,254,.25);color:#fff}
+.theme-ja .choice,.theme-ja .chip-btn,.theme-ja .toggle{background:rgba(64,93,162,.22);border-color:rgba(169,202,254,.25);color:#eaf1ff}
+.theme-ja .choice.correct,.theme-ja .feedback{background:rgba(64,143,108,.25);color:#c0f4d1;border-color:#7cb89a}
+.theme-ja .choice.wrong,.theme-ja .feedback.bad{background:rgba(167,64,86,.25);color:#ffd5db;border-color:#c9819a}
+.theme-ja .practice-big,.theme-ja .big-native,.theme-ja .quote-card .big-native{color:#e6f0ff}
+.theme-ja .roman,.theme-ja .meaning,.theme-ja .stage-counter,.theme-ja .lesson-meta,.theme-ja .word-controls,.theme-ja .skill-item{color:#bccfec}
+.theme-ja .setting-row,.theme-ja .divider{border-color:rgba(169,202,254,.20)}
+.theme-ja .toast{background:#10244d;color:#fff;border:1px solid #a3c9ff55}
+.theme-ja .mobile-bottom button{color:#adc5e7}.theme-ja .mobile-bottom button.active{color:#ffd0e9}
+.theme-ja .mobile-brand{color:#fff;font-family:'Shippori Mincho',serif}
+.theme-ja .mobile-brand .mini-mark{background:#223b6d;color:#ffd0e9}
+@media(max-width:760px){.mobile-return{display:inline-block}.theme-ja .sidebar{display:none}.theme-ja::after{width:75vw;opacity:.19}}
+@media(prefers-reduced-motion:reduce){.theme-ja *{animation:none!important}}
+/* Keep learning text above decorative shapes on small Japanese screens. */
+@media(max-width:760px){.theme-ja .hero-art{opacity:.13;pointer-events:none}.theme-ja .hero-text{position:relative;z-index:2}.theme-ja .hero-text h2{font-size:clamp(27px,8vw,40px)}}
+/* Expanded curriculum and language-content explorer, scoped to the optional studio. */
+.curriculum-toolbar{display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap;margin:20px 0 24px}
+.curriculum-field{display:flex;flex-direction:column;gap:7px;font-size:12px;font-weight:700;letter-spacing:.035em;min-width:180px}
+.curriculum-field .select{width:100%;min-height:44px}
+.curriculum-toolbar>.pill{align-self:center;margin-top:16px}
+.curriculum-notice{max-width:960px;line-height:1.65;font-size:13px;padding:12px 16px;border:1px solid currentColor;border-radius:12px;opacity:.78}
+.study-pagination{display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;margin:25px 0 15px;font-size:13px}
+.character-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-top:20px}
+.character-card .word-native{font-size:clamp(36px,4vw,52px);line-height:1.25}
+.character-card .roman{font-size:12px;margin:8px 0}
+.character-card p{overflow-wrap:anywhere;line-height:1.55}
+.grammar-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:18px;margin-top:21px}
+.grammar-entry{display:flex;flex-direction:column;gap:12px}
+.grammar-entry h3{font-size:20px;margin:4px 0}
+.grammar-entry p{font-size:14px;line-height:1.7;margin:0}
+.grammar-entry .muted-panel{margin:0;padding:13px}
+.grammar-formula{font-weight:700;font-size:16px!important}
+.native-example{font-family:'Noto Sans JP','Noto Sans SC',sans-serif;font-size:21px;line-height:1.55;margin-bottom:4px}
+.grammar-entry .muted-panel .btn{margin-top:11px}
+@media(max-width:600px){.curriculum-toolbar{display:grid;grid-template-columns:minmax(0,1fr);align-items:stretch}.curriculum-field{width:100%}.curriculum-toolbar>.pill{margin-top:0;justify-self:start}.character-grid,.grammar-grid{grid-template-columns:1fr}.study-pagination{gap:10px}}

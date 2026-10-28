@@ -1,0 +1,87 @@
+{
+  "source": "OpenJLPT (community N5–N1, derived from JMdict/KANJIDIC2 and attributed examples)",
+  "coverage": "Community JLPT classification; not an official JLPT syllabus",
+  "license": "CC BY-SA 4.0; see THIRD_PARTY_NOTICES.md and OpenJLPT/NOTICE.md",
+  "upstream": "https://github.com/evanclan/OpenJLPT",
+  "sourceRef": "main",
+  "sourceManifest": [
+    {
+      "url": "https://raw.githubusercontent.com/evanclan/OpenJLPT/main/data/json/kanji/n5.json",
+      "sha256": "c81458831e5e2e807ce0bb81a5af971d493ac8a9243701005eb57fe353990fce",
+      "rows": 84
+    },
+    {
+      "url": "https://raw.githubusercontent.com/evanclan/OpenJLPT/main/data/json/grammar/n5.json",
+      "sha256": "fb8151594263f5e98372adc51d4498578bc198e22259b161fba524eea2faa0bd",
+      "rows": 81
+    },
+    {
+      "url": "https://raw.githubusercontent.com/evanclan/OpenJLPT/main/data/json/vocab/n5.json",
+      "sha256": "cbb221c9a3a92108fcd02fb088d9afacc70bc8c96570d5730425de0a49dad5f3",
+      "rows": 674
+    },
+    {
+      "url": "https://raw.githubusercontent.com/evanclan/OpenJLPT/main/data/json/grammar/n4.json",
+      "sha256": "7b388b8636ab7d9eaed02484d7d6be1c2468885f2354e28c02a29c2dfeb8d70d",
+      "rows": 98
+    },
+    {
+      "url": "https://raw.githubusercontent.com/evanclan/OpenJLPT/main/data/json/vocab/n4.json",
+      "sha256": "b38512a6dc1e06a3615f377b3e58184c4a85b6f769c2e3f58f2a4ef0e1810927",
+      "rows": 630
+    },
+    {
+      "url": "https://raw.githubusercontent.com/evanclan/OpenJLPT/main/data/json/kanji/n4.json",
+      "sha256": "a034d51bea0ee6c9ee1cc48b1cc83d9602641b9f5d38d99a55f5136f447a58d8",
+      "rows": 169
+    },
+    {
+      "url": "https://raw.githubusercontent.com/evanclan/OpenJLPT/main/data/json/grammar/n3.json",
+      "sha256": "a94fed69f213a0896a06e62d47c81b870c570ebc0ae5f01b971780f844a7b295",
+      "rows": 101
+    },
+    {
+      "url": "https://raw.githubusercontent.com/evanclan/OpenJLPT/main/data/json/kanji/n3.json",
+      "sha256": "c81669777f0ea37f848105babf8177ab36e968900307e5118b57e4156ed05fef",
+      "rows": 387
+    },
+    {
+      "url": "https://raw.githubusercontent.com/evanclan/OpenJLPT/main/data/json/vocab/n3.json",
+      "sha256": "17ca6bcbba9d212c3c9d38c38cecc2adef0fd8718cb7157bb48dd9d3a1724948",
+      "rows": 1659
+    },
+    {
+      "url": "https://raw.githubusercontent.com/evanclan/OpenJLPT/main/data/json/grammar/n2.json",
+      "sha256": "fc7a26fd991b80505480ca64f3fce03014a3f91f921045b9fb14bc63a31f3f95",
+      "rows": 123
+    },
+    {
+      "url": "https://raw.githubusercontent.com/evanclan/OpenJLPT/main/data/json/kanji/n2.json",
+      "sha256": "2e3bd6f9a26d8794aad2dd770b094836bc6c478950202d631e5fb9233e26cc85",
+      "rows": 398
+    },
+    {
+      "url": "https://raw.githubusercontent.com/evanclan/OpenJLPT/main/data/json/vocab/n2.json",
+      "sha256": "4c7053d1b61f71ca4004252cafdf89439c65531900e7bab6c53078802acf3c5b",
+      "rows": 1778
+    },
+    {
+      "url": "https://raw.githubusercontent.com/evanclan/OpenJLPT/main/data/json/grammar/n1.json",
+      "sha256": "b6df1691cf9441f044b18490e25eef02a5c93ad9c0d0d69d62eb889256e6708b",
+      "rows": 123
+    },
+    {
+      "url": "https://raw.githubusercontent.com/evanclan/OpenJLPT/main/data/json/kanji/n1.json",
+      "sha256": "1814dd4fd4b363854fb861f091c2ca408bac01c96dddb6e9b3a5e2566069a79e",
+      "rows": 1345
+    },
+    {
+      "url": "https://raw.githubusercontent.com/evanclan/OpenJLPT/main/data/json/vocab/n1.json",
+      "sha256": "09325eb676ec26044e9019afb5ddd460a394a0d8cb51b0b34d30d03124c131ff",
+      "rows": 3070
+    }
+  ],
+  "wordCount": 7811,
+  "kanjiCount": 2383,
+  "grammarCount": 526
+}

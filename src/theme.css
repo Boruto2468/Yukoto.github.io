@@ -1,0 +1,21 @@
+:root {
+  --bg: #f5f0e7;
+  --surface: #fffaf2;
+  --surface2: #eee7dc;
+  --text: #302b26;
+  --muted: #766e64;
+  --line: #e4dacb;
+  --accent: #a64f3d;
+  --accent-dark: #843a30;
+  --accent-soft: #f3e4da;
+  --green: #526b55;
+}
+
+.art-rule {
+  background: var(--accent);
+}
+
+.art-seal {
+  border-color: var(--accent);
+  color: var(--accent);
+}
