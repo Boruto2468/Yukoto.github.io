@@ -19,3 +19,36 @@
   border-color: var(--accent);
   color: var(--accent);
 }
+
+.account-button {
+  flex-shrink: 0;
+  padding: 4px;
+  border-radius: 50%;
+}
+
+.account-button.signed-in {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.account-button.active {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+
+.account-button img,
+.account-initial {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.account-initial {
+  display: grid;
+  place-items: center;
+  background: var(--surface2);
+  font-size: 13px;
+  font-weight: 700;
+}
