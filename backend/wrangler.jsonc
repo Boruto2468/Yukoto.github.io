@@ -1,5 +1,26 @@
 {
- "name":"yukoto-live-token","main":"src/index.ts","compatibility_date":"2026-10-01",
- "vars":{"ALLOWED_ORIGINS":"http://localhost:5173,https://yukoto.download","FIREBASE_PROJECT_ID":"yukoto-d2814","ADMIN_EMAILS":"","PAYSTACK_MONTHLY_PLAN":"","PAYSTACK_YEARLY_PLAN":""},
- "d1_databases":[{"binding":"DB","database_name":"yukoto-students","database_id":"REPLACE_D1_DATABASE_ID","migrations_dir":"migrations"}]
+	"name": "yukoto-live-token",
+	"main": "src/index.ts",
+	"compatibility_date": "2026-10-01",
+	"vars": {
+		"ALLOWED_ORIGINS": "http://localhost:5173, https://yukoto.yukotosubdom.workers.dev, https://yukoto.download",
+		"FIREBASE_PROJECT_ID": "yukoto-d2814",
+		"ADMIN_EMAILS": "frankarimoro@gmail.com",
+		"PAYSTACK_MONTHLY_PLAN": "",
+		"PAYSTACK_YEARLY_PLAN": ""
+	},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "yukoto-students",
+			"database_id": "16d2401d-c354-4b5e-9b26-5b63954a61eb",
+			"migrations_dir": "migrations"
+		},
+		{
+			"binding": "yukoto_students",
+			"database_name": "yukoto-students",
+			"database_id": "16d2401d-c354-4b5e-9b26-5b63954a61eb",
+			"remote": true
+		}
+	]
 }

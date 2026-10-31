@@ -32,8 +32,13 @@ async function paymentWebhook(req:Request,env:Env){if(!env.PAYSTACK_SECRET_KEY)r
  return reply({received:true});}
 export default {async fetch(req:Request,env:Env):Promise<Response>{
  const url=new URL(req.url),path=url.pathname,origin=req.headers.get('origin')||'';
+ const allowedOrigins=env.ALLOWED_ORIGINS.split(',').map(s=>s.trim());
+ // Opening Wrangler's local URL should take the developer to the Vite app.
+ if(req.method==='GET'&&path==='/'&&!origin&&['localhost','127.0.0.1','[::1]'].includes(url.hostname)&&allowedOrigins.includes('http://localhost:5173')){
+  return Response.redirect('http://localhost:5173/',302);
+ }
  if(path==='/api/billing/webhook'&&req.method==='POST'){try{return await paymentWebhook(req,env)}catch(err){console.error(err);return reply({error:'Webhook failed'},500)}}
- if(!origin||!env.ALLOWED_ORIGINS.split(',').map(s=>s.trim()).includes(origin))return reply({error:'Origin not allowed'},403);
+ if(!origin||!allowedOrigins.includes(origin))return reply({error:'Origin not allowed'},403);
  if(req.method==='OPTIONS')return new Response(null,{status:204,headers:{'access-control-allow-origin':origin,'access-control-allow-methods':'GET, POST, PUT, DELETE, OPTIONS','access-control-allow-headers':'authorization,content-type','vary':'Origin'}});
  if(path==='/api/health')return reply({ok:true},200,origin);
  let account:any;try{const jwt=req.headers.get('authorization')?.match(/^Bearer (.+)$/)?.[1];account=await verifyFirebase(jwt,env.FIREBASE_PROJECT_ID)}catch{return reply({error:'Please sign in with Google.'},401,origin)}
