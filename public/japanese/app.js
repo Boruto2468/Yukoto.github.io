@@ -224,6 +224,7 @@ function toggleBackgroundMusic(){
  startBackgroundMusic().catch(error=>{if(error?.name!=='NotAllowedError')reportMusicError(error)});
 }
 
+const navigationLinks = () => `${NAV.map(p=>`<a href="#${p}" class="nav-item" ${state.page===p?'aria-current="page"':''}>${icon(p==='home'?'home':p==='words'?'book':p==='anime'?'clapper':p==='grammar'?'book':'reading')}${t(p)}</a>`).join('')}<a href="../journey/index.html?lang=ja" class="nav-item">${icon('reading')}My Path</a>`;
 const shell = () => `
 <div class="site site--${state.page}${hasRenderedHome?' has-rendered-home':''}">
  <div class="scenery" aria-hidden="true"><img class="scenery__land" src="./assets/hero-background.webp" alt="" /></div>
@@ -231,8 +232,8 @@ const shell = () => `
  <div class="petal-field" aria-hidden="true">${[...Array(11)].map((_,i)=>`<i class="petal" style="--left:${(i*37+13)%100}%;--size:${11+(i*7)%11}px;--duration:${15+(i*3)%14}s;--delay:-${(i*5)%21}s;--travel:${i%2?'-':'+'}${35+(i*29)%115}px"></i>`).join('')}</div>
  <header class="topbar">
   <a class="logo" href="#home" aria-label="Yukoto home"><span class="logo__petal" aria-hidden="true">✿</span><span><span class="logo__name">Yukoto</span><small class="logo__tag">語りで、つながる</small></span></a>
-  <nav class="topbar__nav" aria-label="Japanese section navigation">${NAV.map(p=>`<a href="#${p}" class="nav-item" ${state.page===p?'aria-current="page"':''}>${icon(p==='home'?'home':p==='words'?'book':p==='anime'?'clapper':p==='grammar'?'book':'reading')}${t(p)}</a>`).join('')}</nav>
-  <div class="topbar__tools"><a class="jp-journey-top" href="../journey/index.html?lang=ja" title="Optional guided learning path">✿ <span>My Path</span></a>
+  <nav class="topbar__nav" aria-label="Japanese section navigation">${navigationLinks()}</nav>
+  <div class="topbar__tools">
    <a class="course-switch" href="../" title="${safe(t('learnChinese'))}" aria-label="${safe(t('learnChinese'))}">${icon('repeat',15)}<span>${t('learnChinese')}</span> <span aria-hidden="true">↔</span></a>
    <button class="music-toggle" type="button" data-action="music-toggle" aria-label="${safe(musicError?t('musicUnavailable'):musicPlaying?t('musicPause'):t('musicPlay'))}" title="${safe(musicError?t('musicUnavailable'):musicPlaying?t('musicPause'):t('musicPlay'))}" aria-pressed="${musicPlaying}">${icon('music',16)} ${icon(musicPlaying?'pause':'play',13)}</button>
    <button class="mobile-nav-toggle" type="button" data-action="mobile-nav" aria-label="${state.mobileNavOpen?'Close navigation':'Open navigation'}" aria-controls="japanese-mobile-sidebar" aria-expanded="${state.mobileNavOpen}">${icon(state.mobileNavOpen?'close':'menu',19)}</button>
@@ -247,7 +248,7 @@ const shell = () => `
 </div>
 ${state.animeDetails?animeDetailsModal(state.animeDetails):''}
 <button class="mobile-nav-backdrop ${state.mobileNavOpen?'is-open':''}" type="button" data-action="close-mobile-nav" aria-label="Close navigation" aria-hidden="${!state.mobileNavOpen}" ${state.mobileNavOpen?'':'inert'}></button>
-<nav id="japanese-mobile-sidebar" class="mobile-sidebar ${state.mobileNavOpen?'is-open':''}" aria-label="Japanese section navigation" ${state.mobileNavOpen?'':'inert'}>${NAV.map(p=>`<a href="#${p}" class="nav-item" ${state.page===p?'aria-current="page"':''}>${icon(p==='home'?'home':p==='words'?'book':p==='anime'?'clapper':p==='grammar'?'book':'reading')}${t(p)}</a>`).join('')}</nav>`;
+<nav id="japanese-mobile-sidebar" class="mobile-sidebar ${state.mobileNavOpen?'is-open':''}" aria-label="Japanese section navigation" ${state.mobileNavOpen?'':'inert'}>${navigationLinks()}</nav>`;
 function homePage(){return `
  <section class="home-hero" aria-labelledby="welcome-title">
   <div class="home-hero__copy">

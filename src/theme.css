@@ -52,3 +52,117 @@
   font-size: 13px;
   font-weight: 700;
 }
+
+.nav-links .nav-link {
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.cn-mobile-navigation {
+  display: none;
+}
+
+@media (min-width: 1121px) and (max-width: 1280px) {
+  .topbar {
+    padding: 0 20px;
+    gap: 12px;
+  }
+
+  .nav-links .nav-link {
+    padding: 9px 8px;
+    gap: 6px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 1120px) {
+  .topbar {
+    height: 66px;
+    padding: 0 16px;
+    gap: 12px;
+  }
+
+  .topbar .nav-links {
+    display: none;
+  }
+
+  .mobile-menu {
+    display: inline-flex;
+  }
+
+  .cn-mobile-navigation {
+    display: block;
+    position: fixed;
+    inset: 66px 0 0;
+    z-index: 90;
+  }
+
+  .cn-nav-backdrop {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    border: 0;
+    background: rgba(30, 24, 19, .45);
+    backdrop-filter: blur(3px);
+    animation: cn-backdrop-in .25s ease;
+  }
+
+  .cn-mobile-sidebar {
+    position: absolute;
+    inset: 0 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    width: min(82vw, 320px);
+    padding: 16px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    background: var(--bg);
+    border-left: 1px solid var(--line);
+    box-shadow: -18px 0 44px rgba(30, 24, 19, .2);
+    animation: cn-sidebar-in .3s cubic-bezier(.22, .75, .2, 1);
+  }
+
+  .cn-sidebar-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .cn-mobile-sidebar .nav-link {
+    flex: 0 0 auto;
+    justify-content: flex-start;
+    gap: 12px;
+    min-height: 48px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    font-size: 13px;
+    text-decoration: none;
+  }
+
+  .cn-mobile-sidebar .nav-link svg {
+    display: block;
+    flex-shrink: 0;
+  }
+}
+
+@keyframes cn-sidebar-in {
+  from { transform: translateX(105%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes cn-backdrop-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cn-mobile-sidebar,
+  .cn-nav-backdrop {
+    animation: none;
+  }
+}
