@@ -10,7 +10,6 @@ const click=(dataset)=>events.get('click')({target:{closest:()=>({dataset})}});
 const change=(id,value)=>events.get('change')({target:{id,value,checked:true}});
 const has=x=>root.innerHTML.includes(x);
 assert.ok(has('Dashboard'));
-assert.ok(has('<div class="brandname">yu<span>ko</span><span>to.</span></div>'));
 click({page:'path'});assert.ok(has('Your learning path'));
 change('path-track','new');change('path-level','1');assert.ok(has('HSK 3.0'));
 let count=(root.innerHTML.match(/class="lesson-card"/g)||[]).length;assert.ok(count<=16&&count>0,count);

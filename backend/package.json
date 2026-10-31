@@ -1,0 +1,1 @@
+{"name":"yukoto-api","private":true,"type":"module","scripts":{"dev":"wrangler dev","deploy":"wrangler deploy","db:local":"wrangler d1 migrations apply yukoto-students --local","db:remote":"wrangler d1 migrations apply yukoto-students --remote","test":"node --test tests/*.test.mjs"},"devDependencies":{"wrangler":"^4.0.0","typescript":"^5.7.3"}}

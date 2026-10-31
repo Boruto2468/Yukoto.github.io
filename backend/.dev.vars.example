@@ -1,0 +1,3 @@
+# Set these with npx wrangler secret put NAME on production, not wrangler.jsonc.
+GEMINI_API_KEY=your_gemini_key
+PAYSTACK_SECRET_KEY=sk_test_...

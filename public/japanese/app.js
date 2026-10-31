@@ -230,7 +230,7 @@ const shell = () => `
  <img class="sakura-layer" src="./assets/sakura-branch.webp" alt="" aria-hidden="true" />
  <div class="petal-field" aria-hidden="true">${[...Array(11)].map((_,i)=>`<i class="petal" style="--left:${(i*37+13)%100}%;--size:${11+(i*7)%11}px;--duration:${15+(i*3)%14}s;--delay:-${(i*5)%21}s;--travel:${i%2?'-':'+'}${35+(i*29)%115}px"></i>`).join('')}</div>
  <header class="topbar">
-  <a class="logo" href="#home" aria-label="Yukoto home"><span class="logo__petal" aria-hidden="true">✿</span><span><span class="logo__name"><span class="logo__yu">Yu</span><span>ko</span><span>to</span></span><small class="logo__tag">語りで、つながる</small></span></a>
+  <a class="logo" href="#home" aria-label="Yukoto home"><span class="logo__petal" aria-hidden="true">✿</span><span><span class="logo__name">Yukoto</span><small class="logo__tag">語りで、つながる</small></span></a>
   <nav class="topbar__nav" aria-label="Japanese section navigation">${NAV.map(p=>`<a href="#${p}" class="nav-item" ${state.page===p?'aria-current="page"':''}>${icon(p==='home'?'home':p==='words'?'book':p==='anime'?'clapper':p==='grammar'?'book':'reading')}${t(p)}</a>`).join('')}</nav>
   <div class="topbar__tools"><a class="jp-journey-top" href="../journey/index.html?lang=ja" title="Optional guided learning path">✿ <span>My Path</span></a>
    <a class="course-switch" href="../" title="${safe(t('learnChinese'))}" aria-label="${safe(t('learnChinese'))}">${icon('repeat',15)}<span>${t('learnChinese')}</span> <span aria-hidden="true">↔</span></a>

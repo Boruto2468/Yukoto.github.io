@@ -1,0 +1,4 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';import {hasPlus,validProgress,signedPaystack} from '../src/security.mjs';
+test('expired premium never grants access',()=>{assert.equal(hasPlus({status:'active',paid_until:'2020-01-01'}),false);assert.equal(hasPlus({status:'active',paid_until:'2099-01-01'}),true);assert.equal(hasPlus({status:'disabled',paid_until:'2099-01-01'}),false);});
+test('progress requires both language profiles',()=>{assert.equal(validProgress({version:1,progress:{ja:{completed:[],words:{},skills:{}},zh:{completed:[],words:{},skills:{}}}}),true);assert.equal(validProgress({version:1,progress:{ja:{}}}),false);});
+test('webhook rejects invalid signature',async()=>assert.equal(await signedPaystack('{"event":"charge.success"}','bogus','fake-key'),false));

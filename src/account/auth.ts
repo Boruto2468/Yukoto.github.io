@@ -1,0 +1,23 @@
+/* Google Identity Services -> Firebase Auth REST: no new dependency. */
+export type Account={uid:string;email:string;name:string;photo?:string};
+type Session={account:Account;idToken:string;refreshToken:string;expiresAt:number};
+const API=import.meta.env.VITE_YUKOTO_API_URL as string|undefined;
+const FIREBASE_KEY=import.meta.env.VITE_FIREBASE_API_KEY as string|undefined;
+const GOOGLE_CLIENT=import.meta.env.VITE_GOOGLE_CLIENT_ID as string|undefined;
+const SESSION_KEY='yukoto.account.session.v1';let current:Session|null=null;
+const listeners=new Set<(a:Account|null)=>void>();
+declare global {interface Window {google?:{accounts:{id:{initialize(args:object):void;renderButton(el:HTMLElement,opts:object):void;disableAutoSelect():void}}}}}
+function read():Session|null{try{const x=JSON.parse(localStorage.getItem(SESSION_KEY)||'null');return x?.refreshToken&&x?.account?.uid?x:null}catch{return null}}
+current=typeof window==='undefined'?null:read();
+function set(s:Session|null){current=s;try{s?localStorage.setItem(SESSION_KEY,JSON.stringify(s)):localStorage.removeItem(SESSION_KEY)}catch{}for(const fn of listeners)fn(s?.account||null)}
+export function observeAccount(fn:(a:Account|null)=>void){listeners.add(fn);fn(current?.account||null);return()=>listeners.delete(fn)}
+export function getAccount(){return current?.account||null}
+export function signOut(){set(null);window.google?.accounts.id.disableAutoSelect()}
+export const authConfigured=Boolean(FIREBASE_KEY&&GOOGLE_CLIENT);
+let refreshing:Promise<string|null>|null=null;
+export async function getToken():Promise<string|null>{const session=current;if(!session||!FIREBASE_KEY)return null;if(session.expiresAt>Date.now()+60_000)return session.idToken;if(refreshing)return refreshing;
+ refreshing=(async()=>{try{const res=await fetch(`https://securetoken.googleapis.com/v1/token?key=${encodeURIComponent(FIREBASE_KEY)}`,{method:'POST',headers:{'content-type':'application/x-www-form-urlencoded'},body:new URLSearchParams({grant_type:'refresh_token',refresh_token:session.refreshToken})});const data=await res.json();if(!res.ok||!data.id_token)throw Error('Expired');if(current?.refreshToken===session.refreshToken)set({...session,idToken:data.id_token,refreshToken:data.refresh_token||session.refreshToken,expiresAt:Date.now()+Number(data.expires_in||3600)*1000});return current?.idToken||null}catch{signOut();return null}})();try{return await refreshing}finally{refreshing=null}}
+export async function apiFetch(path:string,init:RequestInit={}):Promise<Response>{if(!API)throw Error('VITE_YUKOTO_API_URL is not configured');const token=await getToken();if(!token)throw Error('Please sign in to your Google account.');const headers=new Headers(init.headers);headers.set('authorization',`Bearer ${token}`);return fetch(API.replace(/\/$/,'')+path,{...init,headers})}
+let loading:Promise<void>|null=null;
+function loadGoogle(){if(window.google)return Promise.resolve();if(loading)return loading;loading=new Promise((resolve,reject)=>{const s=document.createElement('script');s.src='https://accounts.google.com/gsi/client';s.async=true;s.onload=()=>window.google?resolve():reject(Error('Google script missing'));s.onerror=()=>reject(Error('Google sign-in is unavailable'));document.head.appendChild(s)});return loading}
+export async function renderGoogleSignIn(el:HTMLElement,onError:(s:string)=>void){if(!authConfigured){onError('Site owner must configure Firebase API key and Google OAuth Client ID.');return}try{await loadGoogle();if(!el.isConnected)return;window.google!.accounts.id.initialize({client_id:GOOGLE_CLIENT,ux_mode:'popup',callback:async({credential}:{credential:string})=>{try{const res=await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithIdp?key=${encodeURIComponent(FIREBASE_KEY!)}`,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({requestUri:location.origin,postBody:new URLSearchParams({id_token:credential,providerId:'google.com'}).toString(),returnSecureToken:true,returnIdpCredential:true})});const p=await res.json();if(!res.ok||!p.idToken||!p.localId||!p.refreshToken)throw Error(p.error?.message||'Sign-in failed');set({account:{uid:p.localId,email:p.email||'',name:p.displayName||'Learner',photo:p.photoUrl},idToken:p.idToken,refreshToken:p.refreshToken,expiresAt:Date.now()+Number(p.expiresIn||3600)*1000})}catch(e){onError(e instanceof Error?e.message:'Google sign-in failed')}}});el.replaceChildren();window.google!.accounts.id.renderButton(el,{theme:'outline',shape:'pill',size:'large',text:'continue_with',width:240})}catch(e){onError(e instanceof Error?e.message:'Google sign-in failed')}}

@@ -1,3 +1,4 @@
+import {apiFetch,getAccount} from '../account/auth';
 import { useCallback, useEffect, useMemo, useRef, useState, type FormEvent } from 'react';
 import { AlertCircle, Clock3, LoaderCircle, Mic, MicOff, PhoneOff, Send, ShieldCheck, Trash2, Volume2, Wifi } from 'lucide-react';
 import { YukotoVoiceCharacter, type YukotoVoiceMode } from '../components/YukotoVoiceCharacter';
@@ -98,6 +99,7 @@ function errorMessage(error: unknown): string {
 export function YukotoConversationPage({ initialLevel = 'starter', maxSessionSeconds = MAX_SESSION_SECONDS, curriculumEntries }: Props) {
   const safeInitialLevel = LEVELS.some((item) => item.value === initialLevel) ? initialLevel as Track : 'starter';
   const [track, setTrack] = useState<Track>(safeInitialLevel);
+  const [allowedSeconds, setAllowedSeconds] = useState(maxSessionSeconds);
   const [phase, setPhase] = useState<YukotoVoiceMode>('idle');
   const [statusText, setStatusText] = useState('准备好了吗？点击开始，然后用中文和我聊天。');
   const [errorText, setErrorText] = useState('');
@@ -212,12 +214,12 @@ export function YukotoConversationPage({ initialLevel = 'starter', maxSessionSec
     const update = () => {
       const seconds = Math.max(0, Math.floor((Date.now() - sessionStartedAt) / 1000));
       setElapsed(seconds);
-      if (seconds >= maxSessionSeconds) void stopConversation(true);
+      if (seconds >= allowedSeconds) void stopConversation(true);
     };
     update();
     const intervalId = window.setInterval(update, 1000);
     return () => window.clearInterval(intervalId);
-  }, [sessionStartedAt, maxSessionSeconds, stopConversation]);
+  }, [sessionStartedAt, allowedSeconds, stopConversation]);
 
   const schedulePcmAudio = useCallback((encoded: string) => {
     const context = audioContextRef.current;
@@ -314,11 +316,12 @@ export function YukotoConversationPage({ initialLevel = 'starter', maxSessionSec
   }, []);
 
   const startConversation = useCallback(async () => {
+    if(!getAccount()){setErrorText('Sign in from My Profile before starting AI practice.');setPhase('error');return;}
     if (!privacyAccepted) {
       setErrorText('Please read and accept the privacy notice before starting a voice session.');
       return;
     }
-    if (!TOKEN_URL) {
+    if (!import.meta.env.VITE_YUKOTO_API_URL && !TOKEN_URL) {
       setErrorText('The Gemini endpoint is not configured yet. Deploy the Yukoto Worker and set VITE_YUKOTO_TOKEN_URL for your GitHub Pages build.');
       setPhase('error');
       return;
@@ -353,12 +356,9 @@ export function YukotoConversationPage({ initialLevel = 'starter', maxSessionSec
         video: false,
       });
       streamRef.current = stream;
-      const response = await fetch(TOKEN_URL, {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ track, curriculumWords }),
-      });
-      const payload = await response.json() as { token?: string; error?: string; expiresAt?: string };
+      const response = await apiFetch('/api/ai/token', {method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({track,curriculumWords})});
+      const payload = await response.json() as { token?: string; error?: string; expiresAt?: string; maxSessionSeconds?: number };
+      if(payload.maxSessionSeconds)setAllowedSeconds(payload.maxSessionSeconds);
       if (!response.ok || !payload.token) throw new Error(payload.error || `Token endpoint returned HTTP ${response.status}.`);
 
       const url = `wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1beta.GenerativeService.BidiGenerateContentConstrained?access_token=${encodeURIComponent(payload.token)}`;
@@ -527,7 +527,7 @@ export function YukotoConversationPage({ initialLevel = 'starter', maxSessionSec
       setStatusText('你好！我在听。请用中文和我聊聊。');
       // A short starter invitation helps the session feel conversational without giving an English answer.
       socket.send(JSON.stringify({ realtimeInput: { text: '请先用非常简单、自然的简体中文向学习者问好，然后提出一个适合当前程度、关于日常生活的问题。' } }));
-      sessionTimeoutRef.current = window.setTimeout(() => { void stopConversation(true); }, maxSessionSeconds * 1000);
+      sessionTimeoutRef.current = window.setTimeout(() => { void stopConversation(true); }, (payload.maxSessionSeconds || allowedSeconds) * 1000);
     } catch (error) {
       if (socket && socket.readyState < WebSocket.CLOSING) socket.close();
       socketRef.current = null;
@@ -543,7 +543,7 @@ export function YukotoConversationPage({ initialLevel = 'starter', maxSessionSec
       setErrorText(errorMessage(error));
       setStatusText('暂时无法开始对话。');
     }
-  }, [track, curriculumWords, privacyAccepted, maxSessionSeconds, cleanDrafts, stopOutputAudio, setupAudioCapture, schedulePcmAudio, finalizeTranscripts, stopConversation]);
+  }, [track, curriculumWords, privacyAccepted, allowedSeconds, cleanDrafts, stopOutputAudio, setupAudioCapture, schedulePcmAudio, finalizeTranscripts, stopConversation]);
 
   const sendTypedMessage = useCallback((event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -572,7 +572,7 @@ export function YukotoConversationPage({ initialLevel = 'starter', maxSessionSec
 
   const connected = phase === 'listening' || phase === 'thinking' || phase === 'speaking';
   const busy = phase === 'connecting';
-  const remaining = Math.max(0, maxSessionSeconds - elapsed);
+  const remaining = Math.max(0, allowedSeconds - elapsed);
   const displayMode: YukotoVoiceMode = phase === 'error' ? 'idle' : phase;
 
   return (
@@ -639,7 +639,7 @@ export function YukotoConversationPage({ initialLevel = 'starter', maxSessionSec
         <div className="yukoto-ai-privacy-copy"><strong>Privacy before you speak</strong><p>Live audio and any typed messages are sent to Google Gemini to power this conversation. Yukoto does not save sessions to an account or database. Depending on the API tier, Google may use submitted content to improve its products; the current free tier may do so. Review <a href="https://ai.google.dev/gemini-api/docs/pricing" target="_blank" rel="noreferrer">Google's current API data terms</a> before using this service. Do not share passwords, financial details, or sensitive personal information.</p>
         </div>
       </section>
-      <p className="yukoto-ai-footnote">Sessions are limited to {Math.round(maxSessionSeconds / 60)} minutes. Headphones help prevent the speaker from feeding back into the microphone. If the AI ever speaks English, use the feedback link on your site and review the model configuration before wider release.</p>
+      <p className="yukoto-ai-footnote">Sessions are limited to {Math.round(allowedSeconds / 60)} minutes. Headphones help prevent the speaker from feeding back into the microphone. If the AI ever speaks English, use the feedback link on your site and review the model configuration before wider release.</p>
     </section>
   );
 }

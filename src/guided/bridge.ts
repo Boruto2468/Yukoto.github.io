@@ -17,6 +17,6 @@ export function recordGuidedRecall(native:string,correct:boolean,skill:'recall'|
   p.skills[skill]=(p.skills[skill]||0)+1;
   const day=new Date().toLocaleDateString('en-CA');
   if(p.lastActive!==day){const yesterday=new Date();yesterday.setDate(yesterday.getDate()-1);const yd=yesterday.toLocaleDateString('en-CA');p.streak=p.lastActive===yd?p.streak+1:1;p.lastActive=day}
-  localStorage.setItem(KEY,JSON.stringify(data));
+  localStorage.setItem(KEY,JSON.stringify(data));window.dispatchEvent(new Event('yukoto:progress-updated')); 
  }catch{/* Offline learning remains usable if browser storage is blocked. */}
 }

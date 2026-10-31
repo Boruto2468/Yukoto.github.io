@@ -7,8 +7,8 @@
     "node": ">=18.0.0"
   },
   "scripts": {
-    "dev": "node scripts/prepare-curriculum.mjs && node scripts/prepare-journey.mjs && vite --host 0.0.0.0",
-    "build": "node scripts/prepare-curriculum.mjs && node scripts/prepare-journey.mjs && vite build",
+    "dev": "node scripts/write-student-config.mjs && node scripts/prepare-curriculum.mjs && node scripts/prepare-journey.mjs && vite --host 0.0.0.0",
+    "build": "node scripts/write-student-config.mjs && node scripts/prepare-curriculum.mjs && node scripts/prepare-journey.mjs && vite build",
     "preview": "vite preview --host 0.0.0.0",
     "sync:curriculum": "node scripts/sync-curriculum.mjs && node scripts/prepare-journey.mjs",
     "check:data": "node scripts/verify-curriculum.mjs",

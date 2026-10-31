@@ -1,0 +1,22 @@
+import {useEffect,useRef,useState} from 'react';
+import {apiFetch,authConfigured,getAccount,observeAccount,renderGoogleSignIn,signOut,type Account} from '../account/auth';
+import {readProgress,syncProgress} from '../account/progress';
+import './YukotoAccountPage.css';
+export function YukotoAccountPage({onAdmin}:{onAdmin:()=>void}){
+ const [user,setUser]=useState<Account|null>(getAccount()),[error,setError]=useState(''),[message,setMessage]=useState(''),[plan,setPlan]=useState('free'),[admin,setAdmin]=useState(false),[billing,setBilling]=useState(false);const button=useRef<HTMLDivElement>(null);
+ useEffect(()=>observeAccount(u=>setUser(u)),[]);
+ useEffect(()=>{if(!user){setPlan('free');return;}void apiFetch('/api/me').then(r=>r.json()).then(x=>{setPlan(x.plan||'free');setAdmin(Boolean(x.admin));setBilling(Boolean(x.checkoutEnabled))}).catch(()=>{});},[user?.uid]);
+ useEffect(()=>{if(!user&&button.current)void renderGoogleSignIn(button.current,setError)},[user]);
+ const progress=readProgress(),completed=progress.progress.ja.completed.length+progress.progress.zh.completed.length;
+ async function checkout(){setError('');try{const r=await apiFetch('/api/billing/checkout',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({interval:'monthly'})});const x=await r.json();if(!r.ok||!x.authorization_url)throw Error(x.error||'Checkout unavailable');location.assign(x.authorization_url)}catch(e){setError(e instanceof Error?e.message:'Checkout failed')}}
+ async function erase(){if(!confirm('Delete Yukoto cloud progress and subscription records? This cannot be undone and does not cancel an active Paystack subscription.'))return;try{const r=await apiFetch('/api/me',{method:'DELETE'});if(!r.ok)throw Error('Could not delete cloud data');signOut();setMessage('Cloud data deleted. Local device data remains.')}catch(e){setError(String(e))}}
+ return <section className="ya-page"><header><span className="eyebrow">YUKOTO LEARNING ACCOUNT</span><h1>My Profile</h1><p>Keep your Japanese and Mandarin study history wherever you learn.</p></header>
+ {user?<><div className="ya-card ya-person">{user.photo?<img src={user.photo} alt="" referrerPolicy="no-referrer"/>:<span className="ya-initial">{user.name[0]}</span>}<div><strong>{user.name}</strong><small>{user.email}</small><small>{plan==='plus'?'Yukoto Plus':'Free student'}</small></div><button className="ya-button secondary" onClick={signOut}>Sign out</button></div>
+ <div className="ya-grid"><div className="ya-card"><strong>{completed}</strong><span>Lessons completed (saved locally)</span></div><div className="ya-card"><strong>{Object.values(progress.progress).reduce((sum,p)=>sum+Object.keys(p.words).length,0)}</strong><span>Vocabulary records</span></div></div>
+ <div className="ya-card"><h2>Progress backup</h2><p>Syncs local study records with your Google-linked account. Both languages are included.</p><button className="ya-button" onClick={async()=>setMessage(await syncProgress()?'Progress synced successfully.':'Sync unavailable; please try again online.')}>Sync my progress</button></div>
+ {plan!=='plus'&&<div className="ya-card"><h2>Yukoto Plus</h2><p>Extended AI speaking practice: 8-minute sessions and up to 20 sessions/day, compared with 3 minutes and 2 sessions/day on Free.</p>{billing?<button className="ya-button" onClick={()=>void checkout()}>Subscribe with Paystack</button>:<p>Payments not active yet. Owner must configure Paystack plans first.</p>}</div>}
+ {admin&&<div className="ya-card"><h2>Site analytics</h2><button className="ya-button secondary" onClick={onAdmin}>Open private dashboard</button></div>}
+ <div className="ya-card"><h2>Privacy controls</h2><p>Progress is linked to your Google account. AI recordings and transcripts are not stored in the learning database. Cloud deletion does not cancel an external billing arrangement.</p><button className="ya-button danger" onClick={()=>void erase()}>Delete Yukoto cloud data</button></div></>:<div className="ya-card"><h2>Continue with Google</h2><p>Core lessons work without logging in. Sign in to back up progress, use free AI speaking practice, and sync between devices.</p><div ref={button}/>{!authConfigured&&<p>Owner setup needed: Firebase API key and Google OAuth client ID.</p>}<small>Signing in shares your Google name, verified email and account ID with Yukoto.</small></div>}
+ {error&&<p role="alert" className="ya-error">{error}</p>}{message&&<p role="status">{message}</p>}
+ </section>
+}
